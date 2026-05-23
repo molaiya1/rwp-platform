@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
 import {
   Home, Map, Compass, Building2, Users, TrendingUp, BookOpen,
@@ -89,7 +90,36 @@ const CIRC = 2 * Math.PI * RADIUS
 const PROGRESS_DASH = (XP / XP_NEXT) * CIRC
 
 export default function DashboardPage() {
-  const [query, setQuery] = useState('')
+  const [query, setQuery]       = useState('')
+  const [userName, setUserName] = useState('there')
+  const [userFirst, setUserFirst] = useState('there')
+
+  useEffect(() => {
+    const supabase = createClient()
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) return
+      const meta = user.user_metadata
+      if (meta?.full_name || meta?.name) {
+        const full = (meta.full_name || meta.name) as string
+        setUserName(full)
+        setUserFirst(full.split(' ')[0])
+        return
+      }
+      const { data: org } = await supabase
+        .from('impact_organizations')
+        .select('contact_name')
+        .eq('contact_email', user.email)
+        .single()
+      if (org?.contact_name) {
+        setUserName(org.contact_name)
+        setUserFirst(org.contact_name.split(' ')[0])
+        return
+      }
+      const prefix = user.email?.split('@')[0] ?? 'there'
+      setUserName(prefix)
+      setUserFirst(prefix)
+    })
+  }, [])
 
   return (
     <div className={styles.shell}>
@@ -207,8 +237,8 @@ export default function DashboardPage() {
                 className={styles.avatar}
               />
               <div className={styles.profileMeta}>
-                <span className={styles.profileName}>Jordan M.</span>
-                <span className={styles.profileRole}>Student</span>
+                <span className={styles.profileName}>{userName}</span>
+                <span className={styles.profileRole}>Member</span>
               </div>
               <ChevronDown size={14} className={styles.profileChevron} />
             </button>
@@ -221,7 +251,7 @@ export default function DashboardPage() {
           {/* Welcome */}
           <div className={styles.welcomeRow}>
             <div>
-              <h1 className={styles.welcomeH1}>Welcome back, Jordan! <span aria-label="waving hand">👋</span></h1>
+              <h1 className={styles.welcomeH1}>Welcome back, {userFirst}! <span aria-label="waving hand">👋</span></h1>
               <p className={styles.welcomeSub}>Let's explore real-world experiences and build your future.</p>
             </div>
             <Link href="/dashboard/settings" className={styles.settingsLink} aria-label="Settings">
@@ -244,7 +274,7 @@ export default function DashboardPage() {
             <div className={styles.miloWrap}>
               <div className={styles.miloBubble}>
                 <p className={styles.miloBubbleText}>
-                  Hi Jordan! 👋 New opportunities are waiting for you. Let's go!
+                  Hi {userFirst}! 👋 New opportunities are waiting for you. Let's go!
                 </p>
                 <p className={styles.miloBubbleBy}>— Milo</p>
               </div>

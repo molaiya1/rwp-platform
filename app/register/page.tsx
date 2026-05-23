@@ -168,6 +168,17 @@ function RegisterContent() {
       })
       router.push('/dashboard')
     } else {
+      if (!bEmail || !password) {
+        setSubmitError('Please enter your email and a password.')
+        setSubmitting(false)
+        return
+      }
+      const { error: authError } = await supabase.auth.signUp({ email: bEmail, password })
+      if (authError) {
+        setSubmitError(authError.message)
+        setSubmitting(false)
+        return
+      }
       await supabase.from('pathway_site_applications').insert({
         company:          bizName,
         industry,
@@ -481,6 +492,22 @@ function RegisterContent() {
         <div className={styles.fieldGroup}>
           <label className={styles.label}>What motivates your organization to participate? <span className={styles.optional}>(optional)</span></label>
           <textarea className={styles.textarea} placeholder="Optional" value={motivation} onChange={e => setMotivation(e.target.value)} rows={3} />
+        </div>
+        <div className={styles.fieldGroup}>
+          <label className={styles.label}>Create a Password</label>
+          <div className={styles.inputWrap}>
+            <input
+              className={styles.input}
+              type={showPw ? 'text' : 'password'}
+              placeholder="At least 8 characters"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              autoComplete="new-password"
+            />
+            <button type="button" className={styles.eyeBtn} onClick={() => setShowPw(v => !v)} aria-label={showPw ? 'Hide' : 'Show'}>
+              {showPw ? <EyeOff size={14} /> : <Eye size={14} />}
+            </button>
+          </div>
         </div>
       </div>
     </div>
