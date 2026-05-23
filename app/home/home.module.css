@@ -1075,11 +1075,33 @@
 
   /* Experience teaser strip */
   .expTeaser { padding: 20px; }
+  .expTeaserPills { gap: 6px; }
 
-  /* How it works — overrides 600px rule */
+  /* How it works */
   .howItWorks { padding: 40px 20px 52px; }
   .howSub { margin-bottom: 36px; }
+
+  /* Experience browser */
+  .expBrowser { padding: 40px 20px; }
+
+  /* Partners */
+  .partners { padding: 40px 20px; }
+
+  /* Trust band */
+  .trustBand { padding: 32px 20px; }
+
+  /* Bottom CTA */
+  .bottomCta { padding: 52px 20px; }
+
+  /* Footer */
+  .footer { padding: 16px 20px; }
 
   /* Nav sub-label — too cramped on tiny screens */
   .navLogoSub { display: none; }
 }
+
+/* ── Active tap states (no :hover on touch) ── */
+.btnPrimary:active { background: #5A4B7A; transform: scale(0.97); }
+.btnOutline:active { background: rgba(255,255,255,0.12); }
+.partnerCta:active { background: #5A4B7A; transform: none; }
+.expTeaserCta:active { background: #5A4B7A; }

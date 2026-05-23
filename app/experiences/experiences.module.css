@@ -130,7 +130,13 @@
 @media (max-width: 480px) {
   .grid { padding: 32px 16px; }
   .hero { padding: 52px 20px 60px; }
+  .bottomCta { padding: 52px 20px; }
+  .footer { padding: 16px 20px; }
 }
+
+/* ── Active tap states ── */
+.btnPrimary:active { background: #5A4B7A; transform: scale(0.97); }
+.btnOutline:active { background: rgba(255,255,255,0.12); }
 
 /* ── CARDS ── */
 .card {
@@ -229,7 +235,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 38px;
+  height: 44px;
   border-radius: 10px;
   background: #6B5A8E;
   color: #FFFFFF;
@@ -240,12 +246,13 @@
 }
 
 .cardCtaOrg:hover { background: #5A4B7A; }
+.cardCtaOrg:active { background: #5A4B7A; transform: scale(0.98); }
 
 .cardCtaBiz {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 38px;
+  height: 44px;
   border-radius: 10px;
   border: 1.5px solid #DDD8EE;
   color: #6B5A8E;
@@ -259,6 +266,7 @@
   border-color: #6B5A8E;
   background: #F4F1FA;
 }
+.cardCtaBiz:active { background: #F4F1FA; border-color: #6B5A8E; transform: scale(0.98); }
 
 /* ── BOTTOM CTA ── */
 .bottomCta {

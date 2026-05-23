@@ -556,7 +556,7 @@
   transform: translateY(-1px);
   box-shadow: 0 8px 22px rgba(107, 90, 142, 0.30);
 }
-.btnPrimary:active:not(:disabled) { transform: translateY(0); box-shadow: none; }
+.btnPrimary:active:not(:disabled) { transform: scale(0.98); box-shadow: none; background: #5A4B78; }
 .btnPrimary:disabled { opacity: 0.55; cursor: not-allowed; }
 
 /* Spinner */
