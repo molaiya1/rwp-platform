@@ -1410,7 +1410,8 @@
 
 @media (max-width: 480px) {
   .hero { padding: 40px 20px 48px; }
-  .filterSidebar { gap: 10px; }
-  .filterGroup { min-width: 140px; }
+  .filterSidebar { gap: 8px; }
+  .filterGroup { min-width: 120px; flex-basis: calc(50% - 4px); }
   .calendarStrip { padding: 10px 16px; }
+  .body { padding: 16px 16px 48px; }
 }
