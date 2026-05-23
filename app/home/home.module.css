@@ -1098,10 +1098,18 @@
 
   /* Nav sub-label — too cramped on tiny screens */
   .navLogoSub { display: none; }
+
+  /* Stat dividers look wrong in 2-col grid */
+  .statDivider { display: none; }
+
+  /* Hero CTA cards full-width stacked */
+  .ctaCard, .ctaCardOutline { min-width: 0; }
 }
 
 /* ── Active tap states (no :hover on touch) ── */
 .btnPrimary:active { background: #5A4B7A; transform: scale(0.97); }
 .btnOutline:active { background: rgba(255,255,255,0.12); }
+.ctaCard:active { background: #5A4B7A; transform: scale(0.98); }
+.ctaCardOutline:active { border-color: #6B5A8E; background: #F4F1FA; transform: scale(0.98); }
 .partnerCta:active { background: #5A4B7A; transform: none; }
 .expTeaserCta:active { background: #5A4B7A; }
