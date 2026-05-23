@@ -1061,8 +1061,25 @@
 
 /* ── 480px phone pass ── */
 @media (max-width: 480px) {
+  /* Stats band */
   .statsBand { padding: 28px 20px; }
-  .statsInner { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
-  .statItem { padding: 0 12px; gap: 10px; }
-  .statNum { font-size: 26px; }
+  .statsInner { grid-template-columns: repeat(2, 1fr); gap: 28px 0; }
+  .statItem { padding: 0 14px; gap: 0; }
+  .statIconWrap { display: none; }
+  .statNumber { font-size: 24px; }
+  .statLabel { font-size: 11.5px; }
+
+  /* Hero */
+  .heroRight { min-height: 210px; }
+  .heroLeft { padding: 24px 20px 20px; }
+
+  /* Experience teaser strip */
+  .expTeaser { padding: 20px; }
+
+  /* How it works — overrides 600px rule */
+  .howItWorks { padding: 40px 20px 52px; }
+  .howSub { margin-bottom: 36px; }
+
+  /* Nav sub-label — too cramped on tiny screens */
+  .navLogoSub { display: none; }
 }
