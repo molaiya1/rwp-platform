@@ -253,6 +253,42 @@ export default function LoginPage() {
         {/* ── Hero photo section ── */}
         <section className={styles.hero}>
 
+          {/* Frosted logo card */}
+          <div className={styles.heroLogoWrap}>
+            <div className={styles.heroLogoCard}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo-wwk-transparent.png" alt="WealthWise KIDS™ Real-World Pathways" className={styles.heroLogoImg} />
+            </div>
+          </div>
+
+          {/* Headline */}
+          <div className={styles.heroContent}>
+            <h1 className={styles.heroH1}>Real workplaces.</h1>
+            <p className={styles.heroScript}>Real futures.</p>
+            <p className={styles.heroSubtext}>
+              The only platform purpose-built for in-person, structured career experiences — connecting students to real workplaces and measurable outcomes.
+            </p>
+            <a href="/register" className={styles.heroCtaBtn}>
+              <span className={styles.heroCtaIcon}>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </span>
+              Join the Founding Cohort
+            </a>
+          </div>
+
+          {/* Milo quote bubble */}
+          <div className={styles.miloRow}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/milo-3d.png" alt="Milo the owl" className={styles.miloImg} />
+            <div className={styles.miloQuote}>
+              <p className={styles.miloQuoteText}>
+                Every big career starts with one real experience. Let&apos;s find yours.
+              </p>
+              <p className={styles.miloQuoteBy}>— Milo, RWP Guide Owl</p>
+            </div>
+          </div>
 
         </section>
 

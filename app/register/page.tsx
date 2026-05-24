@@ -147,6 +147,11 @@ function RegisterContent() {
         setSubmitting(false)
         return
       }
+      if (password.length < 8) {
+        setSubmitError('Password must be at least 8 characters.')
+        setSubmitting(false)
+        return
+      }
       const { error } = await supabase.auth.signUp({ email: cEmail, password })
       if (error) {
         setSubmitError(error.message)
@@ -172,10 +177,16 @@ function RegisterContent() {
         ec_phone:      ecPhone,
         ec_email:      ecEmail,
       })
-      router.push('/dashboard')
+      setSubmitted(true)
+      setSubmitting(false)
     } else {
       if (!bEmail || !password) {
         setSubmitError('Please enter your email and a password.')
+        setSubmitting(false)
+        return
+      }
+      if (password.length < 8) {
+        setSubmitError('Password must be at least 8 characters.')
         setSubmitting(false)
         return
       }
@@ -200,7 +211,8 @@ function RegisterContent() {
         doc_conduct:      false,
         doc_youth:        false,
       })
-      router.push('/portal')
+      setSubmitted(true)
+      setSubmitting(false)
     }
   }
 
@@ -556,19 +568,71 @@ function RegisterContent() {
   const submitLabel = isOrg ? 'Create Organization Profile →' : 'Submit Application →'
 
   if (submitted) {
+    const successEmail = isOrg ? cEmail : bEmail
     return (
       <div className={styles.page}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', textAlign: 'center', padding: '40px 24px', background: '#FDFBFF' }}>
-          <div style={{ width: 64, height: 64, borderRadius: '50%', background: '#F0FFF4', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}>
-            <ShieldCheck size={32} color="#3A8C6E" />
+        <div className={styles.successPage}>
+          <div className={styles.successCard}>
+            {/* Logo */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo-wwk-transparent.png" alt="Real-World Pathways™" className={styles.successLogo} />
+
+            {isOrg ? (
+              /* ── Org success: verify email ── */
+              <>
+                <div className={styles.successIconWrap} style={{ background: '#EDE9F5', color: '#6B5A8E' }}>
+                  <ShieldCheck size={32} />
+                </div>
+                <h1 className={styles.successTitle}>You&apos;re almost in!</h1>
+                <p className={styles.successSub}>
+                  We sent a verification link to <strong>{successEmail}</strong>. Click the link in that email to activate your account, then sign in to access your dashboard.
+                </p>
+                <div className={styles.successSteps}>
+                  <div className={styles.successStep}>
+                    <span className={styles.successStepNum}>1</span>
+                    <span className={styles.successStepText}>Check your inbox at <strong>{successEmail}</strong></span>
+                  </div>
+                  <div className={styles.successStep}>
+                    <span className={styles.successStepNum}>2</span>
+                    <span className={styles.successStepText}>Click the verification link (check spam if you don&apos;t see it within 2 minutes)</span>
+                  </div>
+                  <div className={styles.successStep}>
+                    <span className={styles.successStepNum}>3</span>
+                    <span className={styles.successStepText}>Sign in to access your organization dashboard</span>
+                  </div>
+                </div>
+                <Link href="/login" className={styles.successBtn}>Go to Sign In →</Link>
+                <p className={styles.successNote}>Link expires in 24 hours. <a href="/login" className={styles.successLink}>Already verified? Sign in now.</a></p>
+              </>
+            ) : (
+              /* ── Biz success: application pending + verify email ── */
+              <>
+                <div className={styles.successIconWrap} style={{ background: '#F0FFF4', color: '#166534' }}>
+                  <ShieldCheck size={32} />
+                </div>
+                <h1 className={styles.successTitle}>Application Received!</h1>
+                <p className={styles.successSub}>
+                  Thank you for applying to become a Certified Pathway Site™. Our team will review your application within <strong>3–5 business days</strong>.
+                </p>
+                <div className={styles.successSteps}>
+                  <div className={styles.successStep}>
+                    <span className={styles.successStepNum}>1</span>
+                    <span className={styles.successStepText}>Check your inbox at <strong>{successEmail}</strong> and click the verification link</span>
+                  </div>
+                  <div className={styles.successStep}>
+                    <span className={styles.successStepNum}>2</span>
+                    <span className={styles.successStepText}>Our team reviews your application (3–5 business days)</span>
+                  </div>
+                  <div className={styles.successStep}>
+                    <span className={styles.successStepNum}>3</span>
+                    <span className={styles.successStepText}>Once approved, sign in to access your Pathway Site portal</span>
+                  </div>
+                </div>
+                <Link href="/login" className={styles.successBtn}>Go to Sign In →</Link>
+                <p className={styles.successNote}>Questions? Email us at <a href="mailto:info@wealthwisekids.org" className={styles.successLink}>info@wealthwisekids.org</a></p>
+              </>
+            )}
           </div>
-          <h1 style={{ fontSize: 26, fontWeight: 700, color: '#1F3C88', marginBottom: 12 }}>Application Received!</h1>
-          <p style={{ fontSize: 15, color: '#555', maxWidth: 420, lineHeight: 1.6, marginBottom: 32 }}>
-            Thank you for applying to become a Certified Pathway Site™. Our team will review your application and reach out within <strong>3–5 business days</strong>.
-          </p>
-          <Link href="/home" style={{ background: '#6B5A8E', color: '#fff', padding: '12px 28px', borderRadius: 8, fontWeight: 600, textDecoration: 'none', fontSize: 14 }}>
-            Back to Home
-          </Link>
         </div>
       </div>
     )

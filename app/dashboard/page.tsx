@@ -10,6 +10,7 @@ import {
   Radio, Lightbulb, FlaskConical, Heart, HelpCircle, Settings,
   Quote, ShieldCheck,
 } from 'lucide-react'
+import Toast, { type ToastData } from '@/app/components/Toast'
 import styles from './dashboard.module.css'
 
 /* ─── Types ─── */
@@ -114,6 +115,13 @@ export default function DashboardPage() {
   const [orgId, setOrgId]           = useState<string | null>(null)
   const [contactName, setContactName] = useState('')
   const [contactEmail, setContactEmail] = useState('')
+  const [toasts, setToasts]           = useState<ToastData[]>([])
+
+  const addToast = (message: string, type: ToastData['type'] = 'success') => {
+    const id = Math.random().toString(36).slice(2)
+    setToasts(prev => [...prev, { id, message, type }])
+  }
+  const dismissToast = (id: string) => setToasts(prev => prev.filter(t => t.id !== id))
 
   useEffect(() => {
     const supabase = createClient()
@@ -173,6 +181,7 @@ export default function DashboardPage() {
     })
     setRequested(prev => new Set([...prev, lab.id]))
     setRequesting(null)
+    addToast(`Interest sent for "${lab.title}". The Pathway Site will follow up by email.`)
   }
 
   return (
@@ -193,10 +202,10 @@ export default function DashboardPage() {
         <nav className={styles.nav} aria-label="Main navigation">
           {NAV.map(({ label, icon: Icon, href, active, soon }) => (
             soon ? (
-              <div key={label} className={`${styles.navItem} ${styles.navItemDisabled}`} aria-hidden="true">
+              <div key={label} className={`${styles.navItem} ${styles.navItemDisabled}`} title={`${label} — coming soon`}>
                 <Icon size={18} className={styles.navIcon} aria-hidden="true" />
                 <span>{label}</span>
-                <span className={styles.navComingSoon}>Soon</span>
+                <span className={styles.navComingSoon}>Beta</span>
               </div>
             ) : (
               <Link key={label} href={href} className={`${styles.navItem} ${active ? styles.navActive : ''}`}>
@@ -206,6 +215,13 @@ export default function DashboardPage() {
             )
           ))}
         </nav>
+
+        {/* Beta notice */}
+        <div className={styles.betaNotice}>
+          <p className={styles.betaNoticeText}>
+            You&apos;re in the <strong>Founding Cohort</strong>. Additional features unlock as your pathway progresses.
+          </p>
+        </div>
 
         {/* Bottom section */}
         <div className={styles.sidebarBottom}>
@@ -292,23 +308,18 @@ export default function DashboardPage() {
             {/* Notifications */}
             <button type="button" className={styles.iconBtn} aria-label="Notifications">
               <Bell size={18} />
-              <span className={styles.iconBadge}>3</span>
             </button>
 
             {/* Messages */}
             <button type="button" className={styles.iconBtn} aria-label="Messages">
               <Mail size={18} />
-              <span className={styles.iconBadge}>2</span>
             </button>
 
             {/* Profile */}
             <button type="button" className={styles.profileBtn} aria-label="Account menu">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop&facepad=3"
-                alt="Jordan M."
-                className={styles.avatar}
-              />
+              <div className={styles.avatarInitials} aria-hidden="true">
+                {userFirst.charAt(0).toUpperCase()}
+              </div>
               <div className={styles.profileMeta}>
                 <span className={styles.profileName}>{userName}</span>
                 <span className={styles.profileRole}>Member</span>
@@ -559,6 +570,8 @@ export default function DashboardPage() {
 
         </main>
       </div>
+
+      <Toast toasts={toasts} onDismiss={dismissToast} />
 
       {/* ── Mobile bottom nav ── */}
       <nav className={styles.mobileBottomNav} aria-label="Mobile navigation">

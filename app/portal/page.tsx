@@ -9,6 +9,7 @@ import {
   Briefcase, ShieldCheck, Star, MessageSquare,
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import Toast, { type ToastData } from '@/app/components/Toast'
 import styles from './portal.module.css'
 
 type AppStatus = 'pending' | 'approved' | 'flagged' | 'denied'
@@ -74,6 +75,13 @@ export default function PortalPage() {
   const [tab, setTab]               = useState<'overview' | 'labs' | 'requests'>('overview')
   const [showAddLab, setShowAddLab] = useState(false)
   const [savingLab, setSavingLab]   = useState(false)
+  const [toasts, setToasts]         = useState<ToastData[]>([])
+
+  const addToast = (message: string, type: ToastData['type'] = 'success') => {
+    const id = Math.random().toString(36).slice(2)
+    setToasts(prev => [...prev, { id, message, type }])
+  }
+  const dismissToast = (id: string) => setToasts(prev => prev.filter(t => t.id !== id))
 
   // New Field Lab form state
   const [labTitle, setLabTitle]       = useState('')
@@ -133,6 +141,7 @@ export default function PortalPage() {
     const supabase = createClient()
     await supabase.from('field_lab_requests').update({ status }).eq('id', reqId)
     setRequests(prev => prev.map(r => r.id === reqId ? { ...r, status } : r))
+    addToast(status === 'confirmed' ? 'Session confirmed — the organization will be notified.' : 'Request declined.', status === 'confirmed' ? 'success' : 'warning')
   }
 
   const handleAddLab = async () => {
@@ -157,6 +166,7 @@ export default function PortalPage() {
     setLabLocation(''); setLabVirtual(false)
     setShowAddLab(false)
     setSavingLab(false)
+    addToast('Field Lab saved and now visible in the marketplace.')
   }
 
   if (loading) {
@@ -364,9 +374,8 @@ export default function PortalPage() {
                   <div className={styles.moatBannerBody}>
                     <p className={styles.moatBannerTitle}>Your employer brand is building with every Field Lab.</p>
                     <p className={styles.moatBannerSub}>
-                      Each confirmed session adds to your verified community impact record — students who experience your workplace are
-                      {' '}<strong>7× more likely</strong> to consider your industry when entering the workforce.
-                      RWP tracks every outcome and delivers that data directly to you.
+                      Each confirmed session adds to your verified community impact record — and gives you real data on students who've experienced your workplace firsthand.
+                      RWP tracks participation, outcomes, and employer brand exposure so you can demonstrate community ROI with numbers, not anecdotes.
                     </p>
                   </div>
                   <Link href="/safety" className={styles.moatBannerCta}>How it works <ChevronRight size={14} /></Link>
@@ -529,6 +538,8 @@ export default function PortalPage() {
         )}
 
       </div>
+
+      <Toast toasts={toasts} onDismiss={dismissToast} />
 
       {/* ── FOOTER ── */}
       <footer className={styles.footer}>

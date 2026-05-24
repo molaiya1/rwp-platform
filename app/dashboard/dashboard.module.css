@@ -87,8 +87,8 @@
 }
 
 .navItemDisabled {
-  opacity: 0.40;
-  cursor: not-allowed;
+  opacity: 0.45;
+  cursor: default;
   pointer-events: none;
 }
 
@@ -119,6 +119,23 @@
   justify-content: center;
   padding: 0 5px;
 }
+
+/* Beta notice */
+.betaNotice {
+  padding: 10px 14px 2px;
+  flex-shrink: 0;
+}
+.betaNoticeText {
+  font-size: 11px;
+  color: #8880A0;
+  line-height: 1.55;
+  margin: 0;
+  background: #F3EFFC;
+  border-radius: 8px;
+  padding: 8px 10px;
+  border: 1px solid #E0D8F5;
+}
+.betaNoticeText strong { color: #6B5A8E; }
 
 /* Sidebar bottom */
 .sidebarBottom {
@@ -378,6 +395,21 @@
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
+}
+
+.avatarInitials {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6B5A8E 0%, #1F3C88 100%);
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
 }
 
 .profileMeta {

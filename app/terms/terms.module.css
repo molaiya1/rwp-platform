@@ -1,0 +1,43 @@
+.page {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #FDFBFF;
+  color: #1C1635;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.header { background: #FFFFFF; border-bottom: 1px solid #EDE9F5; padding: 0 24px; }
+.headerInner { max-width: 900px; margin: 0 auto; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+.headerLogo { display: flex; align-items: center; }
+.headerLogoImg { height: 32px; width: auto; object-fit: contain; }
+.headerBack { font-size: 13px; font-weight: 600; color: #6B5A8E; text-decoration: none; }
+.headerBack:hover { text-decoration: underline; }
+.hero { background: linear-gradient(135deg, #1F3C88 0%, #2D1B69 100%); padding: 56px 24px 48px; text-align: center; }
+.heroInner { max-width: 640px; margin: 0 auto; }
+.heroIcon { width: 56px; height: 56px; background: rgba(255,255,255,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #F4B223; margin: 0 auto 16px; }
+.eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #F4B223; margin: 0 0 10px; }
+.h1 { font-size: clamp(24px, 3.5vw, 36px); font-weight: 900; color: #FFFFFF; letter-spacing: -0.02em; margin: 0 0 14px; }
+.heroSub { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.65; margin: 0 0 12px; }
+.lastUpdated { font-size: 12px; color: rgba(255,255,255,0.45); margin: 0; }
+.main { flex: 1; padding: 48px 24px; }
+.mainInner { max-width: 900px; margin: 0 auto; }
+.prose { max-width: 720px; }
+.section { margin-bottom: 40px; }
+.h2 { font-size: 20px; font-weight: 800; color: #1C1635; letter-spacing: -0.01em; margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1.5px solid #EDE9F5; }
+.prose p { font-size: 14px; color: #4A4060; line-height: 1.75; margin: 0 0 14px; }
+.prose p:last-child { margin-bottom: 0; }
+.list { list-style: disc; padding-left: 20px; margin: 0 0 14px; display: flex; flex-direction: column; gap: 6px; }
+.list li { font-size: 14px; color: #4A4060; line-height: 1.65; }
+.link { color: #1F3C88; font-weight: 600; text-decoration: none; }
+.link:hover { text-decoration: underline; }
+.contactCard { display: flex; align-items: flex-start; gap: 14px; background: #F8F5FF; border: 1.5px solid #EDE9F5; border-radius: 12px; padding: 18px 20px; }
+.contactIcon { color: #6B5A8E; flex-shrink: 0; margin-top: 2px; }
+.contactTitle { font-size: 14px; font-weight: 800; color: #1C1635; display: block; margin-bottom: 4px; }
+.contactDetail { font-size: 13px; color: #4A4060; margin: 0 0 4px; line-height: 1.5; }
+.footer { background: #1C1635; padding: 20px 24px; margin-top: auto; }
+.footerInner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.footerCopy { font-size: 12px; color: rgba(255,255,255,0.4); margin: 0; }
+.footerLinks { display: flex; gap: 20px; flex-wrap: wrap; }
+.footerLink { font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; }
+.footerLink:hover { color: rgba(255,255,255,0.7); }
