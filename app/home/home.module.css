@@ -383,22 +383,21 @@
   object-position: 20% center;
 }
 
-/* Gradient fade at top — blends white nav into image on mobile */
-.heroRight::after {
+/* Purple accent bar — sits between sticky nav and hero image on mobile */
+.heroRight::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 72px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.75) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 1;
+  height: 4px;
+  background: #6B5A8E;
+  z-index: 2;
   display: none;
 }
 
 @media (max-width: 900px) {
-  .heroRight::after { display: block; }
+  .heroRight::before { display: block; }
 }
 
 @media (max-width: 900px) {
