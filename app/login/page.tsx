@@ -253,12 +253,10 @@ export default function LoginPage() {
         {/* ── Hero photo section ── */}
         <section className={styles.hero}>
 
-          {/* Frosted logo card */}
+          {/* Logo — white on dark photo */}
           <div className={styles.heroLogoWrap}>
-            <div className={styles.heroLogoCard}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo-wwk-transparent.png" alt="WealthWise KIDS™ Real-World Pathways" className={styles.heroLogoImg} />
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo-wwk-rwp-white.png" alt="WealthWise KIDS™ Real-World Pathways" className={styles.heroLogoImg} />
           </div>
 
           {/* Headline */}

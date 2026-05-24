@@ -648,7 +648,7 @@ function RegisterContent() {
           <div className={styles.leftInner}>
             <Link href="/home" className={styles.leftLogo}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo-rwp-white.png" alt="Real-World Pathways™" className={styles.leftLogoImg} />
+              <img src="/logo-wwk-rwp-white.png" alt="Real-World Pathways™" className={styles.leftLogoImg} />
             </Link>
 
             <span className={`${styles.flowBadge} ${!isOrg ? styles.flowBadgeBiz : ''}`}>
@@ -676,12 +676,17 @@ function RegisterContent() {
 
           {/* Step header */}
           <div className={styles.stepHeader}>
-            <span className={styles.stepLabel}>Step {step} of 4</span>
+            {step === 1 ? (
+              <a href="/" className={styles.stepHomeLink}>← Home</a>
+            ) : (
+              <button type="button" className={styles.stepHomeLink} onClick={() => setStep(s => s - 1)}>← Back</button>
+            )}
             <div className={styles.progressBar}>
               {[1,2,3,4].map(n => (
                 <div key={n} className={`${styles.progressSeg} ${n <= step ? styles.progressSegFilled : ''}`} />
               ))}
             </div>
+            <span className={styles.stepLabel}>Step {step} of 4</span>
           </div>
 
           {/* Step content — scrollable */}
@@ -696,19 +701,7 @@ function RegisterContent() {
             </p>
           )}
           <div className={styles.actions}>
-            {step > 1 ? (
-              <button
-                type="button"
-                className={styles.btnBack}
-                onClick={() => setStep(s => s - 1)}
-              >
-                ← Back
-              </button>
-            ) : (
-              <a href="/" className={styles.btnBack} style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-                ← Cancel
-              </a>
-            )}
+            <div />
             <button
               type="button"
               className={styles.btnNext}
