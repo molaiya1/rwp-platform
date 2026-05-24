@@ -648,8 +648,7 @@ function RegisterContent() {
           <div className={styles.leftInner}>
             <Link href="/home" className={styles.leftLogo}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo-wwk-transparent.png" alt="Real-World Pathways™" className={styles.leftLogoImg} />
-              <span className={styles.leftLogoText}>Real-World Pathways™<br /><span className={styles.leftLogoBy}>by WealthWise Kids®</span></span>
+              <img src="/logo-rwp-white.png" alt="Real-World Pathways™" className={styles.leftLogoImg} />
             </Link>
 
             <span className={`${styles.flowBadge} ${!isOrg ? styles.flowBadgeBiz : ''}`}>
