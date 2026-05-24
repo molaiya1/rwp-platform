@@ -697,14 +697,19 @@ function RegisterContent() {
             </p>
           )}
           <div className={styles.actions}>
-            <button
-              type="button"
-              className={styles.btnBack}
-              onClick={() => setStep(s => s - 1)}
-              style={{ visibility: step > 1 ? 'visible' : 'hidden' }}
-            >
-              Back
-            </button>
+            {step > 1 ? (
+              <button
+                type="button"
+                className={styles.btnBack}
+                onClick={() => setStep(s => s - 1)}
+              >
+                ← Back
+              </button>
+            ) : (
+              <a href="/" className={styles.btnBack} style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+                ← Cancel
+              </a>
+            )}
             <button
               type="button"
               className={styles.btnNext}
