@@ -965,16 +965,8 @@
 }
 
 .trustInner {
-  max-width: 1280px;
+  max-width: 1100px;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 48px;
-}
-
-@media (max-width: 1024px) {
-  .trustInner { flex-direction: column; }
-  .finalCta { width: 100%; min-width: unset; }
 }
 
 @media (max-width: 600px) {
@@ -987,17 +979,12 @@
 
 .trustGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px 32px;
-  flex: 1;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px 48px;
 }
 
-@media (max-width: 900px) {
-  .trustGrid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 500px) {
-  .trustGrid { grid-template-columns: 1fr; }
+@media (max-width: 600px) {
+  .trustGrid { grid-template-columns: 1fr; gap: 24px; }
 }
 
 .trustItem {
@@ -1037,27 +1024,38 @@
   margin: 0;
 }
 
-/* Final CTA */
-.finalCta {
-  background: #F4F1FA;
-  border: 1px solid #DDD8EE;
-  border-radius: 18px;
-  padding: 32px 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 18px;
-  min-width: 240px;
-  flex-shrink: 0;
+/* ══════════════════════════════════════════════════════
+   CLOSING CTA BAND
+══════════════════════════════════════════════════════ */
+.closingBand {
+  background: #1C1635;
+  padding: 64px 40px;
+  text-align: center;
 }
 
-.finalCtaHeading {
-  font-size: 17px;
-  font-weight: 800;
-  color: #1C1635;
-  line-height: 1.35;
+.closingInner {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.closingHeading {
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
   margin: 0;
-  letter-spacing: -0.01em;
+}
+
+.closingActions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* ══════════════════════════════════════════════════════
@@ -1133,6 +1131,9 @@
 
   /* Bottom CTA */
   .bottomCta { padding: 52px 20px; }
+
+  /* Closing band */
+  .closingBand { padding: 48px 20px; }
 
   /* Footer */
   .footer { padding: 16px 20px; }

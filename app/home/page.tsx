@@ -294,12 +294,18 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <div className={styles.finalCta}>
-            <p className={styles.finalCtaHeading}>The only platform that connects<br />career exposure to measurable outcomes.</p>
-            <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/register" className={styles.btnSignup}>Join the Founding Cohort</Link>
-              <Link href="/safety" className={styles.btnSafety}>Our Safety Standards →</Link>
-            </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          CLOSING CTA BAND
+      ══════════════════════════════════════ */}
+      <section className={styles.closingBand}>
+        <div className={styles.closingInner}>
+          <p className={styles.closingHeading}>The only platform that connects<br />career exposure to measurable outcomes.</p>
+          <div className={styles.closingActions}>
+            <Link href="/register" className={styles.btnSignup}>Join the Founding Cohort</Link>
+            <Link href="/safety" className={styles.btnSafety}>Our Safety Standards →</Link>
           </div>
         </div>
       </section>
