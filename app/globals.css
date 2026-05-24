@@ -1,26 +1,56 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* RWP Brand */
+  --cover-navy: #242E67;
+  --body-navy: #1F3C88;
+  --gold: #F4B223;
+  --pathway-purple: #6B5A8E;
+  --pathway-purple-hover: #5A4B7A;
+  --pathway-purple-light: #8B7BB5;
+  --pathway-purple-soft: #EAE6F4;
+
+  /* Semantic */
+  --success: #1A7A6E;
+  --warning: #F59E0B;
+  --danger: #DC2626;
+
+  /* Surface */
+  --page-bg: #F7F5FB;
+  --surface: #FFFFFF;
+  --border: #DDD8EE;
+  --border-light: #EDE9F6;
+
+  /* Text */
+  --text-primary: #1C1635;
+  --text-secondary: #5E5680;
+  --text-muted: #9A96AE;
+
+  /* Input */
+  --input-bg: #F4F1FA;
+  --input-border: #D8D2EC;
+  --input-focus: #6B5A8E;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background-color: var(--page-bg);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+button, a, input, textarea, select {
+  transition: all 0.15s ease;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--pathway-purple);
+  outline-offset: 2px;
+  border-radius: 6px;
 }

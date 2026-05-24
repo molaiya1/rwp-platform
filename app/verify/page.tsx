@@ -51,6 +51,7 @@ const STEPS: Step[] = [
       { id: 'license',  label: 'Business License or State Registration', type: 'upload', placeholder: 'Upload PDF or image' },
       { id: 'website',  label: 'Company Website',                        type: 'text',   placeholder: 'https://yourcompany.com' },
     ],
+    note: 'Your EIN appears on your IRS determination letter, prior tax returns, or your state business registration. It follows the format XX-XXXXXXX. If you can\'t locate it, your accountant or the IRS Business & Specialty Tax Line (800-829-4933) can help.',
   },
   {
     id: 'insurance',
@@ -63,6 +64,7 @@ const STEPS: Step[] = [
       { id: 'exp',         label: 'Policy Expiration Date',                            type: 'date',   placeholder: '' },
       { id: 'abuse',       label: 'Abuse & Molestation Coverage (recommended)',        type: 'checkbox', placeholder: '' },
     ],
+    note: 'Your Certificate of Insurance (COI) comes from your insurance broker or carrier — it\'s typically free to request. If you don\'t yet have general liability coverage, most brokers can bind a policy within 24 hours. Abuse & Molestation coverage is strongly recommended for any organization working with youth.',
   },
   {
     id: 'background',

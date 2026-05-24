@@ -8,21 +8,35 @@ import {
   MessageSquare, Calendar, Search, Bell, Mail, ChevronDown,
   ChevronRight, MapPin, Clock, Award, Zap, CheckCircle2,
   Radio, Lightbulb, FlaskConical, Heart, HelpCircle, Settings,
-  Quote,
+  Quote, ShieldCheck,
 } from 'lucide-react'
 import styles from './dashboard.module.css'
+
+/* ─── Types ─── */
+interface FieldLabLive {
+  id: string
+  title: string
+  type: string
+  description: string
+  capacity: number
+  duration: string
+  grade_levels: string
+  location: string
+  is_virtual: boolean
+  pathway_site_applications: { company: string; city: string } | null
+}
 
 /* ─── Static data ─── */
 const NAV = [
   { label: 'Home',           icon: Home,          href: '/dashboard',              active: true  },
-  { label: 'My Pathways',    icon: Map,           href: '/dashboard/pathways'                    },
-  { label: 'Opportunities',  icon: Compass,       href: '/dashboard/opportunities'               },
-  { label: 'Field Labs™',    icon: Building2,     href: '/dashboard/field-labs'                  },
-  { label: 'Partners',       icon: Users,         href: '/dashboard/partners'                    },
-  { label: 'My Progress',    icon: TrendingUp,    href: '/dashboard/progress'                    },
-  { label: 'Resources',      icon: BookOpen,      href: '/dashboard/resources'                   },
-  { label: 'Messages',       icon: MessageSquare, href: '/dashboard/messages',  badge: 2         },
-  { label: 'Calendar',       icon: Calendar,      href: '/dashboard/calendar'                    },
+  { label: 'My Pathways',    icon: Map,           href: '/dashboard/pathways',     soon: true    },
+  { label: 'Opportunities',  icon: Compass,       href: '/dashboard/opportunities',soon: true    },
+  { label: 'Field Labs™',    icon: Building2,     href: '/dashboard/field-labs',   soon: true    },
+  { label: 'Partners',       icon: Users,         href: '/dashboard/partners',     soon: true    },
+  { label: 'My Progress',    icon: TrendingUp,    href: '/dashboard/progress',     soon: true    },
+  { label: 'Resources',      icon: BookOpen,      href: '/dashboard/resources',    soon: true    },
+  { label: 'Messages',       icon: MessageSquare, href: '/dashboard/messages',     soon: true    },
+  { label: 'Calendar',       icon: Calendar,      href: '/dashboard/calendar',     soon: true    },
 ]
 
 const QUICK_ACTIONS = [
@@ -90,12 +104,32 @@ const CIRC = 2 * Math.PI * RADIUS
 const PROGRESS_DASH = (XP / XP_NEXT) * CIRC
 
 export default function DashboardPage() {
-  const [query, setQuery]       = useState('')
-  const [userName, setUserName] = useState('there')
-  const [userFirst, setUserFirst] = useState('there')
+  const [query, setQuery]           = useState('')
+  const [userName, setUserName]     = useState('there')
+  const [userFirst, setUserFirst]   = useState('there')
+  const [fieldLabs, setFieldLabs]   = useState<FieldLabLive[]>([])
+  const [labsLoaded, setLabsLoaded] = useState(false)
+  const [requesting, setRequesting] = useState<string | null>(null)
+  const [requested, setRequested]   = useState<Set<string>>(new Set())
+  const [orgId, setOrgId]           = useState<string | null>(null)
+  const [contactName, setContactName] = useState('')
+  const [contactEmail, setContactEmail] = useState('')
 
   useEffect(() => {
     const supabase = createClient()
+
+    // Load Field Labs from approved Pathway Sites
+    supabase
+      .from('field_labs')
+      .select('*, pathway_site_applications(company, city)')
+      .eq('status', 'active')
+      .order('created_at', { ascending: false })
+      .limit(6)
+      .then(({ data }) => {
+        setFieldLabs(data ?? [])
+        setLabsLoaded(true)
+      })
+
     supabase.auth.getUser().then(async ({ data: { user } }) => {
       if (!user) return
       const meta = user.user_metadata
@@ -107,19 +141,39 @@ export default function DashboardPage() {
       }
       const { data: org } = await supabase
         .from('impact_organizations')
-        .select('contact_name')
+        .select('id, contact_name, contact_email')
         .eq('contact_email', user.email)
         .single()
       if (org?.contact_name) {
         setUserName(org.contact_name)
         setUserFirst(org.contact_name.split(' ')[0])
+        setOrgId(org.id)
+        setContactName(org.contact_name)
+        setContactEmail(org.contact_email ?? user.email ?? '')
         return
       }
       const prefix = user.email?.split('@')[0] ?? 'there'
       setUserName(prefix)
       setUserFirst(prefix)
+      setContactEmail(user.email ?? '')
     })
   }, [])
+
+  const handleInterest = async (lab: FieldLabLive) => {
+    if (requested.has(lab.id)) return
+    setRequesting(lab.id)
+    const supabase = createClient()
+    await supabase.from('field_lab_requests').insert({
+      field_lab_id:  lab.id,
+      org_id:        orgId ?? null,
+      org_name:      userName,
+      contact_name:  contactName || userName,
+      contact_email: contactEmail,
+      status:        'pending',
+    })
+    setRequested(prev => new Set([...prev, lab.id]))
+    setRequesting(null)
+  }
 
   return (
     <div className={styles.shell}>
@@ -137,17 +191,36 @@ export default function DashboardPage() {
 
         {/* Nav */}
         <nav className={styles.nav} aria-label="Main navigation">
-          {NAV.map(({ label, icon: Icon, href, active, badge }) => (
-            <Link key={label} href={href} className={`${styles.navItem} ${active ? styles.navActive : ''}`}>
-              <Icon size={18} className={styles.navIcon} aria-hidden="true" />
-              <span>{label}</span>
-              {badge ? <span className={styles.navBadge}>{badge}</span> : null}
-            </Link>
+          {NAV.map(({ label, icon: Icon, href, active, soon }) => (
+            soon ? (
+              <div key={label} className={`${styles.navItem} ${styles.navItemDisabled}`} aria-hidden="true">
+                <Icon size={18} className={styles.navIcon} aria-hidden="true" />
+                <span>{label}</span>
+                <span className={styles.navComingSoon}>Soon</span>
+              </div>
+            ) : (
+              <Link key={label} href={href} className={`${styles.navItem} ${active ? styles.navActive : ''}`}>
+                <Icon size={18} className={styles.navIcon} aria-hidden="true" />
+                <span>{label}</span>
+              </Link>
+            )
           ))}
         </nav>
 
         {/* Bottom section */}
         <div className={styles.sidebarBottom}>
+
+          {/* Rate an experience */}
+          <Link href="/rate" className={styles.helpLink}>
+            <Award size={15} />
+            <span>Rate an Experience</span>
+          </Link>
+
+          {/* Report incident */}
+          <Link href="/incident" className={styles.incidentLink}>
+            <ShieldCheck size={15} />
+            <span>Report a Safety Concern</span>
+          </Link>
 
           {/* Help */}
           <Link href="/help" className={styles.helpLink}>
@@ -304,27 +377,49 @@ export default function DashboardPage() {
           {/* ── Three-column grid ── */}
           <div className={styles.threeCol}>
 
-            {/* Column 1 — Upcoming Opportunities */}
+            {/* Column 1 — Field Labs (live from Supabase) */}
             <section className={styles.card}>
               <div className={styles.cardHead}>
-                <h2 className={styles.cardTitle}>Upcoming Opportunities</h2>
-                <Link href="/dashboard/opportunities" className={styles.viewAll}>View all</Link>
+                <h2 className={styles.cardTitle}>Available Field Labs™</h2>
+                <Link href="/marketplace" className={styles.viewAll}>View all</Link>
               </div>
               <div className={styles.oppList}>
-                {OPPORTUNITIES.map(o => (
-                  <div key={o.id} className={styles.oppCard}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={o.img} alt="" className={styles.oppImg} aria-hidden="true" />
+                {!labsLoaded && (
+                  <p style={{ fontSize: 13, color: '#8880A0', padding: '8px 0' }}>Loading…</p>
+                )}
+                {labsLoaded && fieldLabs.length === 0 && (
+                  <div style={{ textAlign: 'center', padding: '24px 0' }}>
+                    <Building2 size={32} style={{ color: '#C8BFEA', marginBottom: 10 }} />
+                    <p style={{ fontSize: 13, fontWeight: 700, color: '#1C1635', margin: '0 0 6px' }}>
+                      Field Labs coming soon
+                    </p>
+                    <p style={{ fontSize: 12, color: '#8880A0', lineHeight: 1.6, margin: '0 0 14px' }}>
+                      We&apos;re onboarding our founding cohort of Certified Pathway Sites™. New experiences will appear here as businesses are approved.
+                    </p>
+                    <Link href="/marketplace" style={{ fontSize: 12, fontWeight: 700, color: '#6B5A8E' }}>
+                      Browse the Marketplace →
+                    </Link>
+                  </div>
+                )}
+                {fieldLabs.map(lab => (
+                  <div key={lab.id} className={styles.oppCard}>
                     <div className={styles.oppBody}>
-                      <span className={`${styles.oppBadge} ${styles[`oppBadge_${o.typeColor}`]}`}>{o.type}</span>
-                      <p className={styles.oppTitle}>{o.title}</p>
+                      <span className={`${styles.oppBadge} ${styles.oppBadge_purple}`}>{lab.type}</span>
+                      <p className={styles.oppTitle}>{lab.title}</p>
                       <div className={styles.oppMeta}>
-                        <span><Clock size={11} aria-hidden="true" /> {o.date} · {o.time}</span>
-                        <span><MapPin size={11} aria-hidden="true" /> {o.location}</span>
+                        <span><Clock size={11} aria-hidden="true" /> {lab.duration || 'Varies'}</span>
+                        <span><MapPin size={11} aria-hidden="true" /> {lab.is_virtual ? 'Virtual' : lab.pathway_site_applications?.city || lab.location || 'Atlanta, GA'}</span>
                       </div>
-                      <p className={styles.oppDesc}>{o.desc}</p>
+                      {lab.description && <p className={styles.oppDesc}>{lab.description.length > 90 ? lab.description.slice(0, 90) + '…' : lab.description}</p>}
                     </div>
-                    <button type="button" className={styles.oppBtn}>I'm Interested</button>
+                    <button
+                      type="button"
+                      className={styles.oppBtn}
+                      onClick={() => handleInterest(lab)}
+                      disabled={requesting === lab.id || requested.has(lab.id)}
+                    >
+                      {requesting === lab.id ? 'Sending…' : requested.has(lab.id) ? '✓ Requested' : 'I\'m Interested'}
+                    </button>
                   </div>
                 ))}
               </div>
@@ -398,6 +493,50 @@ export default function DashboardPage() {
               </section>
 
             </div>
+          </div>
+
+          {/* ── FLIQ Moat Banner ── */}
+          <div style={{
+            background: 'linear-gradient(135deg, #1F3C88 0%, #6B5A8E 100%)',
+            borderRadius: 16,
+            padding: '24px 28px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 20,
+            flexWrap: 'wrap' as const,
+            marginBottom: 24,
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/milo-3d.png" alt="Milo" style={{ width: 52, height: 52, objectFit: 'contain', flexShrink: 0 }} />
+              <div>
+                <p style={{ fontSize: 13, fontWeight: 800, color: '#F4B223', margin: '0 0 4px', letterSpacing: '0.04em', textTransform: 'uppercase' as const }}>
+                  Track Financial Readiness Growth
+                </p>
+                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.88)', margin: 0, lineHeight: 1.5 }}>
+                  After a Field Lab, send your students to <strong>The $100 Week™</strong> — a free 5-day sim that measures financial readiness and generates their FLIQ Score™. See how real-world exposure accelerates financial literacy.
+                </p>
+              </div>
+            </div>
+            <a
+              href="https://play.wealthwiselearning.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                background: '#F4B223',
+                color: '#1F3C88',
+                fontSize: 13,
+                fontWeight: 800,
+                padding: '11px 20px',
+                borderRadius: 10,
+                textDecoration: 'none',
+                whiteSpace: 'nowrap' as const,
+                flexShrink: 0,
+              }}
+            >
+              Launch The $100 Week™ →
+            </a>
           </div>
 
           {/* Footer */}

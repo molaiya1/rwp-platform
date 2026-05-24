@@ -100,6 +100,9 @@ function RegisterContent() {
   const [cTitle,       setCTitle]       = useState('')
   const [cEmail,       setCEmail]       = useState('')
   const [cPhone,       setCPhone]       = useState('')
+  const [ecName,       setEcName]       = useState('')
+  const [ecPhone,      setEcPhone]      = useState('')
+  const [ecEmail,      setEcEmail]      = useState('')
   const [agreed,       setAgreed]       = useState(false)
 
   // Biz form state
@@ -161,10 +164,13 @@ function RegisterContent() {
         notes:        orgNotes,
         exp_types:    orgExpTypes,
         interests:    orgInterests,
-        contact_name: cName,
-        contact_title:cTitle,
-        contact_email:cEmail,
-        contact_phone:cPhone,
+        contact_name:  cName,
+        contact_title: cTitle,
+        contact_email: cEmail,
+        contact_phone: cPhone,
+        ec_name:       ecName,
+        ec_phone:      ecPhone,
+        ec_email:      ecEmail,
       })
       router.push('/dashboard')
     } else {
@@ -173,13 +179,14 @@ function RegisterContent() {
         setSubmitting(false)
         return
       }
-      const { error: authError } = await supabase.auth.signUp({ email: bEmail, password })
+      const { data: authData, error: authError } = await supabase.auth.signUp({ email: bEmail, password })
       if (authError) {
         setSubmitError(authError.message)
         setSubmitting(false)
         return
       }
       await supabase.from('pathway_site_applications').insert({
+        user_id:          authData.user?.id ?? null,
         company:          bizName,
         industry,
         city:             bizCity,
@@ -193,8 +200,7 @@ function RegisterContent() {
         doc_conduct:      false,
         doc_youth:        false,
       })
-      setSubmitted(true)
-      setSubmitting(false)
+      router.push('/portal')
     }
   }
 
@@ -324,6 +330,26 @@ function RegisterContent() {
           <label className={styles.label}>Phone Number</label>
           <input className={styles.input} type="tel" placeholder="Enter phone number" value={cPhone} onChange={e => setCPhone(e.target.value)} autoComplete="tel" />
         </div>
+
+        <div className={styles.sectionDivider}>
+          <ShieldCheck size={14} className={styles.sectionDividerIcon} />
+          <span>Emergency Contact <span className={styles.optional}>(required for in-person experiences)</span></span>
+        </div>
+        <div className={styles.fieldGroup}>
+          <label className={styles.label}>Emergency Contact Name</label>
+          <input className={styles.input} placeholder="Full name of emergency contact" value={ecName} onChange={e => setEcName(e.target.value)} autoCapitalize="words" />
+        </div>
+        <div className={styles.fieldRow}>
+          <div className={styles.fieldGroup}>
+            <label className={styles.label}>Emergency Contact Phone</label>
+            <input className={styles.input} type="tel" placeholder="Phone number" value={ecPhone} onChange={e => setEcPhone(e.target.value)} autoComplete="tel" />
+          </div>
+          <div className={styles.fieldGroup}>
+            <label className={styles.label}>Emergency Contact Email <span className={styles.optional}>(optional)</span></label>
+            <input className={styles.input} type="email" placeholder="Email address" value={ecEmail} onChange={e => setEcEmail(e.target.value)} autoComplete="email" />
+          </div>
+        </div>
+
         <div className={styles.fieldGroup}>
           <label className={styles.label}>Create a Password</label>
           <div className={styles.inputWrap}>

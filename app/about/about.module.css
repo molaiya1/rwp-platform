@@ -1,0 +1,390 @@
+.page {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #FDFBFF;
+  color: #1C1635;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #1F3C88 0%, #2D1B69 100%);
+  padding: 100px 24px 80px;
+}
+
+.heroInner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #F4B223;
+  margin: 0 0 20px;
+}
+
+.h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 24px;
+}
+
+.heroSub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0;
+}
+
+/* ── MISSION ── */
+.mission {
+  padding: 80px 24px;
+  background: #FFFFFF;
+}
+
+.missionInner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .missionInner { grid-template-columns: 1fr; gap: 40px; }
+}
+
+.sectionTitle {
+  font-size: 28px;
+  font-weight: 900;
+  color: #1C1635;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+  line-height: 1.2;
+}
+
+.body {
+  font-size: 15px;
+  color: #4A4060;
+  line-height: 1.75;
+  margin: 0 0 16px;
+}
+
+.missionCard {
+  background: linear-gradient(135deg, #1F3C88 0%, #6B5A8E 100%);
+  border-radius: 20px;
+  padding: 36px 32px;
+  position: sticky;
+  top: 100px;
+}
+
+.missionQuote {
+  font-size: 16px;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.7;
+  font-style: italic;
+  margin: 0 0 20px;
+}
+
+.missionAttrib {
+  font-size: 13px;
+  font-weight: 700;
+  color: #F4B223;
+  margin: 0;
+}
+
+/* ── FOUNDER ── */
+.founder {
+  padding: 80px 24px;
+  background: #F8F5FF;
+}
+
+.founderInner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .founderInner { grid-template-columns: 1fr; gap: 32px; }
+}
+
+.founderPhoto {
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #1F3C88 0%, #6B5A8E 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.founderLogoImg {
+  width: 120px;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+.founderEyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6B5A8E;
+  margin: 0 0 8px;
+}
+
+.founderName {
+  font-size: 28px;
+  font-weight: 900;
+  color: #1C1635;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+}
+
+.founderTitle {
+  font-size: 14px;
+  color: #6B5A8E;
+  font-weight: 600;
+  margin: 0 0 24px;
+}
+
+.founderBio {
+  font-size: 15px;
+  color: #4A4060;
+  line-height: 1.75;
+  margin: 0 0 14px;
+}
+
+/* ── PILLARS ── */
+.pillars {
+  padding: 80px 24px;
+  background: #FFFFFF;
+}
+
+.pillarsInner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+@media (max-width: 640px) {
+  .pillarsGrid { grid-template-columns: 1fr; }
+}
+
+.pillarCard {
+  background: #F8F5FF;
+  border: 1.5px solid #EDE9F5;
+  border-radius: 16px;
+  padding: 28px 24px;
+}
+
+.pillarIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1F3C88 0%, #6B5A8E 100%);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.pillarTitle {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1C1635;
+  margin: 0 0 10px;
+}
+
+.pillarDesc {
+  font-size: 14px;
+  color: #5A5070;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── ECOSYSTEM ── */
+.ecosystem {
+  padding: 80px 24px;
+  background: #F8F5FF;
+}
+
+.ecosystemInner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.ecosystemSub {
+  font-size: 15px;
+  color: #5A5070;
+  line-height: 1.7;
+  max-width: 640px;
+  margin: 0 0 40px;
+}
+
+.ecosystemCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .ecosystemCards { grid-template-columns: 1fr; }
+}
+
+.ecoCard {
+  background: #FFFFFF;
+  border: 1.5px solid #EDE9F5;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.ecoCardActive {
+  border-color: #6B5A8E;
+  background: linear-gradient(135deg, #F3EFFC 0%, #EDE9F5 100%);
+}
+
+.ecoCardTitle {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1C1635;
+  margin: 0 0 10px;
+}
+
+.ecoCardDesc {
+  font-size: 13px;
+  color: #5A5070;
+  line-height: 1.65;
+  margin: 0 0 14px;
+}
+
+.ecoCardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #6B5A8E;
+  text-decoration: none;
+}
+
+/* ── CTA ── */
+.cta {
+  padding: 80px 24px;
+  background: linear-gradient(135deg, #1F3C88 0%, #2D1B69 100%);
+  text-align: center;
+}
+
+.ctaInner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: 32px;
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+}
+
+.ctaSub {
+  font-size: 15px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+  margin: 0 0 36px;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #F4B223;
+  color: #1F3C88;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 13px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.btnPrimary:hover { opacity: 0.9; }
+
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 13px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  transition: border-color 0.15s;
+}
+
+.btnOutline:hover { border-color: rgba(255,255,255,0.7); }
+
+/* ── FOOTER ── */
+.footer {
+  background: #1C1635;
+  padding: 24px;
+}
+
+.footerInner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footerCopy {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  margin: 0;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 20px;
+}
+
+.footerLink {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+}
+
+.footerLink:hover { color: rgba(255,255,255,0.8); }

@@ -395,7 +395,7 @@ export default function LoginPage() {
 
         {/* Footer */}
         <div className={styles.rightFooter}>
-          <span>© 2025 WealthWise Kids LLC. All rights reserved.</span>
+          <span>© 2026 WealthWise Kids LLC. All rights reserved.</span>
           <Link href="/privacy" className={styles.footerLink}>Privacy Policy</Link>
           <Link href="/terms" className={styles.footerLink}>Terms of Use</Link>
           <Link href="/help" className={styles.footerLink}>Help</Link>

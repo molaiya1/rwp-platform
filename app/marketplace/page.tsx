@@ -263,38 +263,41 @@ export default function MarketplacePage() {
   useEffect(() => {
     const supabase = createClient()
     supabase
-      .from('pathway_site_applications')
-      .select('id, company, industry, city, experiences, status')
-      .eq('status', 'approved')
+      .from('field_labs')
+      .select('*, pathway_site_applications(company, industry, city)')
+      .eq('status', 'active')
+      .order('created_at', { ascending: false })
       .then(({ data }) => {
         if (!data?.length) return
-        const staticNames = new Set(LISTINGS.map(l => l.company.toLowerCase()))
-        const fresh: Listing[] = data
-          .filter(r => !staticNames.has((r.company ?? '').toLowerCase()))
-          .map(r => ({
-            id: String(r.id),
-            company: r.company ?? 'Verified Partner',
-            industry: r.industry ?? 'Other',
-            city: r.city ?? 'Atlanta, GA',
-            type: (r.experiences?.[0] ?? 'site-visits').replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase()),
-            title: `${r.company} — Real-World Experience`,
-            desc: `${r.company} is a Certified Pathway Site™ offering real-world experiences for students.`,
-            grades: 'K–12',
-            duration: 'Varies',
-            format: 'In-Person',
-            capacity: 20,
-            spotsAvailable: 20,
-            status: 'Open' as const,
-            distance: '—',
-            months: [] as string[],
-            verified: true,
-            rating: 0,
-            reviews: 0,
-            photo: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80',
-            cost: 'Free',
-            transportation: 'Contact for details',
-            upcoming: 'Contact to schedule',
-          }))
+        const fresh: Listing[] = data.map((lab: {
+          id: string; title: string; type: string; description: string;
+          capacity: number; duration: string; grade_levels: string;
+          location: string; is_virtual: boolean;
+          pathway_site_applications: { company: string; industry: string; city: string } | null
+        }) => ({
+          id: lab.id,
+          company: lab.pathway_site_applications?.company ?? 'Certified Pathway Site™',
+          industry: lab.pathway_site_applications?.industry ?? 'Other',
+          city: lab.pathway_site_applications?.city ?? 'Atlanta, GA',
+          type: lab.type,
+          title: lab.title,
+          desc: lab.description ?? `A real-world ${lab.type.toLowerCase()} experience for students.`,
+          grades: lab.grade_levels ?? 'K–12',
+          duration: lab.duration ?? 'Varies',
+          format: lab.is_virtual ? 'Virtual' : 'In-Person',
+          capacity: lab.capacity ?? 20,
+          spotsAvailable: lab.capacity ?? 20,
+          status: 'Open' as const,
+          distance: '—',
+          months: [] as string[],
+          verified: true,
+          rating: 0,
+          reviews: 0,
+          photo: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80',
+          cost: 'Free',
+          transportation: lab.is_virtual ? 'N/A — virtual' : 'Contact for details',
+          upcoming: 'Contact to schedule',
+        }))
         setDbListings(fresh)
       })
   }, [])
@@ -368,6 +371,32 @@ export default function MarketplacePage() {
           </div>
         </div>
       </section>
+
+      {/* ── FOUNDING COHORT BANNER ── */}
+      <div style={{
+        background: 'linear-gradient(90deg, #1F3C88 0%, #6B5A8E 100%)',
+        padding: '14px 24px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 12,
+        flexWrap: 'wrap' as const,
+      }}>
+        <span style={{ fontSize: 13, color: '#F4B223', fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>
+          Preview Directory
+        </span>
+        <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13 }}>|</span>
+        <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.9)', lineHeight: 1.5 }}>
+          These listings show what the marketplace will look like. We&apos;re enrolling our founding cohort of Certified Pathway Sites™ now.
+        </span>
+        <a href="/register?type=biz" style={{
+          background: '#F4B223', color: '#1F3C88', fontSize: 12, fontWeight: 800,
+          padding: '6px 14px', borderRadius: 6, textDecoration: 'none', whiteSpace: 'nowrap' as const,
+          letterSpacing: '0.02em',
+        }}>
+          Apply to Be Listed →
+        </a>
+      </div>
 
       {/* ── HOW IT WORKS STRIP ── */}
       <div className={styles.howStrip}>
@@ -861,7 +890,7 @@ export default function MarketplacePage() {
       {/* ── FOOTER ── */}
       <footer className={styles.footer}>
         <div className={styles.footerInner}>
-          <p className={styles.footerCopy}>© 2025 WealthWise Kids LLC. All rights reserved.</p>
+          <p className={styles.footerCopy}>© 2026 WealthWise Kids LLC. All rights reserved.</p>
           <div className={styles.footerLinks}>
             <a href="/privacy" className={styles.footerLink}>Privacy Policy</a>
             <a href="/terms" className={styles.footerLink}>Terms of Use</a>

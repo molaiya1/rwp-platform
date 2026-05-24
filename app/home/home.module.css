@@ -135,6 +135,23 @@
   box-shadow: 0 4px 14px rgba(107, 90, 142, 0.35);
 }
 
+.btnSafety {
+  height: 38px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 700;
+  font-family: inherit;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  transition: border-color 0.12s;
+}
+.btnSafety:hover { border-color: rgba(255,255,255,0.7); color: #FFFFFF; }
+
 /* Mobile hamburger */
 .hamburger {
   display: none;
@@ -338,6 +355,13 @@
   color: #6B5A8E;
   flex-shrink: 0;
 }
+
+.trustSignalLink {
+  color: #6B5A8E;
+  font-weight: 700;
+  text-decoration: none;
+}
+.trustSignalLink:hover { text-decoration: underline; }
 
 /* Hero image */
 .heroRight {

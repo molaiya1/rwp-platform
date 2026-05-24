@@ -86,6 +86,25 @@
   opacity: 1;
 }
 
+.navItemDisabled {
+  opacity: 0.40;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.navComingSoon {
+  margin-left: auto;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--border-light);
+  border-radius: 999px;
+  padding: 2px 7px;
+  white-space: nowrap;
+}
+
 .navBadge {
   margin-left: auto;
   background: var(--pathway-purple);
@@ -129,6 +148,24 @@
 .helpLink strong {
   font-weight: 600;
   color: var(--pathway-purple);
+}
+
+.incidentLink {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: #C0392B;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: color 0.12s, background 0.12s;
+  font-weight: 500;
+}
+
+.incidentLink:hover {
+  background: rgba(192, 57, 43, 0.06);
 }
 
 /* Impact level card */
