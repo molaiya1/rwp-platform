@@ -1,279 +1,658 @@
+/* ═══════════════════════════════════════════════════
+   SAFETY & COMPLIANCE PAGE — Institutional Design
+═══════════════════════════════════════════════════ */
+
 .page {
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  background: #FDFBFF;
+  background: #FFFFFF;
   color: #1C1635;
 }
 
-/* ── HERO ── */
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
 .hero {
-  background: linear-gradient(135deg, #1F3C88 0%, #2D1B69 100%);
-  padding: 80px 24px 72px;
-  text-align: center;
-}
-.heroInner { max-width: 760px; margin: 0 auto; }
-
-.heroShield {
-  width: 64px;
-  height: 64px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 20px;
-  color: #F4B223;
+  background: linear-gradient(150deg, #1C1635 0%, #1F3C88 100%);
+  padding: 88px 40px 80px;
+  position: relative;
+  overflow: hidden;
 }
 
-.eyebrow {
-  font-size: 12px;
+/* Subtle radial glow behind the headline */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(ellipse at center, rgba(107, 90, 142, 0.35) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.heroInner {
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.heroBadgeRow {
+  margin-bottom: 20px;
+}
+
+.heroEyebrow {
+  display: inline-block;
+  font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #F4B223;
-  margin: 0 0 16px;
+  border: 1px solid rgba(244, 178, 35, 0.35);
+  border-radius: 4px;
+  padding: 5px 12px;
+  background: rgba(244, 178, 35, 0.08);
 }
 
 .h1 {
-  font-size: clamp(26px, 4vw, 44px);
+  font-size: clamp(32px, 4.8vw, 58px);
   font-weight: 900;
   color: #FFFFFF;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  margin: 0 0 20px;
+  letter-spacing: -0.035em;
+  line-height: 1.10;
+  margin: 0 0 24px;
 }
+
+.hBr { display: block; }
 
 .heroSub {
   font-size: 16px;
-  color: rgba(255,255,255,0.78);
-  line-height: 1.7;
-  margin: 0 0 28px;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.80;
+  margin: 0 0 36px;
+  max-width: 720px;
 }
 
-.heroBadges {
+.complianceTags {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 8px;
+  margin-bottom: 28px;
 }
-.heroBadge {
-  display: flex;
+
+.compTag {
+  display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 12px;
+  gap: 6px;
+  font-size: 11.5px;
   font-weight: 700;
-  color: #F4B223;
-  background: rgba(244,178,35,0.12);
-  border: 1px solid rgba(244,178,35,0.3);
-  border-radius: 20px;
-  padding: 5px 12px;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 5px;
+  padding: 6px 13px;
+  letter-spacing: 0.01em;
 }
 
-/* ── SECTIONS ── */
-.section { padding: 80px 24px; background: #FFFFFF; }
-.sectionAlt { padding: 80px 24px; background: #F8F5FF; }
-.sectionInner { max-width: 1080px; margin: 0 auto; }
+.compTag svg { color: #F4B223; flex-shrink: 0; }
 
-.sectionHead { max-width: 680px; margin: 0 0 48px; }
+.lastReviewed {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.30);
+  margin: 0;
+}
+
+.lastReviewedLink {
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  transition: color 0.12s;
+}
+.lastReviewedLink:hover { color: rgba(255, 255, 255, 0.70); }
+
+/* ══════════════════════════════════════
+   COMMITMENT BAND
+══════════════════════════════════════ */
+.commitBand {
+  background: #6B5A8E;
+  padding: 20px 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.commitInner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.commitIcon {
+  color: #F4B223;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.commitText {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.commitText strong {
+  color: #FFFFFF;
+  font-weight: 800;
+}
+
+/* ══════════════════════════════════════
+   SHARED SECTION STRUCTURE
+══════════════════════════════════════ */
+.sectionInner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.sectionEyebrow {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #6B5A8E;
+  margin-bottom: 12px;
+}
+
+.sectionHead {
+  max-width: 680px;
+  margin-bottom: 56px;
+}
+
 .sectionTitle {
-  font-size: 28px;
+  font-size: clamp(22px, 3vw, 32px);
   font-weight: 900;
   color: #1C1635;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
   margin: 0 0 14px;
-  line-height: 1.2;
 }
+
 .sectionSub {
   font-size: 15px;
-  color: #5A5070;
-  line-height: 1.7;
+  color: #5A5478;
+  line-height: 1.75;
   margin: 0;
 }
 
-/* ── CERT STEPS ── */
-.stepsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  position: relative;
+/* ══════════════════════════════════════
+   CERTIFICATION — VERTICAL TIMELINE
+══════════════════════════════════════ */
+.certSection {
+  padding: 88px 40px 80px;
+  background: #FFFFFF;
+  border-top: 1px solid #EEEAF6;
 }
-@media (max-width: 900px) { .stepsGrid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .stepsGrid { grid-template-columns: 1fr; } }
 
-.stepCard {
-  background: #F8F5FF;
-  border: 1.5px solid #EDE9F5;
-  border-radius: 16px;
-  padding: 24px;
-  position: relative;
+.timeline {
+  display: flex;
+  flex-direction: column;
 }
-.stepTop {
+
+.timelineItem {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 0;
+}
+
+.timelineRail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.timelineNumWrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #1C1635;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px rgba(28, 22, 53, 0.08);
 }
-.stepNum {
-  font-size: 13px;
+
+.timelineNum {
+  font-size: 14px;
   font-weight: 900;
-  color: #6B5A8E;
-  letter-spacing: 0.05em;
+  color: #FFFFFF;
+  letter-spacing: 0.04em;
 }
-.stepIconWrap {
+
+.timelineLine {
+  width: 2px;
+  flex: 1;
+  background: linear-gradient(to bottom, #DDD8EE 0%, rgba(221, 216, 238, 0.3) 100%);
+  margin: 10px 0;
+  min-height: 32px;
+}
+
+.timelineContent {
+  padding-left: 8px;
+  padding-bottom: 0;
+}
+
+.timelineHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.timelineIconWrap {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #1F3C88 0%, #6B5A8E 100%);
   border-radius: 10px;
+  background: linear-gradient(135deg, #1F3C88 0%, #6B5A8E 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
-}
-.stepTitle {
-  font-size: 15px;
-  font-weight: 800;
-  color: #1C1635;
-  margin: 0 0 8px;
-}
-.stepDesc {
-  font-size: 13px;
-  color: #5A5070;
-  line-height: 1.7;
-  margin: 0;
+  flex-shrink: 0;
+  margin-top: 4px;
 }
 
-/* ── DATA PRACTICES ── */
-.dataGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-@media (max-width: 640px) { .dataGrid { grid-template-columns: 1fr; } }
-
-.dataCard {
-  background: #FFFFFF;
-  border: 1.5px solid #EDE9F5;
-  border-radius: 16px;
-  padding: 24px;
-}
-.dataIcon {
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(135deg, #1F3C88 0%, #6B5A8E 100%);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #FFFFFF;
-  margin-bottom: 14px;
-}
-.dataTitle {
-  font-size: 15px;
-  font-weight: 800;
-  color: #1C1635;
-  margin: 0 0 8px;
-}
-.dataDesc {
-  font-size: 13px;
-  color: #5A5070;
-  line-height: 1.7;
-  margin: 0;
-}
-
-/* ── TWO COL ── */
-.twoCol {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-@media (max-width: 768px) { .twoCol { grid-template-columns: 1fr; } }
-
-.colCard {
-  background: #F8F5FF;
-  border: 1.5px solid #EDE9F5;
-  border-radius: 16px;
-  padding: 28px 24px;
-}
-.colCardHead {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-.colCardIcon { color: #6B5A8E; }
-.colCardTitle {
+.timelineTitle {
   font-size: 17px;
   font-weight: 900;
   color: #1C1635;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+  line-height: 1.25;
+}
+
+.timelinePolicy {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1F3C88;
+  background: rgba(31, 60, 136, 0.08);
+  border-radius: 4px;
+  padding: 3px 8px;
+  display: inline-block;
+}
+
+.timelineDesc {
+  font-size: 14px;
+  color: #4A4468;
+  line-height: 1.78;
+  margin: 0;
+  max-width: 680px;
+}
+
+.timelineContentGap {
+  height: 36px;
+}
+
+/* Approval stamp */
+.approvalStamp {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-top: 48px;
+  padding: 28px 32px;
+  background: #1C1635;
+  border-radius: 16px;
+  border-left: 4px solid #F4B223;
+}
+
+.approvalIcon { color: #F4B223; flex-shrink: 0; margin-top: 3px; }
+
+.approvalTitle {
+  font-size: 15px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.45;
+  margin: 0 0 6px;
+}
+
+.approvalSub {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.68;
   margin: 0;
 }
-.colCardSub {
-  font-size: 13px;
-  color: #5A5070;
-  line-height: 1.65;
-  margin: 0 0 18px;
+
+/* ══════════════════════════════════════
+   DATA & PRIVACY TABLE
+══════════════════════════════════════ */
+.dataSection {
+  padding: 88px 40px 80px;
+  background: #F6F4FC;
+  border-top: 1px solid #EEEAF6;
 }
 
-.checkList { list-style: none; padding: 0; margin: 0 0 20px; display: flex; flex-direction: column; gap: 10px; }
-.checkItem { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #1C1635; line-height: 1.5; }
-.checkIcon { color: #1F3C88; flex-shrink: 0; margin-top: 1px; }
+.dataTable {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1.5px solid #DDD8EE;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #FFFFFF;
+  box-shadow: 0 4px 32px rgba(28, 22, 53, 0.07);
+}
 
-.colCta {
+.dataCol {
+  padding: 32px 36px;
+}
+
+.dataColNever {
+  border-left: 1.5px solid #EEEAF6;
+  background: #FDFBFF;
+}
+
+.dataColHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1.5px solid #EEEAF6;
+}
+
+.dataColLabel {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #1F3C88;
+}
+
+.dataColLabelNever {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #8B2020;
+}
+
+.dataDoIcon { color: #1F3C88; }
+.dataNeverIcon { color: #B43C3C; }
+
+.dataList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dataItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: #3A3155;
+  line-height: 1.60;
+}
+
+.dataItemIconDo { color: #1F3C88; flex-shrink: 0; margin-top: 2px; }
+.dataItemIconNever { color: #B43C3C; flex-shrink: 0; margin-top: 2px; }
+
+.dataFootnote {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  font-size: 12.5px;
+  color: #7A7390;
+}
+
+.dataFootnoteIcon { color: #6B5A8E; flex-shrink: 0; }
+.dataFootnoteLink {
+  color: #6B5A8E;
+  font-weight: 700;
+  text-decoration: none;
+}
+.dataFootnoteLink:hover { text-decoration: underline; }
+
+/* ══════════════════════════════════════
+   ROLES SECTION
+══════════════════════════════════════ */
+.rolesSection {
+  padding: 88px 40px 80px;
+  background: #FFFFFF;
+  border-top: 1px solid #EEEAF6;
+}
+
+.rolesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.roleCard {
+  background: #F6F4FC;
+  border: 1.5px solid #DDD8EE;
+  border-radius: 18px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.roleCardHead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.roleIconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #1C1635;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.roleTitle {
+  font-size: 18px;
+  font-weight: 900;
+  color: #1C1635;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.roleSub {
+  font-size: 13.5px;
+  color: #5A5478;
+  line-height: 1.65;
+  margin: 0 0 20px;
+}
+
+.roleList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.roleItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: #3A3155;
+  line-height: 1.60;
+}
+
+.roleCheck { color: #6B5A8E; flex-shrink: 0; margin-top: 2px; }
+
+.roleCta {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   font-size: 13px;
   font-weight: 800;
   color: #1F3C88;
   text-decoration: none;
+  transition: gap 0.12s;
 }
-.colCta:hover { text-decoration: underline; }
+.roleCta:hover { gap: 8px; }
 
-/* ── INCIDENT BANNER ── */
-.incidentBanner {
-  background: linear-gradient(135deg, #7F1D1D 0%, #991B1B 100%);
-  padding: 40px 24px;
+/* ══════════════════════════════════════
+   INCIDENT REPORTING
+══════════════════════════════════════ */
+.incidentSection {
+  background: #1C1635;
+  padding: 64px 40px;
+  border-top: 3px solid #7F1D1D;
 }
+
 .incidentInner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: center;
+}
+
+.incidentLeft {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.incidentIconWrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(180, 60, 60, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F87171;
+  flex-shrink: 0;
+}
+
+.incidentTitle {
+  font-size: 22px;
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: -0.015em;
+  margin: 0 0 10px;
+}
+
+.incidentSub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.60);
+  line-height: 1.75;
+  margin: 0 0 18px;
+}
+
+.incidentClauses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.incidentClause {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.incidentClause svg { color: #3AB87A; }
+
+.incidentActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.incidentCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #B43C3C;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 14px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.12s;
+  letter-spacing: 0.01em;
+}
+.incidentCta:hover { background: #991B1B; }
+
+.incidentEmergency {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+}
+.incidentPhoneIcon { color: rgba(255, 255, 255, 0.30); }
+.incidentEmergency strong { color: rgba(255, 255, 255, 0.75); }
+
+/* ══════════════════════════════════════
+   CONTACT STRIP
+══════════════════════════════════════ */
+.contactStrip {
+  background: #F6F4FC;
+  border-top: 1px solid #EEEAF6;
+  padding: 20px 40px;
+}
+
+.contactStripInner {
   max-width: 1080px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 24px;
+  justify-content: space-between;
+  gap: 20px;
   flex-wrap: wrap;
 }
-.incidentIcon { color: #FECACA; flex-shrink: 0; }
-.incidentTitle {
-  font-size: 18px;
-  font-weight: 900;
-  color: #FFFFFF;
-  margin: 0 0 6px;
-}
-.incidentSub {
-  font-size: 13px;
-  color: rgba(255,255,255,0.75);
-  line-height: 1.65;
+
+.contactStripText {
+  font-size: 14px;
+  color: #5A5478;
   margin: 0;
-  flex: 1;
 }
-.incidentCta {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #FFFFFF;
-  color: #991B1B;
-  font-size: 13px;
+
+.contactStripLink {
+  font-size: 14px;
   font-weight: 800;
-  padding: 11px 20px;
-  border-radius: 8px;
+  color: #1F3C88;
   text-decoration: none;
   white-space: nowrap;
-  transition: opacity 0.15s;
+  transition: color 0.12s;
 }
-.incidentCta:hover { opacity: 0.88; }
+.contactStripLink:hover { color: #0D1F5C; }
 
 /* ── FOOTER ── */
-.footer { background: #1C1635; padding: 20px 24px; }
+.footer { background: #13102A; padding: 24px 40px; }
 .footerInner {
   max-width: 1080px;
   margin: 0 auto;
@@ -283,7 +662,60 @@
   flex-wrap: wrap;
   gap: 12px;
 }
-.footerCopy { font-size: 12px; color: rgba(255,255,255,0.4); margin: 0; }
+.footerCopy { font-size: 12px; color: rgba(255,255,255,0.28); margin: 0; }
 .footerLinks { display: flex; gap: 20px; }
-.footerLink { font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; }
-.footerLink:hover { color: rgba(255,255,255,0.7); }
+.footerLink { font-size: 12px; color: rgba(255,255,255,0.28); text-decoration: none; transition: color 0.12s; }
+.footerLink:hover { color: rgba(255,255,255,0.60); }
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 960px) {
+  .dataTable { grid-template-columns: 1fr; }
+  .dataColNever { border-left: none; border-top: 1.5px solid #EEEAF6; }
+  .rolesGrid { grid-template-columns: 1fr; }
+  .incidentInner { grid-template-columns: 1fr; gap: 32px; }
+  .incidentActions { align-items: flex-start; }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 64px 24px 56px; }
+  .certSection,
+  .dataSection,
+  .rolesSection { padding: 64px 24px 56px; }
+  .incidentSection { padding: 48px 24px; }
+  .commitBand { padding: 18px 24px; }
+  .contactStrip { padding: 18px 24px; }
+  .footer { padding: 20px 24px; }
+  .approvalStamp { padding: 22px 24px; }
+  .roleCard { padding: 24px; }
+  .dataCol { padding: 24px; }
+}
+
+@media (max-width: 600px) {
+  .timelineItem { grid-template-columns: 52px 1fr; }
+  .timelineNumWrap { width: 40px; height: 40px; }
+  .timelineNum { font-size: 12px; }
+  .timelineTitle { font-size: 15px; }
+  .timelineDesc { font-size: 13.5px; }
+  .timelineContentGap { height: 28px; }
+  .h1 { letter-spacing: -0.025em; }
+  .hBr { display: none; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding: 48px 20px 44px; }
+  .certSection,
+  .dataSection,
+  .rolesSection { padding: 48px 20px 44px; }
+  .incidentSection { padding: 40px 20px; }
+  .incidentLeft { flex-direction: column; gap: 16px; }
+  .commitBand { padding: 16px 20px; }
+  .contactStrip { padding: 16px 20px; }
+  .contactStripInner { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .footer { padding: 16px 20px; }
+  .complianceTags { gap: 6px; }
+  .compTag { font-size: 11px; padding: 5px 10px; }
+  .sectionHead { margin-bottom: 36px; }
+  .approvalStamp { flex-direction: column; gap: 14px; }
+}

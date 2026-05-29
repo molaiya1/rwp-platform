@@ -4,6 +4,7 @@ import Link from 'next/link'
 import {
   ShieldCheck, CheckCircle2, FileText, Users, Lock,
   AlertTriangle, ChevronRight, Eye, BookOpen, Award,
+  XCircle, Phone,
 } from 'lucide-react'
 import SiteNav from '../components/SiteNav'
 import styles from './safety.module.css'
@@ -13,77 +14,77 @@ const CERT_STEPS = [
     num: '01',
     icon: FileText,
     title: 'Application Review',
-    desc: 'Every business submits a formal application including company details, contact information, EIN verification, and the types of experiences they intend to offer. No business goes live without a completed application.',
+    policy: 'Required before activation',
+    desc: 'Every business submits a formal application including company details, contact information, EIN verification, and a description of the experiences they intend to offer. Incomplete applications are rejected — not deferred.',
   },
   {
     num: '02',
     icon: ShieldCheck,
     title: 'Background Screening',
-    desc: 'All designated site contacts who will interact with youth must submit to a background check before any student activity is approved. This is non-negotiable and is re-verified annually.',
+    policy: 'Mandatory · Re-verified annually',
+    desc: 'All designated site contacts who will interact with youth must pass a background check before any student activity is approved. This requirement is non-negotiable and cannot be waived. Re-verification occurs every 12 months.',
   },
   {
     num: '03',
     icon: Award,
     title: 'Insurance Verification',
-    desc: 'Pathway Sites must carry a minimum of $1,000,000 in general liability insurance and provide proof of coverage. Insurance expiration is tracked in our admin system and must be renewed to maintain active status.',
+    policy: 'Minimum $1M general liability',
+    desc: 'Pathway Sites must carry a minimum of $1,000,000 in general liability insurance and submit current proof of coverage. Insurance expiration is tracked by our admin system. Lapsed coverage results in automatic suspension.',
   },
   {
     num: '04',
     icon: BookOpen,
     title: 'Youth Safety Training',
-    desc: 'All site contacts complete mandatory youth safety and professional conduct training before their first Field Lab. Training covers appropriate interactions, emergency procedures, and mandatory reporting obligations.',
+    policy: 'Required before first Field Lab',
+    desc: 'All site contacts complete mandatory youth safety and professional conduct training before hosting any student. Training covers appropriate adult-student interactions, emergency procedures, and mandatory reporting obligations under state law.',
   },
   {
     num: '05',
     icon: FileText,
     title: 'Document Submission',
-    desc: 'Pathway Sites must have three documents on file: a Youth Safety Policy, a Professional Code of Conduct, and a Youth Protection Agreement. All documents are reviewed by our admin team.',
+    policy: '3 documents required on file',
+    desc: 'Pathway Sites must have three documents on file before activation: a Youth Safety Policy, a Professional Code of Conduct, and a signed Youth Protection Agreement. All three are reviewed and approved by our admin team — no exceptions.',
   },
   {
     num: '06',
     icon: CheckCircle2,
-    title: 'Admin Approval',
-    desc: 'Every application is manually reviewed and approved by the RWP admin team before a business is listed or permitted to host any student experience. No auto-approvals.',
+    title: 'Manual Admin Approval',
+    policy: 'No auto-approvals. Ever.',
+    desc: 'Every application is reviewed and approved by a member of the RWP admin team before a business can appear in the marketplace or host any student experience. There are no automated approvals on this platform.',
   },
 ]
 
-const DATA_PRACTICES = [
-  {
-    Icon: Lock,
-    title: 'FERPA Compliant',
-    desc: 'Real-World Pathways™ operates as a "school official" under FERPA when receiving student data from partnering organizations. We do not share, sell, or disclose student records without proper authorization.',
-  },
-  {
-    Icon: Eye,
-    title: 'COPPA-Aware',
-    desc: 'For students under 13, we require verifiable parental or guardian consent before any personal information is collected or processed. Organizations are responsible for obtaining and documenting consent prior to student participation.',
-  },
-  {
-    Icon: ShieldCheck,
-    title: 'Minimal Data Collection',
-    desc: 'We collect only what is necessary to coordinate experiences and track outcomes. Student data is never used for advertising, never sold to third parties, and never retained beyond program participation.',
-  },
-  {
-    Icon: FileText,
-    title: 'Data Retention Policy',
-    desc: 'Student records are retained only for the duration of program participation plus one academic year for outcome tracking, then securely deleted. Organizations can request deletion at any time.',
-  },
+const DATA_DO = [
+  'Operate as a "school official" under FERPA when receiving student data',
+  'Collect only what is necessary to coordinate experiences and track outcomes',
+  'Secure all data in transit and at rest using industry-standard encryption',
+  'Provide organizations with the ability to request full data deletion at any time',
+  'Retain student records for the duration of program participation plus one academic year for outcome tracking only',
+  'Require verifiable parental consent for any student under 13 (COPPA)',
+]
+
+const DATA_NEVER = [
+  'Sell, rent, or trade student data to any third party — ever',
+  'Use student information for advertising or profiling',
+  'Retain student records beyond the program participation window without explicit consent',
+  'Share student data without proper FERPA authorization from the partnering organization',
+  'Allow businesses to access individual student identities without organizational approval',
 ]
 
 const FOR_ORGS = [
-  'Verify that every business you connect with has passed our 6-step certification process',
-  'Review the full certification status of any Pathway Site before approving student participation',
-  'Download our Parental Consent Template for use with your students and families',
-  'Access our Youth Labor Law Reference Guide before placing students in work-based experiences',
-  'Contact our admin team directly at safety@wealthwisekids.org with any concern — we respond within 24 hours',
+  'Verify every business you connect with has passed all six certification steps before approving student participation',
+  'Review the full certification status of any Pathway Site directly in the platform before scheduling any Field Lab',
+  'Download our Parental Consent Template for distribution to student families prior to any experience',
+  'Consult our Youth Labor Law Reference Guide before placing students in work-based learning environments',
+  'Contact our safety team at safety@wealthwisekids.org with any concern — we respond within 24 hours',
 ]
 
 const FOR_BIZ = [
-  'Complete all six certification steps before hosting any student activity',
-  'Maintain current background checks and insurance documentation in your Pathway Site portal',
-  'Report any safety incident or concern immediately using the in-platform reporting tool',
-  'Never allow uncertified staff to interact with student groups',
-  'Follow all applicable child labor laws and age restrictions for your industry',
+  'Complete all six certification steps before hosting any student activity — no exceptions or partial exceptions',
+  'Maintain current background checks and insurance documentation in your Pathway Site portal at all times',
+  'Report any safety incident or concern immediately using the in-platform incident reporting tool',
+  'Ensure only certified and trained staff interact directly with student groups during Field Labs',
+  'Follow all applicable federal and state child labor laws and age restrictions for your industry',
 ]
 
 export default function SafetyPage() {
@@ -91,131 +92,217 @@ export default function SafetyPage() {
     <div className={styles.page}>
       <SiteNav />
 
-      {/* ── HERO ── */}
+      {/* ══════════════════════════════════════
+          HERO
+      ══════════════════════════════════════ */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <div className={styles.heroShield}>
-            <ShieldCheck size={32} />
+          <div className={styles.heroBadgeRow}>
+            <span className={styles.heroEyebrow}>Safety & Compliance</span>
           </div>
-          <p className={styles.eyebrow}>Safety & Compliance</p>
+
           <h1 className={styles.h1}>
-            Every student who walks through a Pathway Site<br />
-            is protected before they arrive.
+            Every student who walks through a Pathway Site<br className={styles.hBr} />
+            {' '}is protected before they ever arrive.
           </h1>
+
           <p className={styles.heroSub}>
-            Real-World Pathways™ is the only youth field experience platform with a
-            mandatory 6-step certification process for every business partner — including
-            background checks, insurance verification, and youth safety training.
-            No exceptions. No auto-approvals.
+            Real-World Pathways™ operates under a mandatory 6-step certification
+            process for every business partner — background checks, insurance verification,
+            youth safety training, and manual admin review. No business goes live without
+            passing all six. No exceptions. No auto-approvals.
           </p>
-          <div className={styles.heroBadges}>
-            <span className={styles.heroBadge}><CheckCircle2 size={13} /> FERPA Compliant</span>
-            <span className={styles.heroBadge}><CheckCircle2 size={13} /> COPPA-Aware</span>
-            <span className={styles.heroBadge}><CheckCircle2 size={13} /> Background Checked</span>
-            <span className={styles.heroBadge}><CheckCircle2 size={13} /> Insurance Verified</span>
-            <span className={styles.heroBadge}><CheckCircle2 size={13} /> Youth Safety Trained</span>
+
+          <div className={styles.complianceTags}>
+            <span className={styles.compTag}><ShieldCheck size={13} /> FERPA Compliant</span>
+            <span className={styles.compTag}><ShieldCheck size={13} /> COPPA-Aware</span>
+            <span className={styles.compTag}><ShieldCheck size={13} /> Background Checked</span>
+            <span className={styles.compTag}><ShieldCheck size={13} /> $1M Liability Insured</span>
+            <span className={styles.compTag}><ShieldCheck size={13} /> Youth Safety Trained</span>
           </div>
+
+          <p className={styles.lastReviewed}>Policy last reviewed: May 2026 · Questions? <a href="mailto:safety@wealthwisekids.org" className={styles.lastReviewedLink}>safety@wealthwisekids.org</a></p>
         </div>
       </section>
 
-      {/* ── CERTIFICATION PROCESS ── */}
-      <section className={styles.section}>
+      {/* ══════════════════════════════════════
+          COMMITMENT BAND
+      ══════════════════════════════════════ */}
+      <div className={styles.commitBand}>
+        <div className={styles.commitInner}>
+          <ShieldCheck size={20} className={styles.commitIcon} />
+          <p className={styles.commitText}>
+            <strong>Our commitment:</strong> No student sets foot inside a Pathway Site until that business has been manually verified, background-checked, insured, and trained. This is a platform policy — not a goal.
+          </p>
+        </div>
+      </div>
+
+      {/* ══════════════════════════════════════
+          6-STEP CERTIFICATION PROCESS
+      ══════════════════════════════════════ */}
+      <section className={styles.certSection}>
         <div className={styles.sectionInner}>
           <div className={styles.sectionHead}>
-            <h2 className={styles.sectionTitle}>The Certified Pathway Site™ Process</h2>
+            <span className={styles.sectionEyebrow}>Certification Process</span>
+            <h2 className={styles.sectionTitle}>The Certified Pathway Site™ Standard</h2>
             <p className={styles.sectionSub}>
-              Six mandatory steps. Every business. No exceptions.
-              A business cannot appear in our marketplace or host any student experience
-              until all six are complete and approved by our admin team.
+              Six mandatory steps. Every business. Completed in full before any student interaction is permitted.
+              A business cannot appear in the marketplace, accept connection requests, or host any Field Lab
+              until all six steps are verified and manually approved by our admin team.
             </p>
           </div>
-          <div className={styles.stepsGrid}>
+
+          <div className={styles.timeline}>
             {CERT_STEPS.map((step, i) => (
-              <div key={step.num} className={styles.stepCard}>
-                <div className={styles.stepTop}>
-                  <span className={styles.stepNum}>{step.num}</span>
-                  <div className={styles.stepIconWrap}>
-                    <step.icon size={20} />
+              <div key={step.num} className={styles.timelineItem}>
+
+                {/* Rail */}
+                <div className={styles.timelineRail}>
+                  <div className={styles.timelineNumWrap}>
+                    <span className={styles.timelineNum}>{step.num}</span>
                   </div>
+                  {i < CERT_STEPS.length - 1 && <div className={styles.timelineLine} />}
                 </div>
-                <h3 className={styles.stepTitle}>{step.title}</h3>
-                <p className={styles.stepDesc}>{step.desc}</p>
-                {i < CERT_STEPS.length - 1 && (
-                  <div className={styles.stepConnector} aria-hidden="true" />
-                )}
+
+                {/* Content */}
+                <div className={styles.timelineContent}>
+                  <div className={styles.timelineHeader}>
+                    <div className={styles.timelineIconWrap}>
+                      <step.icon size={18} />
+                    </div>
+                    <div>
+                      <h3 className={styles.timelineTitle}>{step.title}</h3>
+                      <span className={styles.timelinePolicy}>{step.policy}</span>
+                    </div>
+                  </div>
+                  <p className={styles.timelineDesc}>{step.desc}</p>
+                  {i < CERT_STEPS.length - 1 && <div className={styles.timelineContentGap} />}
+                </div>
+
               </div>
             ))}
+          </div>
+
+          {/* Approval stamp */}
+          <div className={styles.approvalStamp}>
+            <CheckCircle2 size={22} className={styles.approvalIcon} />
+            <div>
+              <p className={styles.approvalTitle}>Only after all six steps are verified does a business receive Certified Pathway Site™ status.</p>
+              <p className={styles.approvalSub}>Certification is revoked immediately upon any lapse in background checks, insurance, or conduct violations. The platform admin team reviews every application manually.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── DATA & PRIVACY ── */}
-      <section className={styles.sectionAlt}>
+      {/* ══════════════════════════════════════
+          DATA & PRIVACY
+      ══════════════════════════════════════ */}
+      <section className={styles.dataSection}>
         <div className={styles.sectionInner}>
           <div className={styles.sectionHead}>
-            <h2 className={styles.sectionTitle}>Student Data & Privacy</h2>
+            <span className={styles.sectionEyebrow}>Data & Privacy</span>
+            <h2 className={styles.sectionTitle}>How We Handle Student Data</h2>
             <p className={styles.sectionSub}>
-              We take our obligation to protect student data seriously.
-              Here is exactly how we handle the information entrusted to us.
+              We operate under FERPA and are COPPA-aware. Below is an explicit accounting of
+              what we do — and what we are prohibited from doing — with any student information
+              that passes through this platform.
             </p>
           </div>
-          <div className={styles.dataGrid}>
-            {DATA_PRACTICES.map(d => (
-              <div key={d.title} className={styles.dataCard}>
-                <div className={styles.dataIcon}>
-                  <d.Icon size={22} />
-                </div>
-                <h3 className={styles.dataTitle}>{d.title}</h3>
-                <p className={styles.dataDesc}>{d.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ── FOR ORGS + FOR BIZ ── */}
-      <section className={styles.section}>
-        <div className={styles.sectionInner}>
-          <div className={styles.twoCol}>
+          <div className={styles.dataTable}>
 
-            <div className={styles.colCard}>
-              <div className={styles.colCardHead}>
-                <Users size={20} className={styles.colCardIcon} />
-                <h2 className={styles.colCardTitle}>For Schools & Organizations</h2>
+            <div className={styles.dataCol}>
+              <div className={styles.dataColHead}>
+                <CheckCircle2 size={18} className={styles.dataDoIcon} />
+                <span className={styles.dataColLabel}>What we DO</span>
               </div>
-              <p className={styles.colCardSub}>
-                Before connecting your students to any Pathway Site, here is what you should know and do:
-              </p>
-              <ul className={styles.checkList}>
-                {FOR_ORGS.map(item => (
-                  <li key={item} className={styles.checkItem}>
-                    <CheckCircle2 size={15} className={styles.checkIcon} />
+              <ul className={styles.dataList}>
+                {DATA_DO.map(item => (
+                  <li key={item} className={styles.dataItem}>
+                    <CheckCircle2 size={14} className={styles.dataItemIconDo} />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-              <Link href="/register?type=org" className={styles.colCta}>
+            </div>
+
+            <div className={`${styles.dataCol} ${styles.dataColNever}`}>
+              <div className={styles.dataColHead}>
+                <XCircle size={18} className={styles.dataNeverIcon} />
+                <span className={styles.dataColLabelNever}>What we NEVER do</span>
+              </div>
+              <ul className={styles.dataList}>
+                {DATA_NEVER.map(item => (
+                  <li key={item} className={styles.dataItem}>
+                    <XCircle size={14} className={styles.dataItemIconNever} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+
+          <div className={styles.dataFootnote}>
+            <Lock size={13} className={styles.dataFootnoteIcon} />
+            <span>All data is encrypted in transit (TLS 1.3) and at rest (AES-256). For the full policy, see our <Link href="/privacy" className={styles.dataFootnoteLink}>Privacy Policy →</Link></span>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          FOR ORGS + FOR BIZ
+      ══════════════════════════════════════ */}
+      <section className={styles.rolesSection}>
+        <div className={styles.sectionInner}>
+          <div className={styles.sectionHead}>
+            <span className={styles.sectionEyebrow}>Your Responsibilities</span>
+            <h2 className={styles.sectionTitle}>What Each Partner Is Accountable For</h2>
+            <p className={styles.sectionSub}>
+              Safety on this platform is a shared obligation. Here is what each partner type is responsible for maintaining.
+            </p>
+          </div>
+
+          <div className={styles.rolesGrid}>
+
+            <div className={styles.roleCard}>
+              <div className={styles.roleCardHead}>
+                <div className={styles.roleIconWrap}>
+                  <Users size={18} />
+                </div>
+                <h3 className={styles.roleTitle}>Schools & Organizations</h3>
+              </div>
+              <p className={styles.roleSub}>Before connecting your students to any Pathway Site, you are expected to:</p>
+              <ul className={styles.roleList}>
+                {FOR_ORGS.map(item => (
+                  <li key={item} className={styles.roleItem}>
+                    <CheckCircle2 size={14} className={styles.roleCheck} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link href="/register?type=org" className={styles.roleCta}>
                 Register Your Organization <ChevronRight size={14} />
               </Link>
             </div>
 
-            <div className={styles.colCard}>
-              <div className={styles.colCardHead}>
-                <ShieldCheck size={20} className={styles.colCardIcon} />
-                <h2 className={styles.colCardTitle}>For Pathway Site Businesses</h2>
+            <div className={styles.roleCard}>
+              <div className={styles.roleCardHead}>
+                <div className={styles.roleIconWrap}>
+                  <ShieldCheck size={18} />
+                </div>
+                <h3 className={styles.roleTitle}>Pathway Site Businesses</h3>
               </div>
-              <p className={styles.colCardSub}>
-                Becoming a Certified Pathway Site™ means committing to the highest standard of youth safety. Here is what that requires:
-              </p>
-              <ul className={styles.checkList}>
+              <p className={styles.roleSub}>Becoming a Certified Pathway Site™ means committing to the following at all times:</p>
+              <ul className={styles.roleList}>
                 {FOR_BIZ.map(item => (
-                  <li key={item} className={styles.checkItem}>
-                    <CheckCircle2 size={15} className={styles.checkIcon} />
+                  <li key={item} className={styles.roleItem}>
+                    <CheckCircle2 size={14} className={styles.roleCheck} />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-              <Link href="/register?type=biz" className={styles.colCta}>
+              <Link href="/register?type=biz" className={styles.roleCta}>
                 Apply as a Pathway Site <ChevronRight size={14} />
               </Link>
             </div>
@@ -224,23 +311,56 @@ export default function SafetyPage() {
         </div>
       </section>
 
-      {/* ── INCIDENT REPORTING ── */}
-      <section className={styles.incidentBanner}>
+      {/* ══════════════════════════════════════
+          INCIDENT REPORTING
+      ══════════════════════════════════════ */}
+      <section className={styles.incidentSection}>
         <div className={styles.incidentInner}>
-          <AlertTriangle size={24} className={styles.incidentIcon} />
-          <div>
-            <h2 className={styles.incidentTitle}>Report a Safety Concern</h2>
-            <p className={styles.incidentSub}>
-              If you witness or experience anything that puts a student at risk, report it immediately.
-              All reports are reviewed within 24 hours. A business can be suspended from the platform
-              instantly pending investigation.
-            </p>
+          <div className={styles.incidentLeft}>
+            <div className={styles.incidentIconWrap}>
+              <AlertTriangle size={28} />
+            </div>
+            <div>
+              <h2 className={styles.incidentTitle}>Report a Safety Concern</h2>
+              <p className={styles.incidentSub}>
+                If you witness or experience anything that puts a student at risk —
+                inappropriate conduct, a safety hazard, a policy violation — report it
+                immediately through the platform. All reports are reviewed within 24 hours.
+                A business can be suspended instantly pending investigation.
+              </p>
+              <div className={styles.incidentClauses}>
+                <span className={styles.incidentClause}><ShieldCheck size={13} /> Anonymous reporting available</span>
+                <span className={styles.incidentClause}><ShieldCheck size={13} /> 24-hour response commitment</span>
+                <span className={styles.incidentClause}><ShieldCheck size={13} /> Immediate suspension authority</span>
+              </div>
+            </div>
           </div>
-          <Link href="/incident" className={styles.incidentCta}>
-            Submit a Report <ChevronRight size={14} />
-          </Link>
+
+          <div className={styles.incidentActions}>
+            <Link href="/incident" className={styles.incidentCta}>
+              Submit an Incident Report <ChevronRight size={15} />
+            </Link>
+            <div className={styles.incidentEmergency}>
+              <Phone size={13} className={styles.incidentPhoneIcon} />
+              <span>Student in immediate danger? <strong>Call 911 first.</strong></span>
+            </div>
+          </div>
         </div>
       </section>
+
+      {/* ══════════════════════════════════════
+          CONTACT STRIP
+      ══════════════════════════════════════ */}
+      <div className={styles.contactStrip}>
+        <div className={styles.contactStripInner}>
+          <p className={styles.contactStripText}>
+            Questions about our safety protocols, certification requirements, or data practices?
+          </p>
+          <a href="mailto:safety@wealthwisekids.org" className={styles.contactStripLink}>
+            safety@wealthwisekids.org →
+          </a>
+        </div>
+      </div>
 
       {/* ── FOOTER ── */}
       <footer className={styles.footer}>
@@ -253,6 +373,7 @@ export default function SafetyPage() {
           </div>
         </div>
       </footer>
+
     </div>
   )
 }

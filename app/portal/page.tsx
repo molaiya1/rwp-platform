@@ -547,6 +547,7 @@ export default function PortalPage() {
         <div className={styles.footerLinks}>
           <a href="/privacy" className={styles.footerLink}>Privacy Policy</a>
           <a href="/terms"   className={styles.footerLink}>Terms of Use</a>
+          <a href="/legal"   className={styles.footerLink}>Compliance</a>
           <a href="/contact" className={styles.footerLink}>Contact Support</a>
         </div>
       </footer>

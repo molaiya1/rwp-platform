@@ -89,14 +89,29 @@ function InsExpWarning({ expStr }: { expStr: string }) {
   )
 }
 
+const ADMIN_EMAILS = ['michael@versassists.com', 'rwp.demo@gmail.com']
+
 export default function AdminDashboard() {
   const [activeTab, setActiveTab]     = useState('all')
   const [search, setSearch]           = useState('')
   const [selected, setSelected]       = useState<Partner | null>(null)
   const [partners, setPartners]       = useState<Partner[]>([])
   const [loading, setLoading]         = useState(true)
+  const [authorized, setAuthorized]   = useState<boolean | null>(null)
 
   useEffect(() => {
+    const supabase = createClient()
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (!user || !ADMIN_EMAILS.includes(user.email ?? '')) {
+        window.location.href = '/dashboard'
+        return
+      }
+      setAuthorized(true)
+    })
+  }, [])
+
+  useEffect(() => {
+    if (!authorized) return
     const supabase = createClient()
     supabase
       .from('pathway_site_applications')
@@ -106,7 +121,7 @@ export default function AdminDashboard() {
         if (!error && data) setPartners(data.map(rowToPartner))
         setLoading(false)
       })
-  }, [])
+  }, [authorized])
 
   const filtered = partners.filter(p => {
     const matchTab = activeTab === 'all' || p.status === activeTab
@@ -141,6 +156,8 @@ export default function AdminDashboard() {
     setPartners(prev => prev.map(p => p.id === id ? { ...p, status } : p))
     if (selected?.id === id) setSelected(prev => prev ? { ...prev, status } : null)
   }
+
+  if (!authorized) return null
 
   return (
     <div className={styles.page}>

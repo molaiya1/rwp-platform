@@ -6,6 +6,16 @@ import { ShieldCheck, Lock, TrendingUp, Scale, ChevronRight } from 'lucide-react
 import SiteNav from '../components/SiteNav'
 import styles from './home.module.css'
 
+/* ─── Featured Pathway Sites ─── */
+const FEATURED_SITES = [
+  { name: 'Grady Health System',    industry: 'Healthcare',    city: 'Atlanta, GA',      photo: 'https://images.unsplash.com/photo-1551076805-e1869033e561?w=500&q=80' },
+  { name: 'Delta Air Lines',        industry: 'Aviation',      city: 'Atlanta, GA',      photo: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=500&q=80' },
+  { name: 'Truist Bank',            industry: 'Finance',       city: 'Atlanta, GA',      photo: 'https://images.unsplash.com/photo-1560472355-536de3962603?w=500&q=80' },
+  { name: 'Chick-fil-A Corporate',  industry: 'Hospitality',   city: 'College Park, GA', photo: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&q=80' },
+  { name: 'Georgia Power',          industry: 'Energy',        city: 'Atlanta, GA',      photo: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=500&q=80' },
+  { name: 'Cox Enterprises',        industry: 'Technology',    city: 'Atlanta, GA',      photo: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&q=80' },
+]
+
 /* ─── Stats data ─── */
 const STATS = [
   { number: 'Atlanta',  label: 'Home Market\nExpanding Nationally', iconPos: '0% 0%'     },
@@ -185,6 +195,36 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════
+          FEATURED PATHWAY SITES
+      ══════════════════════════════════════ */}
+      <section className={styles.featuredSites} aria-label="Featured Pathway Sites">
+        <div className={styles.featuredSitesInner}>
+          <div className={styles.featuredSitesHeader}>
+            <p className={styles.featuredSitesLabel}>Featured Pathway Sites™</p>
+            <Link href="/marketplace" className={styles.featuredSitesViewAll}>
+              Browse all experiences <ChevronRight size={13} />
+            </Link>
+          </div>
+          <div className={styles.featuredSitesScroll}>
+            {FEATURED_SITES.map(site => (
+              <Link href="/marketplace" key={site.name} className={styles.siteCard}>
+                <div className={styles.siteCardPhoto}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={site.photo} alt={site.name} className={styles.siteCardImg} />
+                  <div className={styles.siteCardOverlay} />
+                  <span className={styles.siteCardIndustry}>{site.industry}</span>
+                </div>
+                <div className={styles.siteCardBody}>
+                  <p className={styles.siteCardName}>{site.name}</p>
+                  <p className={styles.siteCardCity}>{site.city}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
           HOW IT WORKS
       ══════════════════════════════════════ */}
       <section className={styles.howItWorks} id="how-it-works" aria-labelledby="how-heading">
@@ -319,6 +359,7 @@ export default function HomePage() {
           <div className={styles.footerLinks}>
             <a href="/privacy" className={styles.footerLink}>Privacy Policy</a>
             <a href="/terms"   className={styles.footerLink}>Terms of Use</a>
+            <a href="/legal"   className={styles.footerLink}>Compliance</a>
             <a href="/contact" className={styles.footerLink}>Contact</a>
           </div>
         </div>

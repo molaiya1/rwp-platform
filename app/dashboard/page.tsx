@@ -54,7 +54,7 @@ const OPPORTUNITIES = [
     title: 'Behind the Scenes: Media Production',
     type: 'Field Lab™',
     typeColor: 'purple',
-    date: 'May 24, 2025',
+    date: 'Jun 12, 2026',
     time: '10:00 AM',
     location: 'Atlanta, GA',
     desc: 'Explore the world of media and storytelling with industry pros.',
@@ -65,7 +65,7 @@ const OPPORTUNITIES = [
     title: 'Future Innovators: STEM Lab',
     type: 'Field Lab™',
     typeColor: 'purple',
-    date: 'May 28, 2025',
+    date: 'Jun 18, 2026',
     time: '2:00 PM',
     location: 'Virtual',
     desc: 'Hands-on experiments and challenges with real scientists.',
@@ -76,7 +76,7 @@ const OPPORTUNITIES = [
     title: 'Community Impact Day',
     type: 'Community Experience',
     typeColor: 'teal',
-    date: 'June 5, 2025',
+    date: 'Jun 25, 2026',
     time: '9:00 AM',
     location: 'Atlanta, GA',
     desc: 'Give back, make connections, create change.',
@@ -565,6 +565,8 @@ export default function DashboardPage() {
               <Link href="/privacy" className={styles.footerLink}>Privacy Policy</Link>
               <span className={styles.footerDot}>·</span>
               <Link href="/terms" className={styles.footerLink}>Terms of Use</Link>
+              <span className={styles.footerDot}>·</span>
+              <Link href="/legal" className={styles.footerLink}>Compliance</Link>
             </div>
           </footer>
 

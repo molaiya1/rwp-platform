@@ -438,6 +438,7 @@ export default function LoginPage() {
           <span>© 2026 WealthWise Kids LLC. All rights reserved.</span>
           <Link href="/privacy" className={styles.footerLink}>Privacy Policy</Link>
           <Link href="/terms" className={styles.footerLink}>Terms of Use</Link>
+          <Link href="/legal" className={styles.footerLink}>Compliance</Link>
           <Link href="/help" className={styles.footerLink}>Help</Link>
         </div>
 

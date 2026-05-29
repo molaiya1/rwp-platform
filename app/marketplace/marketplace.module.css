@@ -1406,12 +1406,80 @@
   .grid { grid-template-columns: 1fr; }
   .modalOverlay { padding: 0; align-items: flex-end; }
   .modal { border-radius: 20px 20px 0 0; max-height: 92vh; }
+
+  /* List card — stack photo above content */
+  .listCard { flex-direction: column; }
+  .listCardPhoto { width: 100%; min-width: 0; height: 180px; }
+  .listCardCta { padding: 0 16px 16px; }
+  .listCardCta .cardCta { width: 100%; }
+  .listCardTopRow { flex-direction: column; gap: 8px; }
+  .listCardRight { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 6px; }
+
+  /* How-it-works strip — scrollable on mobile */
+  .howStrip { padding: 16px 20px; overflow-x: auto; }
+  .howStripInner { min-width: 600px; }
+
+  /* Top bar — stack on mobile */
+  .listingTopBar { flex-direction: column; align-items: flex-start; }
+  .topBarRight { width: 100%; justify-content: space-between; }
 }
 
 @media (max-width: 480px) {
   .hero { padding: 40px 20px 48px; }
-  .filterSidebar { gap: 8px; }
-  .filterGroup { min-width: 120px; flex-basis: calc(50% - 4px); }
   .calendarStrip { padding: 10px 16px; }
   .body { padding: 16px 16px 48px; }
+
+  /* Filter sidebar — horizontal scroll of filter columns */
+  .filterSidebar {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+    gap: 16px;
+    align-items: flex-start;
+    background: none;
+    border: none;
+    padding: 0 0 4px;
+  }
+  .filterSidebar::-webkit-scrollbar { display: none; }
+
+  .filterHeader {
+    display: none; /* hide "Filters" label + clear-all on mobile — redundant when sidebar is always visible */
+  }
+
+  .filterGroup {
+    flex: 0 0 auto;
+    min-width: 130px;
+    max-width: 148px;
+    margin-bottom: 0;
+    background: #F7F5FB;
+    border: 1.5px solid #EDE9F5;
+    border-radius: 12px;
+    padding: 10px 12px;
+  }
+
+  .filterGroupLabel {
+    margin-bottom: 8px;
+    font-size: 9.5px;
+  }
+
+  .filterOption {
+    padding: 5px 8px;
+    font-size: 11.5px;
+    border-radius: 8px;
+  }
+
+  /* Result bar */
+  .resultCount { font-size: 12.5px; }
+  .listYoursBtn { font-size: 12px; padding: 0 12px; }
+
+  /* Card CTA touch target */
+  .cardCta { height: 44px; }
+  .cardCta:active { background: #5A4B7A; }
+
+  /* Modal */
+  .modalBody { padding: 20px 20px 24px; }
+  .modalMeta { grid-template-columns: 1fr; }
+  .footer { padding: 16px 20px; }
 }

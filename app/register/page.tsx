@@ -139,6 +139,8 @@ function RegisterContent() {
 
     setSubmitting(true)
     setSubmitError('')
+
+    try {
     const supabase = createClient()
 
     if (isOrg) {
@@ -158,25 +160,23 @@ function RegisterContent() {
         setSubmitting(false)
         return
       }
-      await supabase.from('impact_organizations').insert({
-        org_type:     orgType,
-        org_name:     orgName,
-        city:         orgCity,
-        state:        orgState,
-        zip:          orgZip,
-        grades:       orgGrades,
-        students:     orgStudents,
-        notes:        orgNotes,
-        exp_types:    orgExpTypes,
-        interests:    orgInterests,
+      const { error: insertError } = await supabase.from('impact_organizations').insert({
+        org_type:      orgType,
+        org_name:      orgName,
+        city:          orgCity,
+        state:         orgState,
+        zip:           orgZip,
+        grades:        orgGrades,
+        students:      orgStudents,
+        notes:         orgNotes,
+        exp_types:     orgExpTypes,
+        interests:     orgInterests,
         contact_name:  cName,
         contact_title: cTitle,
         contact_email: cEmail,
         contact_phone: cPhone,
-        ec_name:       ecName,
-        ec_phone:      ecPhone,
-        ec_email:      ecEmail,
       })
+      if (insertError) console.error('[register] org insert error:', insertError.message)
       setSubmitted(true)
       setSubmitting(false)
     } else {
@@ -196,8 +196,7 @@ function RegisterContent() {
         setSubmitting(false)
         return
       }
-      await supabase.from('pathway_site_applications').insert({
-        user_id:          authData.user?.id ?? null,
+      const { error: bizInsertError } = await supabase.from('pathway_site_applications').insert({
         company:          bizName,
         industry,
         city:             bizCity,
@@ -211,7 +210,19 @@ function RegisterContent() {
         doc_conduct:      false,
         doc_youth:        false,
       })
+      if (bizInsertError) console.error('[register] biz insert error:', bizInsertError.message)
+      // Fire-and-forget admin notification
+      fetch('/api/notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ company: bizName, industry, city: bizCity, contact_name: bName, contact_email: bEmail, experiences: bizExpTypes }),
+      }).catch(() => {})
       setSubmitted(true)
+      setSubmitting(false)
+    }
+    } catch (err) {
+      console.error('[register] unexpected error:', err)
+      setSubmitError('Something went wrong. Please try again or contact info@wealthwisekids.org.')
       setSubmitting(false)
     }
   }

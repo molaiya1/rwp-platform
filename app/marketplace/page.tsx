@@ -14,6 +14,21 @@ import styles from './marketplace.module.css'
 
 /* ─── Data ─── */
 
+const INDUSTRY_PHOTOS: Record<string, string> = {
+  'Healthcare':     'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=700&q=80',
+  'Finance':        'https://images.unsplash.com/photo-1560472355-536de3962603?w=700&q=80',
+  'Technology':     'https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&q=80',
+  'Logistics':      'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=700&q=80',
+  'Hospitality':    'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=80',
+  'Manufacturing':  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=700&q=80',
+  'Skilled Trades': 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=700&q=80',
+  'Government':     'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=700&q=80',
+  'Nonprofit':      'https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=700&q=80',
+  'Retail':         'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700&q=80',
+  'Other':          'https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80',
+}
+const DEFAULT_PHOTO = 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80'
+
 const EXP_TYPES = ['All Types', 'Site Visit', 'Job Shadow', 'Career Panel', 'Mentorship', 'Internship', 'Project Partnership']
 const INDUSTRIES = ['All Industries', 'Healthcare', 'Finance', 'Technology', 'Skilled Trades', 'Hospitality', 'Logistics', 'Manufacturing', 'Government', 'Nonprofit']
 const GRADE_LEVELS = ['All Grades', 'K–5', '6–8', '9–12', 'K–12']
@@ -293,7 +308,7 @@ export default function MarketplacePage() {
           verified: true,
           rating: 0,
           reviews: 0,
-          photo: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80',
+          photo: INDUSTRY_PHOTOS[lab.pathway_site_applications?.industry ?? ''] ?? DEFAULT_PHOTO,
           cost: 'Free',
           transportation: lab.is_virtual ? 'N/A — virtual' : 'Contact for details',
           upcoming: 'Contact to schedule',
