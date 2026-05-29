@@ -195,6 +195,27 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════
+          CAREER FIELD TRIP BAND
+      ══════════════════════════════════════ */}
+      <section className={styles.fieldTripBand} aria-label="Career Field Trips explained">
+        <div className={styles.fieldTripBg} aria-hidden="true" />
+        <div className={styles.fieldTripOverlay} aria-hidden="true" />
+        <div className={styles.fieldTripContent}>
+          <p className={styles.fieldTripEyebrow}>What is a Real-World Pathway™?</p>
+          <h2 className={styles.fieldTripH2}>A Career Field Trip.<br />But built for outcomes.</h2>
+          <p className={styles.fieldTripSub}>
+            Think of every experience on this platform as a field trip — but instead of a museum,
+            students visit real workplaces. Instead of a worksheet, they leave with a FLIQ Score™
+            measuring what they actually learned about careers and money.
+            Every trip is vetted, structured, and tracked.
+          </p>
+          <Link href="/marketplace" className={styles.fieldTripCta}>
+            Browse Career Field Trips <ChevronRight size={15} />
+          </Link>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
           FEATURED PATHWAY SITES
       ══════════════════════════════════════ */}
       <section className={styles.featuredSites} aria-label="Featured Pathway Sites">

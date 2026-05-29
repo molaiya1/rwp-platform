@@ -426,10 +426,10 @@ export default function MarketplacePage() {
       {/* ── HERO ── */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <p className={styles.heroEyebrow}>Real-World Pathways™ Marketplace</p>
-          <h1 className={styles.heroH1}>Find the Right Experience<br />for Your Students.</h1>
+          <p className={styles.heroEyebrow}>Career Field Trips™ — Real-World Pathways™</p>
+          <h1 className={styles.heroH1}>Find the Right Career Field Trip<br />for Your Students.</h1>
           <p className={styles.heroSub}>
-            Browse verified real-world experiences by type, industry, grade level, and availability.
+            Browse verified real-world workplace experiences by type, industry, grade level, and availability.
             Every listing shows cost, transportation info, and next available date — upfront.
           </p>
           <div className={styles.searchBar}>

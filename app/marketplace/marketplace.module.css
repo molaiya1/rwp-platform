@@ -27,6 +27,21 @@
   opacity: 0.15;
 }
 
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -60px;
+  bottom: 0;
+  width: 52%;
+  background-image: url('https://images.unsplash.com/photo-1527058918112-6e17a8213943?w=1000&q=75&fit=crop&auto=format');
+  background-size: cover;
+  background-position: center 60%;
+  opacity: 0.18;
+  mask-image: linear-gradient(to left, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+}
+
 .heroInner {
   max-width: 740px;
   margin: 0 auto;
