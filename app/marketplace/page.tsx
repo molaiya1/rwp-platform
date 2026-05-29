@@ -1009,6 +1009,18 @@ export default function MarketplacePage() {
                   <p className={styles.requestSuccessSub}>
                     We&apos;ve notified <strong>{selected.company}</strong>. Expect a response within 48 hours at <strong>{reqEmail}</strong>.
                   </p>
+                  <div className={styles.reflectLinkBox}>
+                    <p className={styles.reflectLinkLabel}>Bookmark your post-experience reflection link</p>
+                    <p className={styles.reflectLinkSub}>After the experience, open this link to submit your RWP Pathway Score™. Share it with your co-facilitator too.</p>
+                    <a
+                      className={styles.reflectLinkUrl}
+                      href={`/reflect?company=${encodeURIComponent(selected.company)}&type=${encodeURIComponent(selected.type)}&expId=${selected.id}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Open Reflection Form <ChevronRight size={13} />
+                    </a>
+                  </div>
                   <button className={styles.modalCta} onClick={closeModal} style={{ marginTop: 8 }}>
                     Back to Marketplace
                   </button>

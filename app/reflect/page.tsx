@@ -71,17 +71,20 @@ function ReflectForm() {
   const expType  = params.get('type')     ?? ''
   const expDate  = params.get('date')     ?? ''
   const expId    = params.get('expId')    ?? ''
+  const cohortIdParam = params.get('cohortId') ?? ''
 
-  const [facilitator, setFacilitator]   = useState('')
-  const [school,      setSchool]        = useState('')
-  const [gradeLevel,  setGradeLevel]    = useState('')
-  const [studentCount,setStudentCount]  = useState('')
-  const [scores,      setScores]        = useState<Record<string, number>>({})
-  const [highlight,   setHighlight]     = useState('')
-  const [notes,       setNotes]         = useState('')
-  const [submitted,   setSubmitted]     = useState(false)
-  const [submitting,  setSubmitting]    = useState(false)
-  const [pathwayScore,setPathwayScore]  = useState(0)
+  const [facilitator,      setFacilitator]      = useState('')
+  const [facilitatorEmail, setFacilitatorEmail] = useState('')
+  const [school,           setSchool]           = useState('')
+  const [gradeLevel,       setGradeLevel]       = useState('')
+  const [studentCount,     setStudentCount]      = useState('')
+  const [cohortId,         setCohortId]          = useState(cohortIdParam)
+  const [scores,           setScores]            = useState<Record<string, number>>({})
+  const [highlight,        setHighlight]         = useState('')
+  const [notes,            setNotes]             = useState('')
+  const [submitted,        setSubmitted]         = useState(false)
+  const [submitting,       setSubmitting]        = useState(false)
+  const [pathwayScore,     setPathwayScore]      = useState(0)
 
   const allScored = QUESTIONS.every(q => scores[q.id] !== undefined)
   const canSubmit = allScored && facilitator.trim() && school.trim()
@@ -100,9 +103,11 @@ function ReflectForm() {
         expType,
         expDate,
         facilitator,
+        facilitatorEmail,
         school,
         gradeLevel,
         studentCount: parseInt(studentCount) || 0,
+        cohortId:   cohortId.trim() || undefined,
         scores,
         pathwayScore: score,
         highlight,
@@ -249,6 +254,16 @@ function ReflectForm() {
                 />
               </div>
               <div className={styles.field}>
+                <label className={styles.fieldLabel}>Your Email</label>
+                <input
+                  className={styles.input}
+                  type="email"
+                  placeholder="your@school.org"
+                  value={facilitatorEmail}
+                  onChange={e => setFacilitatorEmail(e.target.value)}
+                />
+              </div>
+              <div className={styles.field}>
                 <label className={styles.fieldLabel}>School or Organization *</label>
                 <input
                   className={styles.input}
@@ -281,6 +296,31 @@ function ReflectForm() {
                   value={studentCount}
                   onChange={e => setStudentCount(e.target.value)}
                 />
+              </div>
+              <div className={styles.field} style={{ gridColumn: '1 / -1' }}>
+                <label className={styles.fieldLabel}>
+                  Portal Cohort ID{' '}
+                  <span style={{ fontWeight: 400, color: '#9C8FBF', fontSize: '11px' }}>
+                    (optional — links this reflection to your students&apos; activity records)
+                  </span>
+                </label>
+                <input
+                  className={styles.input}
+                  placeholder="Paste your cohort UUID from portal.wealthwiselearning.com"
+                  value={cohortId}
+                  onChange={e => setCohortId(e.target.value)}
+                  style={{ fontFamily: 'monospace', fontSize: '12.5px' }}
+                />
+                {!cohortId && (
+                  <p style={{ fontSize: '11.5px', color: '#9C8FBF', marginTop: 4, lineHeight: 1.5 }}>
+                    Find this in your iMPACT Partner portal under your cohort&apos;s settings. Without it, the reflection still records — just without per-cohort tracking.
+                  </p>
+                )}
+                {cohortId && (
+                  <p style={{ fontSize: '11.5px', color: '#3A8C6E', fontWeight: 600, marginTop: 4 }}>
+                    ✓ This reflection will be linked to cohort {cohortId.slice(0, 8)}…
+                  </p>
+                )}
               </div>
             </div>
           </section>

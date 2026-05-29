@@ -3,10 +3,9 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function POST(req: NextRequest) {
   const body = await req.json()
 
-  const portalUrl = process.env.PORTAL_API_URL       // https://wwk-portal.vercel.app
-  const apiSecret = process.env.RWP_API_SECRET        // shared secret — same value in both projects
+  const portalUrl = process.env.PORTAL_API_URL   // https://wwk-portal.vercel.app
+  const apiSecret = process.env.RWP_API_SECRET   // shared secret — same value set in portal's RWP_API_SECRET
 
-  // Send to the WWK portal's student_activity event log
   if (portalUrl && apiSecret) {
     try {
       const res = await fetch(`${portalUrl}/api/activity`, {
@@ -16,10 +15,13 @@ export async function POST(req: NextRequest) {
           'Authorization': `Bearer ${apiSecret}`,
         },
         body: JSON.stringify({
-          source:     'rwp',
-          event_type: 'rwp_experience_completed',
-          score:       body.pathwayScore,
-          data: {
+          app_source:    'rwp',
+          event_type:    'rwp_experience_completed',
+          student_id:    body.facilitatorEmail ?? undefined,
+          cohort_id:     body.cohortId         ?? undefined,
+          pathway_score: body.pathwayScore,
+          fliq_score:    null,
+          event_data: {
             expId:        body.expId,
             company:      body.company,
             expType:      body.expType,
@@ -38,22 +40,22 @@ export async function POST(req: NextRequest) {
 
       if (!res.ok) {
         const err = await res.text()
-        console.error('[RWP Reflect] Portal rejected event:', err)
+        console.error('[RWP Reflect] Portal rejected event:', res.status, err)
       } else {
-        console.log('[RWP Reflect] Event logged to portal — score:', body.pathwayScore)
+        console.log('[RWP Reflect] Event logged to portal — score:', body.pathwayScore, '| cohort:', body.cohortId ?? 'none')
       }
     } catch (err) {
       console.error('[RWP Reflect] Failed to reach portal:', err)
     }
   } else {
-    // Local dev fallback — log to console until env vars are set
     console.log('[RWP Reflect] Event (no portal env set):', {
-      event_type:  'rwp_experience_completed',
+      event_type:   'rwp_experience_completed',
       company:      body.company,
       pathwayScore: body.pathwayScore,
       facilitator:  body.facilitator,
       school:       body.school,
       studentCount: body.studentCount,
+      cohortId:     body.cohortId ?? null,
     })
   }
 

@@ -1624,6 +1624,52 @@
   max-width: 340px;
 }
 
+.reflectLinkBox {
+  background: #F0EBF8;
+  border: 1px solid #C9B8E8;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 12px 0 4px;
+  text-align: left;
+  width: 100%;
+}
+
+.reflectLinkLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6B4FA0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 4px;
+}
+
+.reflectLinkSub {
+  font-size: 12px;
+  color: #7A7390;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+.reflectLinkUrl {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #6B4FA0;
+  background: #fff;
+  border: 1px solid #C9B8E8;
+  border-radius: 6px;
+  padding: 6px 12px;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.reflectLinkUrl:hover {
+  background: #E8DEFF;
+  border-color: #9B7FD4;
+}
+
 @media (max-width: 480px) {
   .requestFieldRow { grid-template-columns: 1fr; }
 }
