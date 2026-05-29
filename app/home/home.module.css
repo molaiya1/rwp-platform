@@ -422,27 +422,27 @@
   background: #1C0A3B;
 }
 
-/* Right half — bus photo, lighter purple tint so yellow shows through */
+/* Right half — students with backpacks, clean (no purple tint) */
 .fieldTripBg::after {
   content: '';
   position: absolute;
   top: 0; right: 0; bottom: 0;
   width: 55%;
-  background-image: url('https://images.unsplash.com/photo-1527058918112-6e17a8213943?w=1200&q=80&fit=crop&auto=format');
+  background-image: url('https://images.unsplash.com/photo-CYlPykF-qAM?w=1200&q=80&fit=crop&auto=format');
   background-size: cover;
-  background-position: center 60%;
+  background-position: center top;
 }
 
 .fieldTripOverlay {
   position: absolute;
   inset: 0;
-  /* Heavy purple on the left (text readable), lifts to 45% on the right (bus visible) */
+  /* Covers left text panel fully; sharp cutoff so right photo panel is clean */
   background: linear-gradient(
     to right,
-    rgba(28,10,59,1.0)   0%,
-    rgba(28,10,59,0.97)  38%,
-    rgba(107,79,160,0.72) 60%,
-    rgba(107,79,160,0.45) 100%
+    rgba(28,10,59,1.0)  0%,
+    rgba(28,10,59,1.0)  44%,
+    rgba(28,10,59,0.15) 54%,
+    rgba(28,10,59,0.0)  62%
   );
 }
 
