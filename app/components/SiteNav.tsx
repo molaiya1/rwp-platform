@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { label: 'How It Works',      href: '/#how-it-works'  },
   { label: 'Experiences',       href: '/experiences'    },
   { label: 'Marketplace',       href: '/marketplace'    },
-  { label: 'For Businesses',    href: '/#partners'      },
+  { label: 'For Businesses',    href: '/pathway-sites'  },
   { label: 'Safety',            href: '/safety'         },
   { label: 'About',             href: '/about'          },
 ]

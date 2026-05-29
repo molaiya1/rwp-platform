@@ -76,12 +76,12 @@ export default function AboutPage() {
               learning possible for every student — regardless of what their
               school can afford.&rdquo;
             </p>
-            <p className={styles.missionAttrib}>— Michael D. Olaiya, Founder</p>
+            <p className={styles.missionAttrib}>— Real-World Pathways™ Leadership Team</p>
           </div>
         </div>
       </section>
 
-      {/* ── FOUNDER ── */}
+      {/* ── HOW WE WORK ── */}
       <section className={styles.founder}>
         <div className={styles.founderInner}>
           <div className={styles.founderPhoto}>
@@ -89,20 +89,21 @@ export default function AboutPage() {
             <img src="/logo-wwk-transparent.png" alt="WealthWise Kids" className={styles.founderLogoImg} />
           </div>
           <div className={styles.founderText}>
-            <p className={styles.founderEyebrow}>The Team Behind the Platform</p>
-            <h2 className={styles.founderName}>Michael D. Olaiya</h2>
-            <p className={styles.founderTitle}>Founder, WealthWise Kids LLC</p>
+            <p className={styles.founderEyebrow}>How We Work</p>
+            <h2 className={styles.founderName}>Built by Educators, Operators &amp; Community Leaders</h2>
             <p className={styles.founderBio}>
-              Michael is an entrepreneur, pharmacist, and educator based in Atlanta, Georgia.
-              He founded WealthWise Kids LLC to build the financial and economic literacy
-              infrastructure that schools can&apos;t afford to build alone — starting with
-              curriculum, simulations, and assessments, and now expanding into the
-              real-world experience layer through Real-World Pathways™.
+              Real-World Pathways™ is developed by a cross-functional team spanning
+              curriculum design, workforce development, youth program management,
+              and technology. We work directly with Atlanta-area schools, nonprofits,
+              and businesses to make sure the platform reflects what actually happens
+              on the ground — not what looks good in a pitch deck.
             </p>
             <p className={styles.founderBio}>
-              His work is driven by a simple belief: that a student&apos;s economic future
-              should not be determined by the economic status they were born into. Real-World
-              Pathways™ is the most direct expression of that belief.
+              We operate as part of the WealthWise Kids® ecosystem — a suite of
+              tools built to give every student a complete financial and economic
+              literacy experience, from simulation to real-world exposure to
+              measurable skill outcomes. Our mission is to close the access gap
+              at scale, one career field trip at a time.
             </p>
           </div>
         </div>

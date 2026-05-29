@@ -59,5 +59,33 @@ export async function POST(req: NextRequest) {
     })
   }
 
+  // ── Notify admin + facilitator via Formspree (if configured) ──
+  const formspreeNotify = process.env.FORMSPREE_NOTIFY
+  if (formspreeNotify && body.facilitatorEmail) {
+    try {
+      await fetch(formspreeNotify, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          subject:          `New Reflection Submitted — ${body.company ?? 'Unknown Site'} (${body.school ?? ''})`,
+          facilitator:      body.facilitatorEmail,
+          school:           body.school ?? '',
+          company:          body.company ?? '',
+          experience_type:  body.expType ?? '',
+          grade_level:      body.gradeLevel ?? '',
+          student_count:    body.studentCount ?? '',
+          pathway_score:    body.pathwayScore ?? '',
+          cohort_id:        body.cohortId ?? 'none',
+          highlight:        body.highlight ?? '',
+          notes:            body.notes ?? '',
+          submitted_at:     new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }),
+          _replyto:         body.facilitatorEmail,
+        }),
+      })
+    } catch (err) {
+      console.error('[RWP Reflect] Notification email failed:', err)
+    }
+  }
+
   return NextResponse.json({ ok: true, pathwayScore: body.pathwayScore })
 }

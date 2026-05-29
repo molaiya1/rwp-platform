@@ -6,7 +6,7 @@ import Link from 'next/link'
 import {
   Home, Map, Compass, Building2, Users, TrendingUp, BookOpen,
   MessageSquare, Calendar, Search, Bell, Mail, ChevronDown,
-  ChevronRight, MapPin, Clock, Award, Zap, CheckCircle2,
+  ChevronRight, MapPin, Clock, Award, Zap, CheckCircle2, X,
   Radio, Lightbulb, FlaskConical, Heart, HelpCircle, Settings,
   Quote, ShieldCheck,
 } from 'lucide-react'
@@ -116,6 +116,29 @@ export default function DashboardPage() {
   const [contactName, setContactName] = useState('')
   const [contactEmail, setContactEmail] = useState('')
   const [toasts, setToasts]           = useState<ToastData[]>([])
+  const [onboardingDone, setOnboardingDone] = useState<Set<string>>(new Set())
+  const [onboardingDismissed, setOnboardingDismissed] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const dismissed = localStorage.getItem('rwp_onboarding_dismissed') === '1'
+    setOnboardingDismissed(dismissed)
+    const done = JSON.parse(localStorage.getItem('rwp_onboarding_done') ?? '[]') as string[]
+    setOnboardingDone(new Set(done))
+  }, [])
+
+  const markStep = (key: string) => {
+    setOnboardingDone(prev => {
+      const next = new Set([...prev, key])
+      localStorage.setItem('rwp_onboarding_done', JSON.stringify([...next]))
+      return next
+    })
+  }
+
+  const dismissOnboarding = () => {
+    setOnboardingDismissed(true)
+    localStorage.setItem('rwp_onboarding_dismissed', '1')
+  }
 
   const addToast = (message: string, type: ToastData['type'] = 'success') => {
     const id = Math.random().toString(36).slice(2)
@@ -342,6 +365,52 @@ export default function DashboardPage() {
               <Settings size={17} />
             </Link>
           </div>
+
+          {/* ── Onboarding checklist ── */}
+          {!onboardingDismissed && (
+            <div className={styles.onboarding}>
+              <div className={styles.onboardingHeader}>
+                <div>
+                  <p className={styles.onboardingTitle}>Get started with Real-World Pathways™</p>
+                  <p className={styles.onboardingSub}>Complete these steps to get your first group into a Career Field Trip.</p>
+                </div>
+                <button type="button" className={styles.onboardingDismiss} onClick={dismissOnboarding} aria-label="Dismiss">
+                  <X size={15} />
+                </button>
+              </div>
+              <div className={styles.onboardingSteps}>
+                {[
+                  { key: 'account',   label: 'Create your account',              sub: 'You\'re in.',                                    done: true,                            href: null              },
+                  { key: 'browse',    label: 'Browse Career Field Trips',         sub: 'Explore what\'s available in Atlanta.',          done: onboardingDone.has('browse'),    href: '/marketplace'    },
+                  { key: 'request',   label: 'Request your first experience',     sub: 'Submit a request — takes under 2 minutes.',      done: onboardingDone.has('request'),   href: '/marketplace'    },
+                  { key: 'reflect',   label: 'Submit a post-visit reflection',    sub: 'Log outcomes and earn a Pathway Score™.',        done: onboardingDone.has('reflect'),   href: '/reflect'        },
+                  { key: 'profile',   label: 'Complete your organization profile', sub: 'Add your school or org details.',               done: onboardingDone.has('profile'),   href: '/dashboard/settings' },
+                ].map(step => (
+                  <div
+                    key={step.key}
+                    className={`${styles.onboardingStep} ${step.done ? styles.onboardingStepDone : ''}`}
+                    onClick={() => { if (!step.done && step.href) markStep(step.key) }}
+                  >
+                    <div className={styles.onboardingCheck}>
+                      {step.done
+                        ? <CheckCircle2 size={18} />
+                        : <div className={styles.onboardingCircle} />
+                      }
+                    </div>
+                    <div className={styles.onboardingStepText}>
+                      <span className={styles.onboardingStepLabel}>{step.label}</span>
+                      <span className={styles.onboardingStepSub}>{step.sub}</span>
+                    </div>
+                    {step.href && !step.done && (
+                      <Link href={step.href} className={styles.onboardingStepCta} onClick={() => markStep(step.key)}>
+                        Go <ChevronRight size={13} />
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* ── Hero banner ── */}
           <div className={styles.hero}>
