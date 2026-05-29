@@ -275,6 +275,68 @@ export default function MarketplacePage() {
   const [viewMode,       setViewMode]       = useState<'grid' | 'list'>('grid')
   const [dbListings,     setDbListings]     = useState<Listing[]>([])
 
+  // Request form state
+  const [requesting,     setRequesting]     = useState(false)
+  const [reqName,        setReqName]        = useState('')
+  const [reqOrg,         setReqOrg]         = useState('')
+  const [reqEmail,       setReqEmail]       = useState('')
+  const [reqStudents,    setReqStudents]    = useState('')
+  const [reqDates,       setReqDates]       = useState('')
+  const [reqMessage,     setReqMessage]     = useState('')
+  const [reqSubmitting,  setReqSubmitting]  = useState(false)
+  const [reqDone,        setReqDone]        = useState(false)
+  const [reqError,       setReqError]       = useState('')
+
+  const openRequest = () => {
+    setRequesting(true)
+    setReqDone(false)
+    setReqError('')
+  }
+
+  const closeModal = () => {
+    setSelected(null)
+    setRequesting(false)
+    setReqDone(false)
+    setReqName('')
+    setReqOrg('')
+    setReqEmail('')
+    setReqStudents('')
+    setReqDates('')
+    setReqMessage('')
+    setReqError('')
+  }
+
+  const submitRequest = async () => {
+    if (!reqName || !reqOrg || !reqEmail) {
+      setReqError('Please fill in your name, organization, and email.')
+      return
+    }
+    setReqSubmitting(true)
+    setReqError('')
+    try {
+      await fetch('/api/request-experience', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          listing_title:   selected?.title,
+          company:         selected?.company,
+          industry:        selected?.industry,
+          requester_name:  reqName,
+          requester_org:   reqOrg,
+          requester_email: reqEmail,
+          students:        reqStudents,
+          preferred_dates: reqDates,
+          message:         reqMessage,
+        }),
+      })
+      setReqDone(true)
+    } catch {
+      setReqError('Something went wrong. Please try again.')
+    } finally {
+      setReqSubmitting(false)
+    }
+  }
+
   useEffect(() => {
     const supabase = createClient()
     supabase
@@ -773,7 +835,7 @@ export default function MarketplacePage() {
 
       {/* ── DETAIL MODAL ── */}
       {selected && (
-        <div className={styles.modalOverlay} onClick={() => setSelected(null)}>
+        <div className={styles.modalOverlay} onClick={closeModal}>
           <div className={styles.modal} onClick={e => e.stopPropagation()}>
 
             {/* Modal photo header */}
@@ -781,7 +843,7 @@ export default function MarketplacePage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={selected.photo} alt={selected.title} className={styles.modalImg} />
               <div className={styles.modalPhotoOverlay} />
-              <button className={styles.modalClose} onClick={() => setSelected(null)}>✕</button>
+              <button className={styles.modalClose} onClick={closeModal}>✕</button>
               <div className={styles.modalPhotoContent}>
                 <div className={styles.modalTopRow}>
                   <span className={styles.cardType}>{selected.type}</span>
@@ -876,20 +938,82 @@ export default function MarketplacePage() {
                 </div>
               </div>
 
-              <div className={styles.modalActions}>
-                <Link href="/register?type=org" className={styles.modalCta}>
-                  Request This Experience <ChevronRight size={16} />
-                </Link>
-                <button className={styles.modalSave} onClick={() => setSelected(null)}>
-                  Save for Later
-                </button>
-                <Link
-                  href={`/reflect?expId=${selected.id}&company=${encodeURIComponent(selected.company)}&type=${encodeURIComponent(selected.type)}&date=${encodeURIComponent(selected.upcoming)}`}
-                  className={styles.modalReflect}
-                >
-                  Already completed this experience? Submit a reflection →
-                </Link>
-              </div>
+              {/* ── REQUEST FORM ── */}
+              {!requesting && !reqDone && (
+                <div className={styles.modalActions}>
+                  <button className={styles.modalCta} onClick={openRequest}>
+                    Request This Experience <ChevronRight size={16} />
+                  </button>
+                  <button className={styles.modalSave} onClick={closeModal}>
+                    Close
+                  </button>
+                  <Link
+                    href={`/reflect?expId=${selected.id}&company=${encodeURIComponent(selected.company)}&type=${encodeURIComponent(selected.type)}&date=${encodeURIComponent(selected.upcoming)}`}
+                    className={styles.modalReflect}
+                  >
+                    Already completed this experience? Submit a reflection →
+                  </Link>
+                </div>
+              )}
+
+              {requesting && !reqDone && (
+                <div className={styles.requestForm}>
+                  <p className={styles.requestFormTitle}>Request This Experience</p>
+                  <p className={styles.requestFormSub}>
+                    Tell us about your group. We&apos;ll connect you with <strong>{selected.company}</strong> within 48 hours.
+                  </p>
+                  <div className={styles.requestFormFields}>
+                    <div className={styles.requestFieldGroup}>
+                      <label className={styles.requestLabel}>Your Full Name *</label>
+                      <input className={styles.requestInput} placeholder="Jane Smith" value={reqName} onChange={e => setReqName(e.target.value)} />
+                    </div>
+                    <div className={styles.requestFieldGroup}>
+                      <label className={styles.requestLabel}>Organization / School Name *</label>
+                      <input className={styles.requestInput} placeholder="Lincoln High School" value={reqOrg} onChange={e => setReqOrg(e.target.value)} />
+                    </div>
+                    <div className={styles.requestFieldGroup}>
+                      <label className={styles.requestLabel}>Your Email *</label>
+                      <input className={styles.requestInput} type="email" placeholder="jane@school.org" value={reqEmail} onChange={e => setReqEmail(e.target.value)} />
+                    </div>
+                    <div className={styles.requestFieldRow}>
+                      <div className={styles.requestFieldGroup}>
+                        <label className={styles.requestLabel}>Number of Students</label>
+                        <input className={styles.requestInput} placeholder="e.g. 24" value={reqStudents} onChange={e => setReqStudents(e.target.value)} inputMode="numeric" />
+                      </div>
+                      <div className={styles.requestFieldGroup}>
+                        <label className={styles.requestLabel}>Preferred Dates</label>
+                        <input className={styles.requestInput} placeholder="e.g. Oct or Nov 2026" value={reqDates} onChange={e => setReqDates(e.target.value)} />
+                      </div>
+                    </div>
+                    <div className={styles.requestFieldGroup}>
+                      <label className={styles.requestLabel}>Anything else we should know? <span style={{ fontWeight: 400, color: '#9C8FBF' }}>(optional)</span></label>
+                      <textarea className={styles.requestTextarea} placeholder="Grade level, learning goals, accessibility needs…" value={reqMessage} onChange={e => setReqMessage(e.target.value)} rows={3} />
+                    </div>
+                  </div>
+                  {reqError && <p className={styles.requestError}>{reqError}</p>}
+                  <div className={styles.requestFormActions}>
+                    <button className={styles.modalCta} onClick={submitRequest} disabled={reqSubmitting}>
+                      {reqSubmitting ? 'Sending…' : 'Send Request'} {!reqSubmitting && <ChevronRight size={16} />}
+                    </button>
+                    <button className={styles.modalSave} onClick={() => setRequesting(false)}>
+                      ← Back
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {reqDone && (
+                <div className={styles.requestSuccess}>
+                  <CheckCircle2 size={36} className={styles.requestSuccessIcon} />
+                  <p className={styles.requestSuccessTitle}>Request Sent!</p>
+                  <p className={styles.requestSuccessSub}>
+                    We&apos;ve notified <strong>{selected.company}</strong>. Expect a response within 48 hours at <strong>{reqEmail}</strong>.
+                  </p>
+                  <button className={styles.modalCta} onClick={closeModal} style={{ marginTop: 8 }}>
+                    Back to Marketplace
+                  </button>
+                </div>
+              )}
 
               {selected.verified && (
                 <div className={styles.modalTrust}>
