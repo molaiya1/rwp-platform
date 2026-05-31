@@ -259,21 +259,6 @@ export default function LoginPage() {
             <img src="/logo-wwk-rwp-white.png" alt="WealthWise KIDS™ Real-World Pathways" className={styles.heroLogoImg} />
           </div>
 
-          {/* Headline */}
-          <div className={styles.heroContent}>
-            <p className={styles.heroSubtext}>
-              The only platform purpose-built for in-person, structured career experiences — connecting students to real workplaces and measurable outcomes.
-            </p>
-            <a href="/register" className={styles.heroCtaBtn}>
-              <span className={styles.heroCtaIcon}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
-                  <polyline points="9 18 15 12 9 6"/>
-                </svg>
-              </span>
-              Join the Founding Cohort
-            </a>
-          </div>
-
           {/* Milo quote bubble */}
           <div className={styles.miloRow}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
