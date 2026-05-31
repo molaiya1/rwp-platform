@@ -11,6 +11,7 @@ import {
   Quote, ShieldCheck,
 } from 'lucide-react'
 import Toast, { type ToastData } from '@/app/components/Toast'
+import RWPBannerStrip from '@/app/components/RWPBannerStrip'
 import styles from './dashboard.module.css'
 
 /* ─── Types ─── */
@@ -351,6 +352,9 @@ export default function DashboardPage() {
             </button>
           </div>
         </header>
+
+        {/* Banner strip */}
+        <RWPBannerStrip height={130} mobileHeight={80} overlayOpacity={0.10} />
 
         {/* Scrollable content */}
         <main className={styles.content}>

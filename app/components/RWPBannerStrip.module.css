@@ -1,0 +1,27 @@
+.strip {
+  position: relative;
+  width: 100%;
+  background-image: url('/rwp-banner-strip.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(248, 245, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(248, 245, 255, 0.18) 100%
+  );
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .strip {
+    height: var(--mobile-height, 90px) !important;
+  }
+}
