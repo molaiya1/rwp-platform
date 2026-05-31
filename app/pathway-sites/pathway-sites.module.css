@@ -36,11 +36,27 @@
 
 /* ── HERO ── */
 .hero {
-  background: linear-gradient(135deg, #1C0A3B 0%, #2D1B69 60%, #1F3C88 100%);
+  position: relative;
+  overflow: hidden;
+  background: #1C0A3B;
   padding: 100px 24px 80px;
 }
 
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/pathway-sites-hero.png');
+  background-size: cover;
+  background-position: center 30%;
+  opacity: 0.28;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .heroInner {
+  position: relative;
+  z-index: 1;
   max-width: 820px;
   margin: 0 auto;
 }

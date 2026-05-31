@@ -2,7 +2,7 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-const PROTECTED = ['/dashboard', '/admin', '/reflect', '/rate', '/portal']
+const PROTECTED = ['/dashboard', '/admin', '/reflect', '/rate', '/portal', '/verify']
 
 function isProtected(pathname: string) {
   return PROTECTED.some(path => pathname === path || pathname.startsWith(path + '/'))
@@ -43,5 +43,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/admin/:path*', '/reflect/:path*', '/rate/:path*', '/portal/:path*'],
+  matcher: ['/dashboard/:path*', '/admin/:path*', '/reflect/:path*', '/rate/:path*', '/portal/:path*', '/verify/:path*'],
 }
