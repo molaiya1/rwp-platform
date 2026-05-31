@@ -253,23 +253,6 @@ export default function LoginPage() {
         {/* ── Hero photo section ── */}
         <section className={styles.hero}>
 
-          {/* Logo — white on dark photo */}
-          <div className={styles.heroLogoWrap}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-wwk-rwp-white.png" alt="WealthWise KIDS™ Real-World Pathways" className={styles.heroLogoImg} />
-          </div>
-
-          {/* Milo quote bubble */}
-          <div className={styles.miloRow}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/milo-3d.png" alt="Milo the owl" className={styles.miloImg} />
-            <div className={styles.miloQuote}>
-              <p className={styles.miloQuoteText}>
-                Every big career starts with one real experience. Let&apos;s find yours.
-              </p>
-              <p className={styles.miloQuoteBy}>— Milo, RWP Guide Owl</p>
-            </div>
-          </div>
 
         </section>
 
