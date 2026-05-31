@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import styles from './SiteNav.module.css'
+import RWPBannerStrip from './RWPBannerStrip'
 
 const NAV_LINKS = [
   { label: 'How It Works',      href: '/#how-it-works'  },
@@ -20,6 +21,7 @@ export default function SiteNav() {
   const pathname = usePathname()
 
   return (
+    <>
     <header className={styles.nav}>
       <div className={styles.navInner}>
 
@@ -70,5 +72,7 @@ export default function SiteNav() {
         </div>
       )}
     </header>
+    <RWPBannerStrip height={130} mobileHeight={80} overlayOpacity={0.10} />
+    </>
   )
 }
