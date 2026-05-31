@@ -1,10 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(req: NextRequest) {
-  const body = await req.json()
+  let body: Record<string, unknown>
+  try {
+    body = await req.json()
+  } catch {
+    return NextResponse.json({ ok: false, error: 'Invalid JSON' }, { status: 400 })
+  }
 
-  const portalUrl = process.env.PORTAL_API_URL   // https://wwk-portal.vercel.app
-  const apiSecret = process.env.RWP_API_SECRET   // shared secret — same value set in portal's RWP_API_SECRET
+  // Validation
+  if (!body.facilitatorEmail || typeof body.facilitatorEmail !== 'string' ||
+      !body.facilitatorEmail.includes('@')) {
+    return NextResponse.json({ ok: false, error: 'Valid facilitator email required' }, { status: 400 })
+  }
+  if (!body.company || !body.school) {
+    return NextResponse.json({ ok: false, error: 'company and school are required' }, { status: 400 })
+  }
+  const studentCount = parseInt(String(body.studentCount ?? '0'), 10)
+  if (isNaN(studentCount) || studentCount < 0) {
+    return NextResponse.json({ ok: false, error: 'Invalid student count' }, { status: 400 })
+  }
+
+  const portalUrl = process.env.PORTAL_API_URL
+  const apiSecret = process.env.RWP_API_SECRET
 
   if (portalUrl && apiSecret) {
     try {
@@ -17,8 +35,8 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({
           app_source:    'rwp',
           event_type:    'rwp_experience_completed',
-          student_id:    body.facilitatorEmail ?? undefined,
-          cohort_id:     body.cohortId         ?? undefined,
+          student_id:    body.studentId ?? undefined,   // fixed: was incorrectly using facilitatorEmail
+          cohort_id:     body.cohortId  ?? undefined,
           pathway_score: body.pathwayScore,
           fliq_score:    null,
           event_data: {
@@ -29,7 +47,7 @@ export async function POST(req: NextRequest) {
             facilitator:  body.facilitator,
             school:       body.school,
             gradeLevel:   body.gradeLevel,
-            studentCount: body.studentCount,
+            studentCount,
             scores:       body.scores,
             pathwayScore: body.pathwayScore,
             highlight:    body.highlight,
@@ -41,25 +59,13 @@ export async function POST(req: NextRequest) {
       if (!res.ok) {
         const err = await res.text()
         console.error('[RWP Reflect] Portal rejected event:', res.status, err)
-      } else {
-        console.log('[RWP Reflect] Event logged to portal — score:', body.pathwayScore, '| cohort:', body.cohortId ?? 'none')
       }
     } catch (err) {
       console.error('[RWP Reflect] Failed to reach portal:', err)
     }
-  } else {
-    console.log('[RWP Reflect] Event (no portal env set):', {
-      event_type:   'rwp_experience_completed',
-      company:      body.company,
-      pathwayScore: body.pathwayScore,
-      facilitator:  body.facilitator,
-      school:       body.school,
-      studentCount: body.studentCount,
-      cohortId:     body.cohortId ?? null,
-    })
   }
 
-  // ── Notify admin + facilitator via Formspree (if configured) ──
+  // Notify admin + facilitator via Formspree
   const formspreeNotify = process.env.FORMSPREE_NOTIFY
   if (formspreeNotify && body.facilitatorEmail) {
     try {
@@ -73,7 +79,7 @@ export async function POST(req: NextRequest) {
           company:          body.company ?? '',
           experience_type:  body.expType ?? '',
           grade_level:      body.gradeLevel ?? '',
-          student_count:    body.studentCount ?? '',
+          student_count:    studentCount,
           pathway_score:    body.pathwayScore ?? '',
           cohort_id:        body.cohortId ?? 'none',
           highlight:        body.highlight ?? '',
