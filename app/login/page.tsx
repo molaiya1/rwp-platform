@@ -261,8 +261,6 @@ export default function LoginPage() {
 
           {/* Headline */}
           <div className={styles.heroContent}>
-            <h1 className={styles.heroH1}>Real workplaces.</h1>
-            <p className={styles.heroScript}>Real futures.</p>
             <p className={styles.heroSubtext}>
               The only platform purpose-built for in-person, structured career experiences — connecting students to real workplaces and measurable outcomes.
             </p>

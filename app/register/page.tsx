@@ -586,7 +586,7 @@ function RegisterContent() {
           <div className={styles.successCard}>
             {/* Logo */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-wwk-transparent.png" alt="Real-World Pathways™" className={styles.successLogo} />
+            <img src="/logo-rwp-web.png" alt="Real-World Pathways™" className={styles.successLogo} />
 
             {isOrg ? (
               /* ── Org success: verify email ── */
@@ -618,12 +618,15 @@ function RegisterContent() {
             ) : (
               /* ── Biz success: application pending + verify email ── */
               <>
-                <div className={styles.successIconWrap} style={{ background: '#F0FFF4', color: '#166534' }}>
+                <div className={styles.successIconWrap} style={{ background: '#EDE9F5', color: '#6B5A8E' }}>
                   <ShieldCheck size={32} />
                 </div>
                 <h1 className={styles.successTitle}>Application Received!</h1>
+                <p style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#F3EFFC', border: '1.5px solid #DDD8EE', borderRadius: 999, padding: '4px 14px', fontSize: 12, fontWeight: 700, color: '#6B5A8E', letterSpacing: '0.04em', marginBottom: 16 }}>
+                  ✦ CERTIFIED PATHWAY SITE™ APPLICATION
+                </p>
                 <p className={styles.successSub}>
-                  Thank you for applying to become a Certified Pathway Site™. Our team will review your application within <strong>3–5 business days</strong>.
+                  Thank you for taking the first step toward becoming a <strong>Certified Pathway Site™</strong>. Your application has been received and is in review. We are committed to building a trusted network of workplaces that create real opportunities for young people.
                 </p>
                 <div className={styles.successSteps}>
                   <div className={styles.successStep}>
@@ -632,12 +635,18 @@ function RegisterContent() {
                   </div>
                   <div className={styles.successStep}>
                     <span className={styles.successStepNum}>2</span>
-                    <span className={styles.successStepText}>Our team reviews your application (3–5 business days)</span>
+                    <span className={styles.successStepText}>Our team reviews your application within <strong>3–5 business days</strong></span>
                   </div>
                   <div className={styles.successStep}>
                     <span className={styles.successStepNum}>3</span>
-                    <span className={styles.successStepText}>Once approved, sign in to access your Pathway Site portal</span>
+                    <span className={styles.successStepText}>Once approved, you&apos;ll receive onboarding instructions and portal access</span>
                   </div>
+                </div>
+                <div style={{ background: '#F8F5FF', border: '1px solid #E8E4F4', borderRadius: 12, padding: '16px 20px', marginBottom: 20, textAlign: 'left' }}>
+                  <p style={{ fontSize: 12, fontWeight: 800, color: '#6B5A8E', letterSpacing: '0.05em', textTransform: 'uppercase', margin: '0 0 6px' }}>What to expect</p>
+                  <p style={{ fontSize: 13, color: '#4A4060', lineHeight: 1.65, margin: 0 }}>
+                    A member of our Pathway Site team will reach out to confirm your application, complete compliance documentation, and guide you through onboarding. Most sites are approved and active within one week.
+                  </p>
                 </div>
                 <Link href="/login" className={styles.successBtn}>Go to Sign In →</Link>
                 <p className={styles.successNote}>Questions? Email us at <a href="mailto:info@wealthwisekids.org" className={styles.successLink}>info@wealthwisekids.org</a></p>

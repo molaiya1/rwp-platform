@@ -23,7 +23,7 @@
   box-shadow: 0 8px 40px rgba(80,50,140,0.10);
 }
 @media (max-width: 480px) { .successCard { padding: 28px 20px; } }
-.successLogo { width: 140px; height: auto; display: block; margin: 0 auto 28px; object-fit: contain; }
+.successLogo { width: 180px; height: auto; display: block; margin: 0 auto 24px; object-fit: contain; }
 .successIconWrap {
   width: 68px; height: 68px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
