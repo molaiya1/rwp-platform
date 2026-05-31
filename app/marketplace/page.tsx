@@ -342,6 +342,7 @@ export default function MarketplacePage() {
   const [selected,       setSelected]       = useState<Listing | null>(null)
   const [viewMode,       setViewMode]       = useState<'grid' | 'list'>('grid')
   const [dbListings,     setDbListings]     = useState<Listing[]>([])
+  const [dbLoading,      setDbLoading]      = useState(true)
 
   const [requesting,    setRequesting]    = useState(false)
   const [reqName,       setReqName]       = useState('')
@@ -398,6 +399,7 @@ export default function MarketplacePage() {
       .eq('status', 'active')
       .order('created_at', { ascending: false })
       .then(({ data }) => {
+        setDbLoading(false)
         if (!data?.length) return
         const fresh: Listing[] = data.map((lab: {
           id: string; title: string; type: string; description: string;
@@ -768,7 +770,21 @@ export default function MarketplacePage() {
             </div>
           </div>
 
-          {filtered.length === 0 ? (
+          {dbLoading ? (
+            <div className={styles.grid}>
+              {[1,2,3,4,5,6].map(i => (
+                <div key={i} className={styles.card} style={{ pointerEvents: 'none' }}>
+                  <div className={styles.cardPhoto} style={{ background: '#EDE9F5' }} />
+                  <div className={styles.cardBody}>
+                    <div style={{ height: 11, width: '50%', background: '#EDE9F5', borderRadius: 6, marginBottom: 10 }} />
+                    <div style={{ height: 16, width: '85%', background: '#E8E4F4', borderRadius: 6, marginBottom: 8 }} />
+                    <div style={{ height: 11, width: '65%', background: '#F0EDF8', borderRadius: 6, marginBottom: 18 }} />
+                    <div style={{ height: 11, width: '45%', background: '#F5F3FB', borderRadius: 6 }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : filtered.length === 0 ? (
             <div className={styles.emptyState}>
               <p className={styles.emptyH}>No experiences match your filters.</p>
               <p className={styles.emptySub}>Try adjusting your filters or <button onClick={clearFilters} className={styles.emptyLink}>clear all</button> to see everything.</p>

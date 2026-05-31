@@ -41,11 +41,11 @@ const NAV = [
 ]
 
 const QUICK_ACTIONS = [
-  { label: 'Find Opportunities', sub: 'Explore Field Labs™',    icon: Compass,  href: '/dashboard/opportunities' },
-  { label: 'My Pathways',        sub: 'Track your journey',     icon: Map,      href: '/dashboard/pathways'      },
-  { label: 'Partner Directory',  sub: 'Connect with partners',  icon: Users,    href: '/dashboard/partners'      },
-  { label: 'Resource Library',   sub: 'Tools to help you grow', icon: BookOpen, href: '/dashboard/resources'     },
-  { label: 'Leaderboard',        sub: 'See how you rank',       icon: Award,    href: '/dashboard/leaderboard'   },
+  { label: 'Find Opportunities', sub: 'Explore Field Labs™',    icon: Compass,  href: '/marketplace'             },
+  { label: 'Submit a Reflection',sub: 'Log a completed visit',  icon: BookOpen, href: '/reflect'                 },
+  { label: 'Rate an Experience', sub: 'Share your feedback',    icon: Award,    href: '/rate'                    },
+  { label: 'Become a Partner',   sub: 'List your organization', icon: Building2,href: '/pathway-sites'           },
+  { label: 'Contact Support',    sub: 'Get help',               icon: HelpCircle,href: '/help'                  },
 ]
 
 const OPPORTUNITIES = [
@@ -218,7 +218,7 @@ export default function DashboardPage() {
         {/* Logo */}
         <div className={styles.sidebarLogo}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo-wwk-transparent.png" alt="WealthWise KIDS™ Real-World Pathways" className={styles.sidebarLogoImg} />
+          <img src="/logo-rwp-web.png" alt="Real-World Pathways™" className={styles.sidebarLogoImg} />
         </div>
 
         {/* Nav */}
@@ -465,7 +465,13 @@ export default function DashboardPage() {
               </div>
               <div className={styles.oppList}>
                 {!labsLoaded && (
-                  <p style={{ fontSize: 13, color: '#8880A0', padding: '8px 0' }}>Loading…</p>
+                  [1,2,3].map(i => (
+                    <div key={i} style={{ padding: '12px 0', borderBottom: '1px solid #F0EDF8' }}>
+                      <div style={{ height: 12, width: '40%', background: '#EDE9F5', borderRadius: 6, marginBottom: 8, animation: 'pulse 1.5s ease-in-out infinite' }} />
+                      <div style={{ height: 14, width: '80%', background: '#F0EDF8', borderRadius: 6, marginBottom: 6 }} />
+                      <div style={{ height: 11, width: '55%', background: '#F5F3FB', borderRadius: 6 }} />
+                    </div>
+                  ))
                 )}
                 {labsLoaded && fieldLabs.length === 0 && (
                   <div style={{ textAlign: 'center', padding: '24px 0' }}>
