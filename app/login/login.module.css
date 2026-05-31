@@ -355,27 +355,27 @@
   background: rgba(107, 90, 142, 0.07);
 }
 
-/* ── Form content — vertically aligned to match image headline ── */
+/* ── Form content ── */
 .rightScroll {
   flex: 1;
-  overflow: hidden;
-  padding: 32px 40px 10px;
+  overflow-y: auto;
+  padding: 48px 48px 32px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 @media (max-width: 480px) {
-  .rightScroll { padding: 8px 20px 10px; }
+  .rightScroll { padding: 32px 24px 24px; }
   .rightLogoImg { width: 160px; }
 }
 
-/* ── Right logo — lockup with heading below ── */
+/* ── Right logo ── */
 .rightLogoWrap {
   display: block;
   width: 100%;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+  margin-bottom: 32px;
+  padding-bottom: 28px;
   border-bottom: 1.5px solid #EDE9F5;
 }
 
@@ -390,46 +390,46 @@
 
 /* ── Heading ── */
 .headingBlock {
-  margin-bottom: 10px;
+  margin-bottom: 28px;
 }
 
 .headingEyebrow {
-  display: none; /* logo already carries the brand name — eyebrow is redundant */
+  display: none;
   font-size: 11px;
   font-weight: 700;
   color: #6B5A8E;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin: 0 0 6px;
-  padding-left: 0;
 }
 
 .h2 {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 800;
   color: #1C1635;
   letter-spacing: -0.03em;
-  margin: 0 0 4px;
+  margin: 0 0 8px;
 }
 
 .subheading {
   font-size: 14px;
   color: #7A7390;
   margin: 0;
+  line-height: 1.5;
 }
 
 /* ── Form ── */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 8px;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 7px;
 }
 
 .label {
@@ -498,6 +498,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 4px;
 }
 
 .rememberLabel {
@@ -541,7 +542,7 @@
 /* Sign In button */
 .btnPrimary {
   width: 100%;
-  height: 46px;
+  height: 50px;
   background: #6B5A8E;
   color: #FFFFFF;
   font-size: 15px;
@@ -587,7 +588,7 @@
   color: #C0B8D4;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  margin: 2px 0;
+  margin: 20px 0;
 }
 .divider::before, .divider::after {
   content: '';
@@ -597,10 +598,10 @@
 }
 
 /* SSO buttons */
-.ssoRow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.ssoRow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 
 .btnSso {
-  height: 38px;
+  height: 44px;
   background: #FFFFFF;
   border: 1.5px solid #DDD8EE;
   border-radius: 9px;
@@ -621,9 +622,9 @@
 .createSection {
   display: flex;
   justify-content: center;
-  padding: 10px 0 4px;
+  padding: 20px 0 8px;
   border-top: 1px solid #F0EDF8;
-  margin-top: 2px;
+  margin-top: 20px;
 }
 
 .createLabel {
