@@ -309,16 +309,6 @@ export default function LoginPage() {
             Back to home
           </a>
 
-          {/* Logo */}
-          <div className={styles.rightLogoWrap}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logo-rwp-web.png"
-              alt="WealthWise KIDS™ Real-World Pathways"
-              className={styles.rightLogoImg}
-            />
-          </div>
-
           {/* Heading */}
           <div className={styles.headingBlock}>
             <p className={styles.headingEyebrow}>Welcome to Real-World Pathways™</p>
