@@ -817,6 +817,7 @@
   background: #1C1635;
   padding: 52px 40px 88px;
   overflow: hidden;
+  scroll-margin-top: 72px;
 }
 
 /* Swap url() to '/rwp-how-bg.png' once the file is saved to public/ */
