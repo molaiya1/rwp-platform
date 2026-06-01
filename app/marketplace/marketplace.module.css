@@ -1201,7 +1201,7 @@
 
 /* ── FOOTER ── */
 .footer {
-  background: #13102A;
+  background: #1C1635;
   padding: 24px 40px;
 }
 
@@ -1896,7 +1896,7 @@
    V2 — IMPACT STATS BAR
 ══════════════════════════════════════════════════════ */
 .impactBar {
-  background: linear-gradient(135deg, #1C0A3B 0%, #2D1B69 60%, #1F3C88 100%);
+  background: linear-gradient(135deg, #1C1635 0%, #1C1635 60%, #6B5A8E 100%);
   padding: 28px 40px;
 }
 
@@ -2386,7 +2386,7 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #F2C96E;
-  background: #1C0A3B;
+  background: #1C1635;
   border-radius: 5px;
   padding: 2px 7px;
   flex-shrink: 0;
@@ -2634,7 +2634,7 @@
    V2 — TESTIMONIALS
 ══════════════════════════════════════════════════════ */
 .testimonialsSection {
-  background: linear-gradient(135deg, #1C0A3B 0%, #2D1B69 100%);
+  background: linear-gradient(135deg, #1C1635 0%, #1C1635 100%);
   padding: 72px 40px;
 }
 
@@ -2795,7 +2795,7 @@
   gap: 6px;
   height: 46px;
   padding: 0 22px;
-  background: #1C0A3B;
+  background: #1C1635;
   color: #FFFFFF;
   border-radius: 12px;
   font-size: 14px;
@@ -2804,7 +2804,7 @@
   transition: background 0.12s;
 }
 
-.foundingCtaPrimary:hover { background: #2D1B69; }
+.foundingCtaPrimary:hover { background: #1C1635; }
 
 .foundingCtaSecondary {
   display: inline-flex;
@@ -2812,8 +2812,8 @@
   height: 46px;
   padding: 0 22px;
   background: transparent;
-  border: 2px solid #1C0A3B;
-  color: #1C0A3B;
+  border: 2px solid #1C1635;
+  color: #1C1635;
   border-radius: 12px;
   font-size: 14px;
   font-weight: 800;
@@ -2821,7 +2821,7 @@
   transition: background 0.12s, color 0.12s;
 }
 
-.foundingCtaSecondary:hover { background: #1C0A3B; color: #FFFFFF; }
+.foundingCtaSecondary:hover { background: #1C1635; color: #FFFFFF; }
 
 .foundingCtaRight {
   display: flex;
@@ -2840,7 +2840,7 @@
 .foundingCtaStatNum {
   font-size: 36px;
   font-weight: 900;
-  color: #1C0A3B;
+  color: #1C1635;
   letter-spacing: -0.04em;
   line-height: 1;
 }

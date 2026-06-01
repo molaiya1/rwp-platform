@@ -33,7 +33,7 @@
 
 /* ── HEADER ── */
 .header {
-  background: linear-gradient(135deg, #1F3C88 0%, #2D1B69 100%);
+  background: linear-gradient(135deg, #6B5A8E 0%, #1C1635 100%);
   padding: 0 24px;
   position: sticky;
   top: 0;
@@ -120,7 +120,7 @@
   transition: all 0.15s;
 }
 .tab:hover { background: #F3EFFC; }
-.tabActive { color: #1F3C88; border-bottom-color: #1F3C88; background: transparent; }
+.tabActive { color: #6B5A8E; border-bottom-color: #6B5A8E; background: transparent; }
 
 /* ── CARD GRID ── */
 .grid {
@@ -191,7 +191,7 @@
   padding: 16px;
   text-align: center;
 }
-.statNum { display: block; font-size: 28px; font-weight: 900; color: #1F3C88; line-height: 1; margin-bottom: 4px; }
+.statNum { display: block; font-size: 28px; font-weight: 900; color: #6B5A8E; line-height: 1; margin-bottom: 4px; }
 .statLabel { font-size: 11px; color: #6B5A8E; font-weight: 600; display: block; }
 .statSub { display: block; font-size: 10px; color: #B0AACC; margin-top: 2px; }
 
@@ -201,7 +201,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  background: linear-gradient(135deg, #1F3C88 0%, #2D1B69 100%);
+  background: linear-gradient(135deg, #6B5A8E 0%, #1C1635 100%);
   border-radius: 16px;
   padding: 20px 24px;
   flex-wrap: wrap;
@@ -253,7 +253,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #1F3C88;
+  background: #6B5A8E;
   color: #FFFFFF;
   font-size: 13px;
   font-weight: 700;
@@ -315,7 +315,7 @@
   font-size: 13px;
   font-weight: 700;
   color: #FFFFFF;
-  background: #1F3C88;
+  background: #6B5A8E;
   border: none;
   border-radius: 8px;
   cursor: pointer;

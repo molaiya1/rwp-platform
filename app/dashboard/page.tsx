@@ -587,7 +587,7 @@ export default function DashboardPage() {
 
           {/* ── FLIQ Moat Banner ── */}
           <div style={{
-            background: 'linear-gradient(135deg, #1F3C88 0%, #6B5A8E 100%)',
+            background: 'linear-gradient(135deg, #6B5A8E 0%, #6B5A8E 100%)',
             borderRadius: 16,
             padding: '24px 28px',
             display: 'flex',
@@ -615,7 +615,7 @@ export default function DashboardPage() {
               rel="noopener noreferrer"
               style={{
                 background: '#F4B223',
-                color: '#1F3C88',
+                color: '#6B5A8E',
                 fontSize: 13,
                 fontWeight: 800,
                 padding: '11px 20px',

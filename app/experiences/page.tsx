@@ -11,7 +11,7 @@ const EXPERIENCES = [
     desc: 'Students visit real workplaces and see careers in action. Businesses open their doors and show youth what a real workday looks like across any industry.',
     tag: 'In-Person · 2–4 hrs',
     audience: 'All grade levels',
-    gradient: 'linear-gradient(135deg, #4A6FD4 0%, #6B5A8E 100%)',
+    gradient: 'linear-gradient(135deg, #6B5A8E 0%, #4B2D8A 100%)',
     icon: (
       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
         <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
@@ -23,7 +23,7 @@ const EXPERIENCES = [
     desc: 'Youth spend a half or full day following a professional through their real workday — building industry awareness and career clarity that a classroom can\'t provide.',
     tag: 'In-Person · 4–8 hrs',
     audience: 'Grades 7–12',
-    gradient: 'linear-gradient(135deg, #1A8A72 0%, #2DADA0 100%)',
+    gradient: 'linear-gradient(135deg, #4B2D8A 0%, #1C1635 100%)',
     icon: (
       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
         <circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/>
@@ -35,7 +35,7 @@ const EXPERIENCES = [
     desc: 'Industry professionals speak to groups about their career paths, daily realities, and advice. Perfect for career days, classroom visits, or virtual sessions.',
     tag: 'In-Person or Virtual · 1–2 hrs',
     audience: 'All grade levels',
-    gradient: 'linear-gradient(135deg, #C05A20 0%, #E07840 100%)',
+    gradient: 'linear-gradient(135deg, #1C1635 0%, #6B5A8E 100%)',
     icon: (
       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
         <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
@@ -48,7 +48,7 @@ const EXPERIENCES = [
     desc: 'Sustained relationships between youth and professionals over a semester or full year. Weekly or bi-weekly check-ins that build confidence, skills, and long-term vision.',
     tag: 'Ongoing · Weekly or Bi-weekly',
     audience: 'Grades 6–12',
-    gradient: 'linear-gradient(135deg, #A03070 0%, #C050A0 100%)',
+    gradient: 'linear-gradient(135deg, #8B6AAE 0%, #6B5A8E 100%)',
     icon: (
       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
         <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
@@ -60,7 +60,7 @@ const EXPERIENCES = [
     desc: 'Structured paid or unpaid work experiences for high school and college-bound youth. Businesses gain motivated contributors; students gain real-world credentials.',
     tag: 'In-Person · 4–12 weeks',
     audience: 'Grades 10–12',
-    gradient: 'linear-gradient(135deg, #2860C0 0%, #4A82D8 100%)',
+    gradient: 'linear-gradient(135deg, #1C1635 0%, #4B2D8A 100%)',
     icon: (
       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
         <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>

@@ -239,7 +239,7 @@
   width: 40px;
   height: 40px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #1F3C88 0%, #6B5A8E 100%);
+  background: linear-gradient(135deg, #6B5A8E 0%, #6B5A8E 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -262,7 +262,7 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #1F3C88;
+  color: #6B5A8E;
   background: rgba(31, 60, 136, 0.08);
   border-radius: 4px;
   padding: 3px 8px;
@@ -353,7 +353,7 @@
   font-weight: 900;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #1F3C88;
+  color: #6B5A8E;
 }
 
 .dataColLabelNever {
@@ -364,7 +364,7 @@
   color: #8B2020;
 }
 
-.dataDoIcon { color: #1F3C88; }
+.dataDoIcon { color: #6B5A8E; }
 .dataNeverIcon { color: #B43C3C; }
 
 .dataList {
@@ -385,7 +385,7 @@
   line-height: 1.60;
 }
 
-.dataItemIconDo { color: #1F3C88; flex-shrink: 0; margin-top: 2px; }
+.dataItemIconDo { color: #6B5A8E; flex-shrink: 0; margin-top: 2px; }
 .dataItemIconNever { color: #B43C3C; flex-shrink: 0; margin-top: 2px; }
 
 .dataFootnote {
@@ -490,7 +490,7 @@
   gap: 5px;
   font-size: 13px;
   font-weight: 800;
-  color: #1F3C88;
+  color: #6B5A8E;
   text-decoration: none;
   transition: gap 0.12s;
 }
@@ -628,7 +628,7 @@
 .contactStripLink {
   font-size: 14px;
   font-weight: 800;
-  color: #1F3C88;
+  color: #6B5A8E;
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.12s;
@@ -636,7 +636,7 @@
 .contactStripLink:hover { color: #0D1F5C; }
 
 /* ── FOOTER ── */
-.footer { background: #13102A; padding: 24px 40px; }
+.footer { background: #1C1635; padding: 24px 40px; }
 .footerInner {
   max-width: 1080px;
   margin: 0 auto;

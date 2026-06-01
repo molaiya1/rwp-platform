@@ -48,13 +48,13 @@
 .successBtn {
   display: inline-flex; align-items: center; justify-content: center;
   width: 100%; padding: 13px 24px;
-  background: #1F3C88; color: #FFFFFF;
+  background: #6B5A8E; color: #FFFFFF;
   font-size: 15px; font-weight: 700;
   border-radius: 10px; text-decoration: none;
   transition: background 0.14s;
   margin-bottom: 14px;
 }
-.successBtn:hover { background: #183070; }
+.successBtn:hover { background: #5A4B78; }
 .successNote { font-size: 12px; color: #8880A0; margin: 0; }
 .successLink { color: #6B5A8E; font-weight: 600; text-decoration: none; }
 .successLink:hover { text-decoration: underline; }
@@ -770,7 +770,7 @@
    TRUST BAR
 ════════════════════════════════════ */
 .trustBar {
-  background: #13102A;
+  background: #1C1635;
   padding: 24px 40px;
   display: flex;
   align-items: flex-start;

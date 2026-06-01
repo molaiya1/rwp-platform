@@ -415,34 +415,34 @@
   min-height: 420px;
 }
 
-/* Left half — content over solid purple */
+/* Left half — solid dark purple */
 .fieldTripBg {
   position: absolute;
-  inset: 0;
-  background: #1C0A3B;
+  top: 0; left: 0; bottom: 0;
+  width: 50%;
+  background: #1C1635;
 }
 
-/* Right half — students with backpacks, clean (no purple tint) */
+/* Right half — clean photo, hard edge, no bleed */
 .fieldTripBg::after {
   content: '';
   position: absolute;
   top: 0; right: 0; bottom: 0;
-  width: 55%;
+  width: 50%;
   background-image: url('/field-trip-hero.png');
   background-size: cover;
   background-position: 40% center;
 }
 
+/* Hard-cut overlay: left fully covered, right untouched */
 .fieldTripOverlay {
   position: absolute;
   inset: 0;
-  /* Covers left text panel fully; sharp cutoff so right photo panel is clean */
   background: linear-gradient(
     to right,
-    rgba(28,10,59,1.0)  0%,
-    rgba(28,10,59,1.0)  44%,
-    rgba(28,10,59,0.15) 54%,
-    rgba(28,10,59,0.0)  62%
+    rgba(28,22,53,1.0) 0%,
+    rgba(28,22,53,1.0) 50%,
+    rgba(0,0,0,0.0)    50%
   );
 }
 
@@ -488,7 +488,7 @@
   align-items: center;
   gap: 6px;
   background: #F2C96E;
-  color: #1C0A3B;
+  color: #1C1635;
   font-size: 13px;
   font-weight: 800;
   padding: 12px 26px;

@@ -78,13 +78,13 @@ const ATLANTA_AREAS = [
 
 const OUTCOME_CATEGORIES = [
   { name: 'Career Awareness',   Icon: Briefcase,    count: 14, desc: 'Explore careers across 8 industries',          accent: '#4B2D8A' },
-  { name: 'Financial Literacy', Icon: DollarSign,   count: 4,  desc: 'Banking, wealth, and money fundamentals',      accent: '#B8860B' },
-  { name: 'Leadership',         Icon: Star,         count: 7,  desc: 'Mentorship, initiative, and decision-making',  accent: '#1F5C88' },
-  { name: 'Communication',      Icon: MessageSquare,count: 9,  desc: 'Presenting, writing, and professional voice',  accent: '#2E6050' },
-  { name: 'Teamwork',           Icon: Users,        count: 5,  desc: 'Collaboration across real project teams',      accent: '#6B2D80' },
-  { name: 'STEM Readiness',     Icon: Cpu,          count: 6,  desc: 'Science, tech, engineering, and math',        accent: '#1F3C88' },
-  { name: 'Problem Solving',    Icon: Lightbulb,    count: 8,  desc: 'Critical thinking and real business challenges', accent: '#7D3E1E' },
-  { name: 'Entrepreneurship',   Icon: Rocket,       count: 5,  desc: 'Business creation, risk, and innovation',     accent: '#2D5A27' },
+  { name: 'Financial Literacy', Icon: DollarSign,   count: 4,  desc: 'Banking, wealth, and money fundamentals',      accent: '#F4B223' },
+  { name: 'Leadership',         Icon: Star,         count: 7,  desc: 'Mentorship, initiative, and decision-making',  accent: '#6B5A8E' },
+  { name: 'Communication',      Icon: MessageSquare,count: 9,  desc: 'Presenting, writing, and professional voice',  accent: '#4B2D8A' },
+  { name: 'Teamwork',           Icon: Users,        count: 5,  desc: 'Collaboration across real project teams',      accent: '#8B6AAE' },
+  { name: 'STEM Readiness',     Icon: Cpu,          count: 6,  desc: 'Science, tech, engineering, and math',        accent: '#6B5A8E' },
+  { name: 'Problem Solving',    Icon: Lightbulb,    count: 8,  desc: 'Critical thinking and real business challenges', accent: '#1C1635' },
+  { name: 'Entrepreneurship',   Icon: Rocket,       count: 5,  desc: 'Business creation, risk, and innovation',     accent: '#6B5A8E' },
 ]
 
 const TRUST_FEATURES = [
@@ -115,7 +115,7 @@ const TIER_CONFIG = {
   gold:      { label: 'Gold Certified',     bg: '#C9951A', color: '#FFF9E6' },
   silver:    { label: 'Silver Certified',   bg: '#6B7280', color: '#FFFFFF' },
   founding:  { label: 'Founding Partner',   bg: '#4B2D8A', color: '#F2C96E' },
-  community: { label: 'Community Champion', bg: '#1F5C88', color: '#FFFFFF' },
+  community: { label: 'Community Champion', bg: '#6B5A8E', color: '#FFFFFF' },
 }
 
 function TierBadge({ tier }: { tier: keyof typeof TIER_CONFIG }) {
@@ -582,7 +582,7 @@ export default function MarketplacePage() {
             </a>
             <Link href="/pathway-sites" className={styles.roleCard}>
               <div className={styles.roleIconWrap} style={{ background: 'rgba(31,60,136,0.09)' }}>
-                <Building2 size={20} style={{ color: '#1F3C88' }} />
+                <Building2 size={20} style={{ color: '#6B5A8E' }} />
               </div>
               <div className={styles.roleCardText}>
                 <p className={styles.roleCardTitle}>I&apos;m a Business or Organization</p>

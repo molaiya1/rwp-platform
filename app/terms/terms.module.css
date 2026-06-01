@@ -13,7 +13,7 @@
 .headerLogoImg { height: 32px; width: auto; object-fit: contain; }
 .headerBack { font-size: 13px; font-weight: 600; color: #6B5A8E; text-decoration: none; }
 .headerBack:hover { text-decoration: underline; }
-.hero { background: linear-gradient(135deg, #1F3C88 0%, #2D1B69 100%); padding: 56px 24px 48px; text-align: center; }
+.hero { background: linear-gradient(135deg, #6B5A8E 0%, #1C1635 100%); padding: 56px 24px 48px; text-align: center; }
 .heroInner { max-width: 640px; margin: 0 auto; }
 .heroIcon { width: 56px; height: 56px; background: rgba(255,255,255,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #F4B223; margin: 0 auto 16px; }
 .eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #F4B223; margin: 0 0 10px; }
@@ -29,7 +29,7 @@
 .prose p:last-child { margin-bottom: 0; }
 .list { list-style: disc; padding-left: 20px; margin: 0 0 14px; display: flex; flex-direction: column; gap: 6px; }
 .list li { font-size: 14px; color: #4A4060; line-height: 1.65; }
-.link { color: #1F3C88; font-weight: 600; text-decoration: none; }
+.link { color: #6B5A8E; font-weight: 600; text-decoration: none; }
 .link:hover { text-decoration: underline; }
 .contactCard { display: flex; align-items: flex-start; gap: 14px; background: #F8F5FF; border: 1.5px solid #EDE9F5; border-radius: 12px; padding: 18px 20px; }
 .contactIcon { color: #6B5A8E; flex-shrink: 0; margin-top: 2px; }

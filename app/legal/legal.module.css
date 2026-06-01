@@ -29,7 +29,7 @@
 
 /* ── Hero ── */
 .hero {
-  background: linear-gradient(135deg, #1C1635 0%, #2D2060 50%, #1F3C88 100%);
+  background: linear-gradient(135deg, #1C1635 0%, #2D2060 50%, #6B5A8E 100%);
   padding: 60px 32px;
 }
 .heroInner {
@@ -245,7 +245,7 @@
 
 /* ── Contact block ── */
 .contactBlock {
-  background: linear-gradient(135deg, #1F3C88 0%, #2D2060 100%);
+  background: linear-gradient(135deg, #6B5A8E 0%, #2D2060 100%);
   border-radius: 20px;
   padding: 36px 40px;
   display: flex;

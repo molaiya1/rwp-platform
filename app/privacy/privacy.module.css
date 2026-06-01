@@ -21,7 +21,7 @@
 
 /* Hero */
 .hero {
-  background: linear-gradient(135deg, #1F3C88 0%, #2D1B69 100%);
+  background: linear-gradient(135deg, #6B5A8E 0%, #1C1635 100%);
   padding: 56px 24px 48px;
   text-align: center;
 }
@@ -57,7 +57,7 @@
   border-radius: 14px;
   padding: 20px;
 }
-.summaryIcon { color: #1F3C88; margin-bottom: 10px; display: block; }
+.summaryIcon { color: #6B5A8E; margin-bottom: 10px; display: block; }
 .summaryTitle { font-size: 13px; font-weight: 800; color: #1C1635; display: block; margin-bottom: 6px; }
 .summaryDesc { font-size: 12px; color: #6B5A8E; line-height: 1.6; margin: 0; }
 
@@ -70,7 +70,7 @@
 .prose p:last-child { margin-bottom: 0; }
 .list { list-style: disc; padding-left: 20px; margin: 0 0 14px; display: flex; flex-direction: column; gap: 6px; }
 .list li { font-size: 14px; color: #4A4060; line-height: 1.65; }
-.link { color: #1F3C88; font-weight: 600; text-decoration: none; }
+.link { color: #6B5A8E; font-weight: 600; text-decoration: none; }
 .link:hover { text-decoration: underline; }
 
 /* Contact card */

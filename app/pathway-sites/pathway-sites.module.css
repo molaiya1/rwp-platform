@@ -507,7 +507,7 @@
 
 /* ── CTA ── */
 .cta {
-  background: linear-gradient(135deg, #1C0A3B 0%, #2D1B69 100%);
+  background: linear-gradient(135deg, #1C1635 0%, #1C1635 100%);
   padding: 88px 40px;
   text-align: center;
 }
@@ -568,7 +568,7 @@
 
 /* ── FOOTER ── */
 .footer {
-  background: #13102A;
+  background: #1C1635;
   padding: 24px 40px;
 }
 
