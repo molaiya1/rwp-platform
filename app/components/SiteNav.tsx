@@ -75,7 +75,7 @@ export default function SiteNav() {
         </div>
       )}
     </header>
-    {showBanner && <RWPBannerStrip height={130} mobileHeight={80} overlayOpacity={0.10} />}
+    {showBanner && <RWPBannerStrip height={150} mobileHeight={100} overlayOpacity={0.10} />}
     </>
   )
 }

@@ -508,6 +508,47 @@ export default function MarketplacePage() {
         </div>
       </section>
 
+      {/* ── HORIZONTAL FILTER BAR ── */}
+      <div className={styles.filterBar}>
+        <div className={styles.filterBarInner}>
+
+          <select className={styles.filterDrop} value={typeFilter} onChange={e => setTypeFilter(e.target.value)}>
+            {EXP_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
+          </select>
+
+          <select className={styles.filterDrop} value={industryFilter} onChange={e => setIndustryFilter(e.target.value)}>
+            {INDUSTRIES.map(i => <option key={i} value={i}>{i}</option>)}
+          </select>
+
+          <select className={styles.filterDrop} value={gradeFilter} onChange={e => setGradeFilter(e.target.value)}>
+            {GRADE_LEVELS.map(g => <option key={g} value={g}>{g}</option>)}
+          </select>
+
+          <select className={styles.filterDrop} value={statusFilter} onChange={e => setStatusFilter(e.target.value)}>
+            {STATUS_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
+          </select>
+
+          <div className={styles.filterBarMonths}>
+            {MONTHS.map(m => (
+              <button
+                key={m}
+                className={`${styles.filterMonthChip} ${monthFilter === m ? styles.filterMonthChipActive : ''}`}
+                onClick={() => setMonthFilter(monthFilter === m ? null : m)}
+              >
+                {m}
+              </button>
+            ))}
+          </div>
+
+          {hasFilters && (
+            <button className={styles.filterClearBtn} onClick={clearFilters}>
+              <X size={12} /> Clear all
+            </button>
+          )}
+
+        </div>
+      </div>
+
       {/* ── IMPACT STATS BAR ── */}
       <div className={styles.impactBar}>
         <div className={styles.impactBarInner}>
@@ -677,8 +718,8 @@ export default function MarketplacePage() {
       {/* ── MAIN LAYOUT ── */}
       <div className={styles.body} id="listings">
 
-        {/* Filter sidebar */}
-        <aside className={styles.filterSidebar}>
+        {/* Filter sidebar — hidden, replaced by horizontal filter bar above */}
+        <aside className={styles.filterSidebar} style={{ display: 'none' }}>
           <div className={styles.filterHeader}>
             <div className={styles.filterTitle}>
               <Filter size={14} />
