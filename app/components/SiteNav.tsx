@@ -16,9 +16,12 @@ const NAV_LINKS = [
   { label: 'About',             href: '/about'          },
 ]
 
+const NO_BANNER = ['/', '/home']
+
 export default function SiteNav() {
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
+  const showBanner = !NO_BANNER.includes(pathname)
 
   return (
     <>
@@ -72,7 +75,7 @@ export default function SiteNav() {
         </div>
       )}
     </header>
-    <RWPBannerStrip height={130} mobileHeight={80} overlayOpacity={0.10} />
+    {showBanner && <RWPBannerStrip height={130} mobileHeight={80} overlayOpacity={0.10} />}
     </>
   )
 }
