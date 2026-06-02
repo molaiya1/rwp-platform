@@ -118,6 +118,47 @@ const TIER_CONFIG = {
   community: { label: 'Community Champion', bg: '#6B5A8E', color: '#FFFFFF' },
 }
 
+/* ─── ZIP Coordinate Lookup (Atlanta metro) ─── */
+const ZIP_COORDS: Record<string, { lat: number; lng: number }> = {
+  '30301': { lat: 33.749, lng: -84.388 }, '30303': { lat: 33.754, lng: -84.390 },
+  '30305': { lat: 33.838, lng: -84.366 }, '30306': { lat: 33.779, lng: -84.350 },
+  '30307': { lat: 33.773, lng: -84.337 }, '30308': { lat: 33.773, lng: -84.375 },
+  '30309': { lat: 33.802, lng: -84.384 }, '30310': { lat: 33.724, lng: -84.418 },
+  '30311': { lat: 33.726, lng: -84.453 }, '30312': { lat: 33.745, lng: -84.371 },
+  '30313': { lat: 33.762, lng: -84.394 }, '30314': { lat: 33.763, lng: -84.424 },
+  '30315': { lat: 33.709, lng: -84.382 }, '30316': { lat: 33.723, lng: -84.342 },
+  '30317': { lat: 33.751, lng: -84.315 }, '30318': { lat: 33.779, lng: -84.432 },
+  '30319': { lat: 33.875, lng: -84.338 }, '30322': { lat: 33.794, lng: -84.325 },
+  '30324': { lat: 33.817, lng: -84.368 }, '30326': { lat: 33.848, lng: -84.361 },
+  '30327': { lat: 33.851, lng: -84.404 }, '30328': { lat: 33.920, lng: -84.372 },
+  '30331': { lat: 33.694, lng: -84.511 }, '30332': { lat: 33.775, lng: -84.396 },
+  '30338': { lat: 33.943, lng: -84.351 }, '30339': { lat: 33.870, lng: -84.466 },
+  '30340': { lat: 33.891, lng: -84.289 }, '30341': { lat: 33.885, lng: -84.295 },
+  '30342': { lat: 33.870, lng: -84.374 }, '30344': { lat: 33.651, lng: -84.441 },
+  '30346': { lat: 33.924, lng: -84.342 }, '30350': { lat: 33.969, lng: -84.341 },
+  '30354': { lat: 33.649, lng: -84.408 }, '30363': { lat: 33.792, lng: -84.401 },
+  '30002': { lat: 33.772, lng: -84.274 }, '30030': { lat: 33.774, lng: -84.296 },
+  '30032': { lat: 33.740, lng: -84.296 }, '30033': { lat: 33.797, lng: -84.313 },
+  '30034': { lat: 33.683, lng: -84.316 }, '30058': { lat: 33.722, lng: -84.196 },
+  '30067': { lat: 33.905, lng: -84.477 }, '30068': { lat: 33.979, lng: -84.463 },
+  '30075': { lat: 34.014, lng: -84.374 }, '30076': { lat: 34.027, lng: -84.340 },
+  '30080': { lat: 33.851, lng: -84.496 }, '30082': { lat: 33.854, lng: -84.498 },
+  '30083': { lat: 33.789, lng: -84.268 }, '30084': { lat: 33.858, lng: -84.264 },
+  '30092': { lat: 33.967, lng: -84.236 }, '30093': { lat: 33.967, lng: -84.173 },
+  '30096': { lat: 33.978, lng: -84.145 }, '30097': { lat: 34.025, lng: -84.137 },
+  '30144': { lat: 34.034, lng: -84.583 }, '30168': { lat: 33.831, lng: -84.521 },
+  '30188': { lat: 34.097, lng: -84.519 }, '30189': { lat: 34.069, lng: -84.561 },
+}
+
+function haversineDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 3958.8
+  const dLat = (lat2 - lat1) * Math.PI / 180
+  const dLng = (lng2 - lng1) * Math.PI / 180
+  const a = Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+}
+
 function TierBadge({ tier }: { tier: keyof typeof TIER_CONFIG }) {
   const cfg = TIER_CONFIG[tier]
   return (
@@ -131,7 +172,7 @@ function TierBadge({ tier }: { tier: keyof typeof TIER_CONFIG }) {
 /* ─── Listings ─── */
 const LISTINGS = [
   {
-    id: '1', company: 'Grady Health System', industry: 'Healthcare', city: 'Atlanta, GA',
+    id: '1', company: 'Grady Health System', industry: 'Healthcare', city: 'Atlanta, GA', lat: 33.756, lng: -84.380,
     type: 'Job Shadow', tier: 'gold' as const,
     title: 'A Day in the Life: Emergency Medicine',
     desc: 'Students spend a half-day with ER physicians and nurses. See triage, patient care, and hospital operations in action. No clinical experience needed.',
@@ -145,7 +186,7 @@ const LISTINGS = [
     cost: 'Free', transportation: 'Not provided — site is accessible by MARTA', upcoming: 'Oct 14, 2026',
   },
   {
-    id: '2', company: 'Delta Air Lines', industry: 'Logistics', city: 'Atlanta, GA',
+    id: '2', company: 'Delta Air Lines', industry: 'Logistics', city: 'Atlanta, GA', lat: 33.641, lng: -84.428,
     type: 'Site Visit', tier: 'gold' as const,
     title: 'Behind the Terminal: Aviation & Operations',
     desc: "Tour Delta's operations center and learn how 5,000+ daily flights are coordinated. Meet engineers, logistics coordinators, and operations analysts.",
@@ -159,7 +200,7 @@ const LISTINGS = [
     cost: 'Free', transportation: 'Not provided — school must arrange', upcoming: 'Nov 5, 2026',
   },
   {
-    id: '3', company: 'Truist Bank', industry: 'Finance', city: 'Atlanta, GA',
+    id: '3', company: 'Truist Bank', industry: 'Finance', city: 'Atlanta, GA', lat: 33.774, lng: -84.388,
     type: 'Career Panel', tier: 'silver' as const,
     title: 'Money, Markets & Careers in Finance',
     desc: 'Four Truist professionals — from wealth management to commercial lending — share their career paths and answer student questions live.',
@@ -173,7 +214,7 @@ const LISTINGS = [
     cost: 'Free', transportation: 'N/A — virtual option available', upcoming: 'Oct 22, 2026',
   },
   {
-    id: '4', company: 'Chick-fil-A Corporate', industry: 'Hospitality', city: 'College Park, GA',
+    id: '4', company: 'Chick-fil-A Corporate', industry: 'Hospitality', city: 'College Park, GA', lat: 33.648, lng: -84.450,
     type: 'Mentorship', tier: 'founding' as const,
     title: 'Leadership & Entrepreneurship Mentorship',
     desc: 'A semester-long mentorship pairing students with Chick-fil-A restaurant operators and franchise leaders. Weekly 45-min virtual check-ins focused on business ownership and leadership.',
@@ -187,7 +228,7 @@ const LISTINGS = [
     cost: 'Free', transportation: 'N/A — fully virtual', upcoming: 'Jan 12, 2027',
   },
   {
-    id: '5', company: 'Georgia Power', industry: 'Skilled Trades', city: 'Atlanta, GA',
+    id: '5', company: 'Georgia Power', industry: 'Skilled Trades', city: 'Atlanta, GA', lat: 33.749, lng: -84.388,
     type: 'Site Visit', tier: 'community' as const,
     title: 'Power Grid & Infrastructure Tour',
     desc: 'Explore how electricity is generated and distributed across Georgia. Meet lineworkers, engineers, and grid analysts at a working facility.',
@@ -201,7 +242,7 @@ const LISTINGS = [
     cost: 'Free', transportation: 'Not provided — school must arrange', upcoming: 'Mar 10, 2027',
   },
   {
-    id: '6', company: 'Dekalb Medical Center', industry: 'Healthcare', city: 'Decatur, GA',
+    id: '6', company: 'Dekalb Medical Center', industry: 'Healthcare', city: 'Decatur, GA', lat: 33.776, lng: -84.297,
     type: 'Internship', tier: 'gold' as const,
     title: 'Summer Health Sciences Internship',
     desc: 'A 6-week paid summer internship for rising 11th and 12th graders exploring healthcare careers. Rotations through 3 departments: nursing, lab, and administration.',
@@ -215,7 +256,7 @@ const LISTINGS = [
     cost: 'Paid — $12/hr', transportation: 'Not provided — MARTA accessible', upcoming: 'Jun 1, 2027',
   },
   {
-    id: '7', company: 'Cox Enterprises', industry: 'Technology', city: 'Atlanta, GA',
+    id: '7', company: 'Cox Enterprises', industry: 'Technology', city: 'Atlanta, GA', lat: 33.849, lng: -84.356,
     type: 'Project Partnership', tier: 'founding' as const,
     title: 'Real Business Challenge: Digital Marketing',
     desc: 'Student teams tackle a real Cox marketing challenge over 6 weeks. Finalists present to Cox leadership. All teams receive professional feedback and portfolio documentation.',
@@ -229,7 +270,7 @@ const LISTINGS = [
     cost: 'Free', transportation: 'N/A — primarily remote with one in-person presentation', upcoming: 'Feb 2, 2027',
   },
   {
-    id: '8', company: 'Atlanta Fire Rescue', industry: 'Government', city: 'Atlanta, GA',
+    id: '8', company: 'Atlanta Fire Rescue', industry: 'Government', city: 'Atlanta, GA', lat: 33.749, lng: -84.388,
     type: 'Career Panel', tier: null,
     title: 'Public Safety Careers — From the Frontline',
     desc: 'Firefighters, paramedics, and fire inspectors discuss career paths, training requirements, and what a day on shift actually looks like.',
@@ -243,7 +284,7 @@ const LISTINGS = [
     cost: 'Free', transportation: 'N/A — they can come to your school', upcoming: 'Oct 8, 2026',
   },
   {
-    id: '9', company: 'UPS Supply Chain Solutions', industry: 'Logistics', city: 'Sandy Springs, GA',
+    id: '9', company: 'UPS Supply Chain Solutions', industry: 'Logistics', city: 'Sandy Springs, GA', lat: 33.931, lng: -84.373,
     type: 'Job Shadow', tier: 'silver' as const,
     title: 'Global Logistics: How the World Ships',
     desc: 'Follow a UPS supply chain analyst through a real workday. Learn how global shipping, customs, and last-mile delivery are coordinated at scale.',
@@ -257,7 +298,7 @@ const LISTINGS = [
     cost: 'Free', transportation: 'Not provided — school must arrange', upcoming: 'Nov 19, 2026',
   },
   {
-    id: '10', company: 'NCR Voyix', industry: 'Technology', city: 'Atlanta, GA',
+    id: '10', company: 'NCR Voyix', industry: 'Technology', city: 'Atlanta, GA', lat: 33.780, lng: -84.384,
     type: 'Site Visit', tier: 'community' as const,
     title: 'How Software Powers Every Transaction',
     desc: 'See how NCR Voyix engineers build the point-of-sale and digital banking software used by millions of businesses worldwide. Meet product managers, software developers, and UX designers.',
@@ -271,7 +312,7 @@ const LISTINGS = [
     cost: 'Free', transportation: 'Not provided — school must arrange', upcoming: 'Nov 12, 2026',
   },
   {
-    id: '11', company: 'The Coca-Cola Company', industry: 'Manufacturing', city: 'Atlanta, GA',
+    id: '11', company: 'The Coca-Cola Company', industry: 'Manufacturing', city: 'Atlanta, GA', lat: 33.761, lng: -84.403,
     type: 'Career Panel', tier: 'gold' as const,
     title: 'From Formula to Shelf: Careers Across a Global Brand',
     desc: 'Five Coca-Cola professionals — spanning food science, supply chain, marketing, and finance — share what it takes to bring a global brand to market and answer student questions live.',
@@ -285,7 +326,7 @@ const LISTINGS = [
     cost: 'Free', transportation: 'N/A — virtual option available', upcoming: 'Oct 29, 2026',
   },
   {
-    id: '12', company: 'Emory University Hospital', industry: 'Healthcare', city: 'Atlanta, GA',
+    id: '12', company: 'Emory University Hospital', industry: 'Healthcare', city: 'Atlanta, GA', lat: 33.799, lng: -84.324,
     type: 'Job Shadow', tier: 'gold' as const,
     title: 'Research Medicine: Inside a Teaching Hospital',
     desc: 'Spend a half-day with Emory researchers and residents. Students rotate through clinical research, lab science, and patient advocacy roles to see where medicine meets innovation.',
@@ -299,7 +340,7 @@ const LISTINGS = [
     cost: 'Free', transportation: 'Not provided — MARTA accessible', upcoming: 'Jan 21, 2027',
   },
   {
-    id: '13', company: 'Warner Bros. Discovery / CNN', industry: 'Technology', city: 'Atlanta, GA',
+    id: '13', company: 'Warner Bros. Discovery / CNN', industry: 'Technology', city: 'Atlanta, GA', lat: 33.759, lng: -84.397,
     type: 'Site Visit', tier: 'community' as const,
     title: 'Behind the Broadcast: How News Gets Made',
     desc: "Tour CNN's Atlanta headquarters. Meet journalists, video editors, data analysts, and producers. Students see a live control room and learn how digital storytelling works at global scale.",
@@ -313,7 +354,7 @@ const LISTINGS = [
     cost: 'Free', transportation: 'Not provided — walkable from MARTA Centennial Park', upcoming: 'Oct 16, 2026',
   },
   {
-    id: '14', company: 'Atlanta Hawks / State Farm Arena', industry: 'Hospitality', city: 'Atlanta, GA',
+    id: '14', company: 'Atlanta Hawks / State Farm Arena', industry: 'Hospitality', city: 'Atlanta, GA', lat: 33.757, lng: -84.396,
     type: 'Project Partnership', tier: null,
     title: 'Sports Business Lab: Run a Real Campaign',
     desc: 'Student teams take on a real sports marketing challenge — fan engagement, merchandise, or community outreach — and present their strategy to Hawks business staff.',
@@ -343,6 +384,9 @@ export default function MarketplacePage() {
   const [viewMode,       setViewMode]       = useState<'grid' | 'list'>('grid')
   const [dbListings,     setDbListings]     = useState<Listing[]>([])
   const [dbLoading,      setDbLoading]      = useState(true)
+  const [distanceFilter, setDistanceFilter] = useState(25)
+  const [userCoords,     setUserCoords]     = useState<{ lat: number; lng: number } | null>(null)
+  const [zipInvalid,     setZipInvalid]     = useState(false)
 
   const [requesting,    setRequesting]    = useState(false)
   const [reqName,       setReqName]       = useState('')
@@ -424,10 +468,18 @@ export default function MarketplacePage() {
           cost: 'Free',
           transportation: lab.is_virtual ? 'N/A — virtual' : 'Contact for details',
           upcoming: 'Contact to schedule',
+          lat: 33.749, lng: -84.388,
         }))
         setDbListings(fresh)
       })
   }, [])
+
+  useEffect(() => {
+    if (zipCode.length < 5) { setUserCoords(null); setZipInvalid(false); return }
+    const coords = ZIP_COORDS[zipCode]
+    if (coords) { setUserCoords(coords); setZipInvalid(false) }
+    else { setUserCoords(null); setZipInvalid(true) }
+  }, [zipCode])
 
   const ALL_LISTINGS = [...LISTINGS, ...dbListings]
 
@@ -437,6 +489,10 @@ export default function MarketplacePage() {
     if (gradeFilter !== 'All Grades' && l.grades !== gradeFilter) return false
     if (statusFilter !== 'All Statuses' && l.status !== statusFilter) return false
     if (monthFilter && !l.months.includes(monthFilter)) return false
+    if (userCoords) {
+      const dist = haversineDistance(userCoords.lat, userCoords.lng, l.lat, l.lng)
+      if (dist > distanceFilter) return false
+    }
     if (search && !l.title.toLowerCase().includes(search.toLowerCase()) &&
         !l.company.toLowerCase().includes(search.toLowerCase()) &&
         !l.industry.toLowerCase().includes(search.toLowerCase()) &&
@@ -449,11 +505,12 @@ export default function MarketplacePage() {
     setTypeFilter('All Types'); setIndustryFilter('All Industries')
     setGradeFilter('All Grades'); setStatusFilter('All Statuses')
     setMonthFilter(null); setSearch(''); setZipCode('')
+    setUserCoords(null); setZipInvalid(false); setDistanceFilter(25)
   }
 
   const hasFilters = typeFilter !== 'All Types' || industryFilter !== 'All Industries' ||
     gradeFilter !== 'All Grades' || statusFilter !== 'All Statuses' ||
-    monthFilter !== null || search !== ''
+    monthFilter !== null || search !== '' || userCoords !== null
 
   const statusClass = (s: string) => {
     if (s === 'Open') return styles.statusOpen
@@ -718,8 +775,8 @@ export default function MarketplacePage() {
       {/* ── MAIN LAYOUT ── */}
       <div className={styles.body} id="listings">
 
-        {/* Filter sidebar — hidden, replaced by horizontal filter bar above */}
-        <aside className={styles.filterSidebar} style={{ display: 'none' }}>
+        {/* Filter sidebar */}
+        <aside className={styles.filterSidebar}>
           <div className={styles.filterHeader}>
             <div className={styles.filterTitle}>
               <Filter size={14} />
@@ -730,6 +787,7 @@ export default function MarketplacePage() {
             )}
           </div>
 
+          {/* ZIP + Distance slider */}
           <div className={styles.filterGroup}>
             <p className={styles.filterGroupLabel}>Near ZIP Code</p>
             <div className={styles.zipInputWrap}>
@@ -740,9 +798,33 @@ export default function MarketplacePage() {
                 onChange={e => setZipCode(e.target.value.replace(/\D/g, ''))}
               />
             </div>
-            {zipCode.length === 5 && <p className={styles.zipNote}>Showing distances from {zipCode}</p>}
+            {zipInvalid && <p className={styles.zipInvalidNote}>ZIP not found — try an Atlanta-area ZIP</p>}
+            {userCoords && (
+              <>
+                <div className={styles.distanceSliderRow}>
+                  <span className={styles.distanceSliderLabel}>Within</span>
+                  <span className={styles.distanceSliderVal}>{distanceFilter} mi</span>
+                </div>
+                <input
+                  type="range" min={1} max={50} value={distanceFilter}
+                  className={styles.distanceSlider}
+                  style={{ '--fill': `${((distanceFilter - 1) / 49) * 100}%` } as React.CSSProperties}
+                  onChange={e => setDistanceFilter(Number(e.target.value))}
+                />
+                <div className={styles.distanceSliderTicks}>
+                  <span>1 mi</span><span>25 mi</span><span>50 mi</span>
+                </div>
+                <p className={styles.zipNote}>Filtering from ZIP {zipCode}</p>
+              </>
+            )}
+            {!userCoords && !zipInvalid && zipCode.length === 0 && (
+              <p className={styles.distanceSliderHint}>Enter ZIP to filter by distance</p>
+            )}
           </div>
 
+          <div className={styles.filterGroupDivider} />
+
+          {/* Availability */}
           <div className={styles.filterGroup}>
             <p className={styles.filterGroupLabel}>Availability</p>
             {STATUS_OPTIONS.map(s => (
@@ -758,6 +840,9 @@ export default function MarketplacePage() {
             ))}
           </div>
 
+          <div className={styles.filterGroupDivider} />
+
+          {/* Experience Type */}
           <div className={styles.filterGroup}>
             <p className={styles.filterGroupLabel}>Experience Type</p>
             {EXP_TYPES.map(t => (
@@ -768,6 +853,9 @@ export default function MarketplacePage() {
             ))}
           </div>
 
+          <div className={styles.filterGroupDivider} />
+
+          {/* Industry */}
           <div className={styles.filterGroup}>
             <p className={styles.filterGroupLabel}>Industry</p>
             {INDUSTRIES.map(i => (
@@ -778,6 +866,9 @@ export default function MarketplacePage() {
             ))}
           </div>
 
+          <div className={styles.filterGroupDivider} />
+
+          {/* Grade Level */}
           <div className={styles.filterGroup}>
             <p className={styles.filterGroupLabel}>Grade Level</p>
             {GRADE_LEVELS.map(g => (
@@ -786,6 +877,24 @@ export default function MarketplacePage() {
                 {gradeFilter === g && <span className={styles.filterCheck}>✓</span>}
               </button>
             ))}
+          </div>
+
+          <div className={styles.filterGroupDivider} />
+
+          {/* Month */}
+          <div className={styles.filterGroup}>
+            <p className={styles.filterGroupLabel}>Month Available</p>
+            <div className={styles.sidebarMonthGrid}>
+              {MONTHS.map(m => (
+                <button
+                  key={m}
+                  className={`${styles.sidebarMonthPill} ${monthFilter === m ? styles.sidebarMonthPillActive : ''}`}
+                  onClick={() => setMonthFilter(monthFilter === m ? null : m)}
+                >
+                  {m}
+                </button>
+              ))}
+            </div>
           </div>
         </aside>
 
@@ -866,7 +975,12 @@ export default function MarketplacePage() {
                   <div className={styles.cardBody}>
                     <div className={styles.cardTopMeta}>
                       <div className={styles.cardCompany}><Building2 size={12} className={styles.cardCompanyIcon} />{listing.company}</div>
-                      <span className={styles.distanceChip}><MapPin size={10} />{listing.distance}</span>
+                      <span className={styles.distanceChip}>
+                        <MapPin size={10} />
+                        {userCoords
+                          ? `${haversineDistance(userCoords.lat, userCoords.lng, listing.lat, listing.lng).toFixed(1)} mi`
+                          : listing.distance}
+                      </span>
                     </div>
                     <h3 className={styles.cardTitle}>{listing.title}</h3>
 
@@ -959,7 +1073,12 @@ export default function MarketplacePage() {
                         <h3 className={styles.listCardTitle}>{listing.title}</h3>
                       </div>
                       <div className={styles.listCardRight}>
-                        <span className={styles.distanceChip}><MapPin size={10} />{listing.distance}</span>
+                        <span className={styles.distanceChip}>
+                          <MapPin size={10} />
+                          {userCoords
+                            ? `${haversineDistance(userCoords.lat, userCoords.lng, listing.lat, listing.lng).toFixed(1)} mi`
+                            : listing.distance}
+                        </span>
                         <span className={styles.spotsTagLg}>{spotsLabel(listing)}</span>
                         <div className={styles.cardRating}><Star size={12} className={styles.starIcon} /><span>{listing.rating}</span><span className={styles.ratingCount}>({listing.reviews})</span></div>
                       </div>

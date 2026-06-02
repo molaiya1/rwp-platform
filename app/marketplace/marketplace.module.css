@@ -187,6 +187,12 @@
 
 .filterClearBtn:hover { background: #EDE9F5; color: #6B5A8E; }
 
+/* Sidebar is visible on desktop — horizontal bar + calendar strip not needed */
+@media (min-width: 901px) {
+  .filterBar { display: none; }
+  .calendarStrip { display: none; }
+}
+
 @media (max-width: 768px) {
   .filterBar { padding: 10px 20px; }
   .filterBarMonths { display: none; }
@@ -351,12 +357,16 @@
 
 /* ── FILTER SIDEBAR ── */
 .filterSidebar {
-  width: 200px;
-  min-width: 180px;
+  width: 260px;
+  min-width: 240px;
   flex-shrink: 0;
   position: sticky;
   top: 80px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  scrollbar-width: none;
 }
+.filterSidebar::-webkit-scrollbar { display: none; }
 
 .filterHeader {
   display: flex;
@@ -1273,6 +1283,139 @@
   margin: 6px 0 0;
 }
 
+/* ── DISTANCE SLIDER ── */
+.distanceSliderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0 4px;
+}
+
+.distanceSliderLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #7A7390;
+}
+
+.distanceSliderVal {
+  font-size: 13px;
+  font-weight: 800;
+  color: #6B5A8E;
+}
+
+.distanceSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: #EDE9F5;
+  outline: none;
+  cursor: pointer;
+  margin: 4px 0 2px;
+}
+
+.distanceSlider::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    to right,
+    #6B5A8E 0%,
+    #6B5A8E var(--fill, 50%),
+    #EDE9F5 var(--fill, 50%),
+    #EDE9F5 100%
+  );
+  height: 4px;
+  border-radius: 2px;
+}
+
+.distanceSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #6B5A8E;
+  cursor: pointer;
+  margin-top: -7px;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 6px rgba(107, 90, 142, 0.45);
+}
+
+.distanceSlider::-moz-range-track {
+  background: #EDE9F5;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.distanceSlider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #6B5A8E;
+  border: 2px solid #FFFFFF;
+  cursor: pointer;
+  box-shadow: 0 1px 6px rgba(107, 90, 142, 0.45);
+}
+
+.distanceSliderTicks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #BDB4D6;
+  font-weight: 600;
+  margin: 2px 0 6px;
+}
+
+.distanceSliderHint {
+  font-size: 11px;
+  color: #BDB4D6;
+  margin: 6px 0 0;
+  font-style: italic;
+}
+
+.zipInvalidNote {
+  font-size: 11px;
+  color: #C05050;
+  font-weight: 600;
+  margin: 6px 0 0;
+}
+
+/* ── SIDEBAR DIVIDER ── */
+.filterGroupDivider {
+  height: 1px;
+  background: #EDE9F5;
+  margin: 0 0 20px;
+}
+
+/* ── SIDEBAR MONTH GRID ── */
+.sidebarMonthGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+
+.sidebarMonthPill {
+  height: 28px;
+  border: 1.5px solid #DDD8EE;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #7A7390;
+  background: #FFFFFF;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebarMonthPill:hover { border-color: #6B5A8E; color: #6B5A8E; }
+
+.sidebarMonthPillActive {
+  background: #6B5A8E;
+  border-color: #6B5A8E;
+  color: #FFFFFF;
+}
+
 /* ── STATUS DOTS (sidebar) ── */
 .filterOptionInner {
   display: flex;
@@ -1480,7 +1623,10 @@
 
   .filterSidebar {
     width: 100%;
+    min-width: 0;
     position: static;
+    max-height: none;
+    overflow-y: visible;
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
