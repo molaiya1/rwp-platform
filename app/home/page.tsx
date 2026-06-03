@@ -122,10 +122,6 @@ export default function HomePage() {
           <p className={styles.heroSub}>
             The only platform purpose-built for in-person, structured career experiences — connecting Atlanta&apos;s students to real workplaces, real professionals, and real futures.
           </p>
-          <p className={styles.heroBody}>
-            Schools find vetted Pathway Sites™. Businesses build their talent pipeline early.
-            Every Field Lab™ is tracked, measured, and connected to student outcomes — no other platform in America closes that loop.
-          </p>
 
           <div className={styles.ctaRow}>
             <Link href="/register?type=org" className={styles.ctaCard}>

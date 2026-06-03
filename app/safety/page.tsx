@@ -72,19 +72,19 @@ const DATA_NEVER = [
 ]
 
 const FOR_ORGS = [
-  'Verify every business you connect with has passed all six certification steps before approving student participation',
-  'Review the full certification status of any Pathway Site directly in the platform before scheduling any Field Lab',
-  'Download our Parental Consent Template for distribution to student families prior to any experience',
-  'Consult our Youth Labor Law Reference Guide before placing students in work-based learning environments',
-  'Contact our safety team at safety@wealthwisekids.org with any concern — we respond within 24 hours',
+  'Verify partner certification status before approving any student participation',
+  'Review Pathway Site credentials in the platform before scheduling a Field Lab',
+  'Distribute the Parental Consent Template to families before any experience',
+  'Consult our Youth Labor Law Reference Guide for work-based placements',
+  'Report any concern to safety@wealthwisekids.org — we respond within 24 hours',
 ]
 
 const FOR_BIZ = [
-  'Complete all six certification steps before hosting any student activity — no exceptions or partial exceptions',
-  'Maintain current background checks and insurance documentation in your Pathway Site portal at all times',
-  'Report any safety incident or concern immediately using the in-platform incident reporting tool',
-  'Ensure only certified and trained staff interact directly with student groups during Field Labs',
-  'Follow all applicable federal and state child labor laws and age restrictions for your industry',
+  'Complete all six certification steps before hosting any student activity',
+  'Keep background checks and insurance documents current in your portal',
+  'Report any safety incident immediately using the in-platform reporting tool',
+  'Ensure only certified, trained staff interact with student groups',
+  'Follow all federal and state child labor laws applicable to your industry',
 ]
 
 export default function SafetyPage() {
@@ -107,10 +107,8 @@ export default function SafetyPage() {
           </h1>
 
           <p className={styles.heroSub}>
-            Real-World Pathways™ operates under a mandatory 6-step certification
-            process for every business partner — background checks, insurance verification,
-            youth safety training, and manual admin review. No business goes live without
-            passing all six. No exceptions. No auto-approvals.
+            Every business partner passes a mandatory 6-step certification process before
+            any student interaction is permitted. No exceptions. No auto-approvals.
           </p>
 
           <div className={styles.complianceTags}>

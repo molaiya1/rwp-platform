@@ -194,16 +194,9 @@ export default function PathwaySitesPage() {
           <div className={styles.transportText}>
             <h3 className={styles.transportTitle}>A note on student transportation</h3>
             <p className={styles.transportBody}>
-              Getting students to your location is the most common logistical barrier we hear about.
-              We&apos;re actively building a preferred transportation partner network to reduce this
-              friction for schools. In the interim, we recommend listing your proximity to MARTA stops
-              and flagging any parking or drop-off accommodations on your listing — it meaningfully
-              increases your request volume from schools that can arrange their own transport.
-            </p>
-            <p className={styles.transportBody}>
-              If your site is within walking distance of a MARTA station, or if you&apos;re willing to
-              cover a portion of transportation costs, let us know on your application. We&apos;ll
-              feature you as a high-accessibility site.
+              We flag MARTA access on every listing — if your site is walkable from a station,
+              that detail is prominently displayed and meaningfully increases your request volume.
+              Note it on your application and we&apos;ll feature you as a high-accessibility site.
             </p>
           </div>
         </div>

@@ -7,9 +7,7 @@ import {
   Search, MapPin, Calendar, Filter, ChevronRight,
   ShieldCheck, Clock, Users, Building2, Star, X,
   DollarSign, Bus, CheckCircle2, LayoutGrid, List,
-  Navigation, TrendingUp, Briefcase, MessageSquare,
-  Cpu, Lightbulb, Rocket, Award, Shield, BarChart2,
-  Headphones, FileText, ArrowRight, GraduationCap,
+  Navigation, Award,
 } from 'lucide-react'
 import SiteNav from '../components/SiteNav'
 import styles from './marketplace.module.css'
@@ -43,73 +41,6 @@ const QUICK_CHIPS = [
   'Manufacturing', 'STEM',
 ]
 
-const HOW_IT_WORKS = [
-  { num: '01', title: 'Send a Request',        desc: 'Click any experience and submit your info. Takes under 2 minutes.' },
-  { num: '02', title: 'Business Confirms',      desc: 'The business reviews and responds within 48 hours.' },
-  { num: '03', title: 'Coordinate the Details', desc: 'Finalize date, logistics, and student prep through the platform.' },
-  { num: '04', title: 'Show Up & Learn',        desc: 'Your students experience the real world. We track the outcome.' },
-]
-
-const IMPACT_STATS = [
-  { num: '148',    label: 'Certified Pathway Sites™', sub: 'Active Hosts',        Icon: Building2  },
-  { num: '1,200+', label: 'Experiences Available',    sub: 'Opportunities',       Icon: Star       },
-  { num: '18,000+',label: 'Student Seats',            sub: 'Upcoming Openings',   Icon: Users      },
-  { num: '92%',    label: 'FLIQ Impact™',             sub: 'Reported Growth',     Icon: TrendingUp },
-  { num: 'ATL',    label: 'Cities Served',            sub: 'Expanding Nationally',Icon: MapPin     },
-]
-
-const FEATURED_SITES = [
-  { name: "Grady Health System",     industry: 'Healthcare & Medicine',           tier: 'gold',     students: 1200, rating: 4.9, desc: "Atlanta's largest public hospital — trauma care, emergency medicine, and community health.",    photo: 'https://images.unsplash.com/photo-1551076805-e1869033e561?w=600&q=80' },
-  { name: 'Delta Air Lines',         industry: 'Aviation & Logistics',            tier: 'gold',     students: 800,  rating: 4.8, desc: "The world's most trusted airline — aviation, logistics, operations, and engineering careers.",  photo: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80' },
-  { name: 'The Coca-Cola Company',   industry: 'Manufacturing & Business',        tier: 'gold',     students: 640,  rating: 4.9, desc: "From formula to global shelf — food science, supply chain, marketing, and brand careers.",      photo: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80' },
-  { name: 'Truist Bank',             industry: 'Finance & Banking',               tier: 'silver',   students: 540,  rating: 4.7, desc: "Commercial banking, wealth management, and financial services career pathways.",                photo: 'https://images.unsplash.com/photo-1560472355-536de3962603?w=600&q=80' },
-  { name: 'Chick-fil-A Corporate',   industry: 'Entrepreneurship & Hospitality',  tier: 'founding', students: 320,  rating: 5.0, desc: "Entrepreneurship mentorship directly from franchise operators and business owners.",             photo: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80' },
-  { name: 'Cox Enterprises',         industry: 'Media & Technology',              tier: 'founding', students: 180,  rating: 4.8, desc: "Digital media, marketing, and technology careers at a multi-billion dollar Atlanta enterprise.",  photo: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80' },
-]
-
-const ATLANTA_AREAS = [
-  { name: 'Downtown Atlanta',  count: 6, sub: 'CNN, Hawks, City of Atlanta' },
-  { name: 'Midtown',           count: 4, sub: 'Georgia Tech, NCR Voyix, Truist' },
-  { name: 'Airport Corridor',  count: 3, sub: 'Delta Air Lines, Chick-fil-A' },
-  { name: 'Buckhead',          count: 3, sub: 'Grady, Emory, Cox Enterprises' },
-  { name: 'Decatur / East',    count: 2, sub: 'Dekalb Medical, UPS' },
-  { name: 'Expanding Soon',    count: 0, sub: 'Savannah · Augusta · Columbus' },
-]
-
-const OUTCOME_CATEGORIES = [
-  { name: 'Career Awareness',   Icon: Briefcase,    count: 14, desc: 'Explore careers across 8 industries',          accent: '#4B2D8A' },
-  { name: 'Financial Literacy', Icon: DollarSign,   count: 4,  desc: 'Banking, wealth, and money fundamentals',      accent: '#F4B223' },
-  { name: 'Leadership',         Icon: Star,         count: 7,  desc: 'Mentorship, initiative, and decision-making',  accent: '#6B5A8E' },
-  { name: 'Communication',      Icon: MessageSquare,count: 9,  desc: 'Presenting, writing, and professional voice',  accent: '#4B2D8A' },
-  { name: 'Teamwork',           Icon: Users,        count: 5,  desc: 'Collaboration across real project teams',      accent: '#8B6AAE' },
-  { name: 'STEM Readiness',     Icon: Cpu,          count: 6,  desc: 'Science, tech, engineering, and math',        accent: '#6B5A8E' },
-  { name: 'Problem Solving',    Icon: Lightbulb,    count: 8,  desc: 'Critical thinking and real business challenges', accent: '#1C1635' },
-  { name: 'Entrepreneurship',   Icon: Rocket,       count: 5,  desc: 'Business creation, risk, and innovation',     accent: '#6B5A8E' },
-]
-
-const TRUST_FEATURES = [
-  { Icon: ShieldCheck, title: 'Verified Hosts',            desc: 'Every Pathway Site™ is background-screened and safety-approved before listing.' },
-  { Icon: Shield,      title: 'Safety Screening',          desc: 'All site visits follow a structured student safety protocol.' },
-  { Icon: FileText,    title: 'Insurance Compliance',      desc: 'Partners carry applicable liability coverage for all student activities.' },
-  { Icon: BarChart2,   title: 'Outcome Tracking',          desc: 'Every experience generates a FLIQ Score™ measuring student growth.' },
-  { Icon: CheckCircle2,title: 'FLIQ Assessment Integration',desc: 'Behavioral competency data is tied to every completed experience.' },
-  { Icon: Headphones,  title: 'Partner Support',           desc: 'Dedicated support for schools and businesses before, during, and after.' },
-]
-
-const TESTIMONIALS = [
-  {
-    quote: 'The most organized career experience platform we\'ve ever used. Our students came back with a completely different understanding of what\'s possible for them.',
-    name: 'Ms. Terrence', title: 'College & Career Counselor', org: 'Atlanta Public Schools', initials: 'AT',
-  },
-  {
-    quote: 'Our students talked about the Delta site visit for weeks. RWP made the whole process seamless — from scheduling to the follow-up reflection form.',
-    name: 'Mr. Daniels', title: 'Program Director', org: 'Boys & Girls Club of Metro Atlanta', initials: 'BD',
-  },
-  {
-    quote: 'Hosting students used to feel complicated. RWP handled everything — we just showed up and did what we do. It was genuinely our favorite community event of the year.',
-    name: 'Community Liaison', title: 'Partner Operations Team', org: 'Certified Pathway Site™', initials: 'CP',
-  },
-]
 
 const TIER_CONFIG = {
   gold:      { label: 'Gold Certified',     bg: '#C9951A', color: '#FFF9E6' },
@@ -531,17 +462,16 @@ export default function MarketplacePage() {
       {/* ── HERO ── */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <p className={styles.heroEyebrow}>Career Field Trips™ — Real-World Pathways™</p>
+          <p className={styles.heroEyebrow}>Real-World Pathways™</p>
           <h1 className={styles.heroH1}>Find the Right Career Experience<br />for Every Student.</h1>
           <p className={styles.heroSub}>
-            Connect students with vetted workplace experiences, career exploration opportunities, mentorships,
-            site visits, and industry exposure across Atlanta and beyond.
+            Vetted workplace experiences across Atlanta — site visits, job shadows, mentorships, career panels, and more.
           </p>
           <div className={styles.searchBar}>
             <Search size={18} className={styles.searchBarIcon} />
             <input
               className={styles.searchBarInput}
-              placeholder="Search careers, industries, companies, or experiences…"
+              placeholder="Search by industry, company, or experience type…"
               value={search}
               onChange={e => setSearch(e.target.value)}
             />
@@ -568,209 +498,25 @@ export default function MarketplacePage() {
       {/* ── HORIZONTAL FILTER BAR ── */}
       <div className={styles.filterBar}>
         <div className={styles.filterBarInner}>
-
           <select className={styles.filterDrop} value={typeFilter} onChange={e => setTypeFilter(e.target.value)}>
             {EXP_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
           </select>
-
           <select className={styles.filterDrop} value={industryFilter} onChange={e => setIndustryFilter(e.target.value)}>
             {INDUSTRIES.map(i => <option key={i} value={i}>{i}</option>)}
           </select>
-
           <select className={styles.filterDrop} value={gradeFilter} onChange={e => setGradeFilter(e.target.value)}>
             {GRADE_LEVELS.map(g => <option key={g} value={g}>{g}</option>)}
           </select>
-
           <select className={styles.filterDrop} value={statusFilter} onChange={e => setStatusFilter(e.target.value)}>
             {STATUS_OPTIONS.map(s => <option key={s} value={s}>{s}</option>)}
           </select>
-
-          <div className={styles.filterBarMonths}>
-            {MONTHS.map(m => (
-              <button
-                key={m}
-                className={`${styles.filterMonthChip} ${monthFilter === m ? styles.filterMonthChipActive : ''}`}
-                onClick={() => setMonthFilter(monthFilter === m ? null : m)}
-              >
-                {m}
-              </button>
-            ))}
-          </div>
-
           {hasFilters && (
             <button className={styles.filterClearBtn} onClick={clearFilters}>
               <X size={12} /> Clear all
             </button>
           )}
-
         </div>
       </div>
-
-      {/* ── IMPACT STATS BAR ── */}
-      <div className={styles.impactBar}>
-        <div className={styles.impactBarInner}>
-          {IMPACT_STATS.map((stat, i) => (
-            <div key={i} className={styles.impactStat}>
-              <stat.Icon size={20} className={styles.impactIcon} />
-              <div>
-                <p className={styles.impactNum}>{stat.num}</p>
-                <p className={styles.impactLabel}>{stat.label}</p>
-                <p className={styles.impactSub}>{stat.sub}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── ROLE ROUTING ── */}
-      <div className={styles.roleRow}>
-        <div className={styles.roleRowInner}>
-          <p className={styles.roleRowLabel}>Who are you?</p>
-          <div className={styles.roleCards}>
-            <a href="#listings" className={styles.roleCard} onClick={e => { e.preventDefault(); document.getElementById('listings')?.scrollIntoView({ behavior: 'smooth' }) }}>
-              <div className={styles.roleIconWrap} style={{ background: 'rgba(107,90,142,0.10)' }}>
-                <GraduationCap size={20} style={{ color: '#6B5A8E' }} />
-              </div>
-              <div className={styles.roleCardText}>
-                <p className={styles.roleCardTitle}>I&apos;m an Educator or School Leader</p>
-                <p className={styles.roleCardSub}>Find experiences for my students</p>
-              </div>
-              <ChevronRight size={16} className={styles.roleArrow} />
-            </a>
-            <Link href="/pathway-sites" className={styles.roleCard}>
-              <div className={styles.roleIconWrap} style={{ background: 'rgba(31,60,136,0.09)' }}>
-                <Building2 size={20} style={{ color: '#6B5A8E' }} />
-              </div>
-              <div className={styles.roleCardText}>
-                <p className={styles.roleCardTitle}>I&apos;m a Business or Organization</p>
-                <p className={styles.roleCardSub}>List an experience or become a partner</p>
-              </div>
-              <ChevronRight size={16} className={styles.roleArrow} />
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* ── HOW IT WORKS STRIP ── */}
-      <div className={styles.howStrip}>
-        <div className={styles.howStripInner}>
-          <p className={styles.howStripLabel}>How requesting works</p>
-          <div className={styles.howSteps}>
-            {HOW_IT_WORKS.map((step, i) => (
-              <div key={step.num} className={styles.howStep}>
-                <div className={styles.howStepLeft}>
-                  <span className={styles.howNum}>{step.num}</span>
-                  <div>
-                    <p className={styles.howTitle}>{step.title}</p>
-                    <p className={styles.howDesc}>{step.desc}</p>
-                  </div>
-                </div>
-                {i < HOW_IT_WORKS.length - 1 && (
-                  <ChevronRight size={16} className={styles.howArrow} />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ── CALENDAR STRIP ── */}
-      <div className={styles.calendarStrip}>
-        <div className={styles.calendarInner}>
-          <div className={styles.calendarLabel}>
-            <Calendar size={14} />
-            <span>Filter by Month</span>
-          </div>
-          <div className={styles.monthPills}>
-            {MONTHS.map(m => (
-              <button
-                key={m}
-                className={`${styles.monthPill} ${monthFilter === m ? styles.monthPillActive : ''}`}
-                onClick={() => setMonthFilter(monthFilter === m ? null : m)}
-              >
-                {m}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ── FEATURED PATHWAY SITES ── */}
-      <section className={styles.featuredSection}>
-        <div className={styles.featuredHeader}>
-          <div>
-            <p className={styles.featuredEyebrow}>Certified Pathway Sites™</p>
-            <h2 className={styles.featuredTitle}>Featured Partner Organizations</h2>
-          </div>
-          <a href="/pathway-sites" className={styles.featuredViewAll}>
-            Become a Partner <ArrowRight size={14} />
-          </a>
-        </div>
-        <div className={styles.featuredScroll}>
-          {FEATURED_SITES.map((site, i) => (
-            <div key={i} className={styles.siteCard}>
-              <div className={styles.siteCardPhoto}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={site.photo} alt={site.name} className={styles.siteCardImg} />
-                <div className={styles.siteCardOverlay} />
-                <div className={styles.siteCardBadge}>
-                  {site.tier && <TierBadge tier={site.tier as keyof typeof TIER_CONFIG} />}
-                </div>
-                <div className={styles.siteCardRating}>
-                  <Star size={10} className={styles.siteStarIcon} />
-                  <span>{site.rating}</span>
-                </div>
-              </div>
-              <div className={styles.siteCardBody}>
-                <p className={styles.siteCardIndustry}>{site.industry}</p>
-                <p className={styles.siteCardName}>{site.name}</p>
-                <p className={styles.siteCardDesc}>{site.desc}</p>
-                <div className={styles.siteCardStats}>
-                  <span className={styles.siteCardStat}>
-                    <Users size={10} /> {site.students.toLocaleString()} students hosted
-                  </span>
-                </div>
-                <button
-                  className={styles.siteCardCta}
-                  onClick={() => { setSearch(site.name.split(' ').slice(0,2).join(' ')); document.getElementById('listings')?.scrollIntoView({ behavior: 'smooth' }) }}
-                >
-                  View Experiences <ChevronRight size={12} />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── EXPLORE BY LOCATION ── */}
-      <section className={styles.locationSection}>
-        <div className={styles.locationInner}>
-          <div className={styles.locationHeader}>
-            <div>
-              <p className={styles.locationEyebrow}>Explore by Location</p>
-              <h2 className={styles.locationTitle}>Experiences Across Metro Atlanta</h2>
-            </div>
-            <p className={styles.locationSub}>All listings are free. We&apos;re growing into new cities — starting with Atlanta and expanding by region.</p>
-          </div>
-          <div className={styles.locationGrid}>
-            {ATLANTA_AREAS.map((area, i) => (
-              <button
-                key={i}
-                className={`${styles.locationCard} ${area.count === 0 ? styles.locationCardSoon : ''}`}
-                onClick={() => { if (area.count > 0) { setSearch(area.name.split(' ')[0]); document.getElementById('listings')?.scrollIntoView({ behavior: 'smooth' }) } }}
-                disabled={area.count === 0}
-              >
-                <div className={styles.locationCardTop}>
-                  <MapPin size={14} className={styles.locationPin} />
-                  <span className={styles.locationCardCount}>{area.count > 0 ? `${area.count} experiences` : 'Coming soon'}</span>
-                </div>
-                <p className={styles.locationCardName}>{area.name}</p>
-                <p className={styles.locationCardSub}>{area.sub}</p>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── MAIN LAYOUT ── */}
       <div className={styles.body} id="listings">
@@ -949,7 +695,7 @@ export default function MarketplacePage() {
                   className={`${styles.card} ${selected?.id === listing.id ? styles.cardSelected : ''}`}
                   onClick={() => setSelected(listing)}
                 >
-                  {/* Card photo */}
+                  {/* Photo */}
                   <div className={styles.cardPhoto}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={listing.photo} alt={listing.title} className={styles.cardImg} />
@@ -957,12 +703,7 @@ export default function MarketplacePage() {
                     <div className={styles.cardPhotoContent}>
                       <div className={styles.cardTopRow}>
                         <span className={styles.cardType}>{listing.type}</span>
-                        <div className={styles.cardTopBadges}>
-                          {listing.tier && <TierBadge tier={listing.tier as keyof typeof TIER_CONFIG} />}
-                          {listing.verified && !listing.tier && (
-                            <span className={styles.verifiedBadge}><ShieldCheck size={11} /> Verified</span>
-                          )}
-                        </div>
+                        {listing.tier && <TierBadge tier={listing.tier as keyof typeof TIER_CONFIG} />}
                       </div>
                       <div className={styles.cardBottomRow}>
                         <span className={`${styles.statusBadge} ${statusClass(listing.status)}`}>{listing.status}</span>
@@ -971,80 +712,19 @@ export default function MarketplacePage() {
                     </div>
                   </div>
 
-                  {/* Card body */}
+                  {/* Body */}
                   <div className={styles.cardBody}>
-                    <div className={styles.cardTopMeta}>
-                      <div className={styles.cardCompany}><Building2 size={12} className={styles.cardCompanyIcon} />{listing.company}</div>
-                      <span className={styles.distanceChip}>
-                        <MapPin size={10} />
-                        {userCoords
-                          ? `${haversineDistance(userCoords.lat, userCoords.lng, listing.lat, listing.lng).toFixed(1)} mi`
-                          : listing.distance}
-                      </span>
+                    <div className={styles.cardCompany}>
+                      <Building2 size={12} className={styles.cardCompanyIcon} />
+                      {listing.company}
                     </div>
                     <h3 className={styles.cardTitle}>{listing.title}</h3>
-
-                    {/* Students Will — hover reveal */}
-                    {listing.outcomes?.length > 0 && (
-                      <div className={styles.cardOutcomesWrap}>
-                        <div className={styles.cardOutcomes}>
-                          <p className={styles.cardOutcomesLabel}>Students Will:</p>
-                          <ul className={styles.cardOutcomesList}>
-                            {listing.outcomes.slice(0, 3).map((o, i) => (
-                              <li key={i} className={styles.cardOutcomesItem}>
-                                <CheckCircle2 size={11} className={styles.cardOutcomesCheck} />
-                                {o}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Career areas */}
-                    {listing.careerAreas?.length > 0 && (
-                      <div className={styles.cardAreas}>
-                        {listing.careerAreas.map((a, i) => (
-                          <span key={i} className={styles.cardAreaChip}>{a}</span>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Cost + transport */}
-                    <div className={styles.cardFacts}>
-                      <span className={styles.cardFact}><DollarSign size={12} className={styles.cardFactIcon} />{listing.cost}</span>
-                      <span className={styles.cardFact}><Bus size={12} className={styles.cardFactIcon} />{listing.transportation}</span>
-                    </div>
-
                     <div className={styles.cardFooter}>
-                      <div className={styles.cardFooterLeft}>
-                        <span className={styles.cardInfo}><Users size={12} /> {listing.grades}</span>
-                        <span className={styles.cardInfo}><Clock size={12} /> {listing.duration}</span>
-                      </div>
-                      <div className={styles.cardRating}>
-                        <Star size={12} className={styles.starIcon} />
-                        <span>{listing.rating}</span>
-                        <span className={styles.ratingCount}>({listing.reviews})</span>
-                      </div>
+                      <span className={styles.cardInfo}><Users size={12} /> {listing.grades}</span>
+                      <span className={styles.cardInfo}><Clock size={12} /> {listing.duration}</span>
                     </div>
-
-                    {/* FLIQ outcomes */}
-                    {listing.fliqOutcomes?.length > 0 && (
-                      <div className={styles.fliqRow}>
-                        <span className={styles.fliqLabel}>FLIQ™</span>
-                        {listing.fliqOutcomes.slice(0, 3).map((o, i) => (
-                          <span key={i} className={styles.fliqChip}>{o}</span>
-                        ))}
-                      </div>
-                    )}
-
-                    <div className={styles.cardUpcoming}>
-                      <Calendar size={12} />
-                      Next: <strong>{listing.upcoming}</strong>
-                    </div>
-
                     <button className={styles.cardCta} onClick={e => { e.stopPropagation(); setSelected(listing) }}>
-                      Request This Experience <ChevronRight size={14} />
+                      View Details <ChevronRight size={14} />
                     </button>
                   </div>
                 </div>
@@ -1061,29 +741,11 @@ export default function MarketplacePage() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={listing.photo} alt={listing.title} className={styles.listCardImg} />
                     <div className={styles.listCardPhotoOverlay} />
-                    <div className={styles.listCardPhotoBadges}>
-                      <span className={`${styles.statusBadge} ${statusClass(listing.status)}`}>{listing.status}</span>
-                      {listing.verified && <span className={styles.verifiedBadge}><ShieldCheck size={11} /> Verified</span>}
-                    </div>
+                    <span className={`${styles.statusBadge} ${statusClass(listing.status)}`} style={{ position: 'absolute', bottom: 8, left: 8 }}>{listing.status}</span>
                   </div>
                   <div className={styles.listCardBody}>
-                    <div className={styles.listCardTopRow}>
-                      <div className={styles.listCardLeft}>
-                        <div className={styles.cardCompany}><Building2 size={12} className={styles.cardCompanyIcon} />{listing.company}</div>
-                        <h3 className={styles.listCardTitle}>{listing.title}</h3>
-                      </div>
-                      <div className={styles.listCardRight}>
-                        <span className={styles.distanceChip}>
-                          <MapPin size={10} />
-                          {userCoords
-                            ? `${haversineDistance(userCoords.lat, userCoords.lng, listing.lat, listing.lng).toFixed(1)} mi`
-                            : listing.distance}
-                        </span>
-                        <span className={styles.spotsTagLg}>{spotsLabel(listing)}</span>
-                        <div className={styles.cardRating}><Star size={12} className={styles.starIcon} /><span>{listing.rating}</span><span className={styles.ratingCount}>({listing.reviews})</span></div>
-                      </div>
-                    </div>
-                    <p className={styles.listCardDesc}>{listing.desc}</p>
+                    <div className={styles.cardCompany}><Building2 size={12} className={styles.cardCompanyIcon} />{listing.company}</div>
+                    <h3 className={styles.listCardTitle}>{listing.title}</h3>
                     <div className={styles.listCardMeta}>
                       <span className={styles.listMetaTag}>{listing.type}</span>
                       <span className={styles.listMetaDot}>·</span>
@@ -1091,9 +753,7 @@ export default function MarketplacePage() {
                       <span className={styles.listMetaDot}>·</span>
                       <span className={styles.listMetaItem}><Clock size={12} /> {listing.duration}</span>
                       <span className={styles.listMetaDot}>·</span>
-                      <span className={styles.listMetaItem}><DollarSign size={12} /> {listing.cost}</span>
-                      <span className={styles.listMetaDot}>·</span>
-                      <span className={styles.listMetaItem}><Calendar size={12} /> Next: {listing.upcoming}</span>
+                      <span className={styles.listMetaItem}>{listing.city}</span>
                     </div>
                   </div>
                   <div className={styles.listCardCta}>
@@ -1107,116 +767,6 @@ export default function MarketplacePage() {
           )}
         </div>
       </div>
-
-      {/* ── OUTCOME EXPLORATION ── */}
-      <section className={styles.outcomeSection}>
-        <div className={styles.outcomeSectionInner}>
-          <div className={styles.outcomeSectionHeader}>
-            <p className={styles.outcomeSectionEyebrow}>Outcome-Driven Learning</p>
-            <h2 className={styles.outcomeSectionTitle}>Explore by What Students Gain</h2>
-            <p className={styles.outcomeSectionSub}>Every experience is mapped to measurable FLIQ™ competencies — so you can choose based on exactly what your students need.</p>
-          </div>
-          <div className={styles.outcomeGrid}>
-            {OUTCOME_CATEGORIES.map((cat, i) => (
-              <button
-                key={i}
-                className={styles.outcomeCard}
-                onClick={() => handleOutcomeClick(cat.name)}
-              >
-                <div className={styles.outcomeIconWrap} style={{ background: `${cat.accent}18`, color: cat.accent }}>
-                  <cat.Icon size={22} />
-                </div>
-                <div className={styles.outcomeCardBody}>
-                  <p className={styles.outcomeCardName}>{cat.name}</p>
-                  <p className={styles.outcomeCardDesc}>{cat.desc}</p>
-                  <p className={styles.outcomeCardCount}>{cat.count} experiences</p>
-                </div>
-                <ChevronRight size={15} className={styles.outcomeCardArrow} style={{ color: cat.accent }} />
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── TRUST ARCHITECTURE ── */}
-      <section className={styles.trustSection}>
-        <div className={styles.trustInner}>
-          <div className={styles.trustHeader}>
-            <p className={styles.trustEyebrow}>Safety & Verification</p>
-            <h2 className={styles.trustTitle}>Why Organizations Trust RWP™</h2>
-            <p className={styles.trustSub}>Schools need safety. Businesses need legitimacy. Every part of our platform is built around both.</p>
-          </div>
-          <div className={styles.trustGrid}>
-            {TRUST_FEATURES.map((feat, i) => (
-              <div key={i} className={styles.trustCard}>
-                <div className={styles.trustIconWrap}>
-                  <feat.Icon size={20} className={styles.trustIcon} />
-                </div>
-                <div>
-                  <p className={styles.trustCardTitle}>{feat.title}</p>
-                  <p className={styles.trustCardDesc}>{feat.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── TESTIMONIALS ── */}
-      <section className={styles.testimonialsSection}>
-        <div className={styles.testimonialsInner}>
-          <p className={styles.testimonialsEyebrow}>What They&apos;re Saying</p>
-          <h2 className={styles.testimonialsTitle}>Trusted by Schools, Nonprofits & Businesses</h2>
-          <div className={styles.testimonialsGrid}>
-            {TESTIMONIALS.map((t, i) => (
-              <div key={i} className={styles.testimonialCard}>
-                <div className={styles.testimonialStars}>
-                  {[1,2,3,4,5].map(s => <Star key={s} size={13} className={styles.testimonialStar} />)}
-                </div>
-                <p className={styles.testimonialMark}>&ldquo;</p>
-                <p className={styles.testimonialQuote}>{t.quote}</p>
-                <div className={styles.testimonialFooter}>
-                  <div>
-                    <p className={styles.testimonialName}>{t.name}</p>
-                    <p className={styles.testimonialRole}>{t.title}</p>
-                    <p className={styles.testimonialOrg}>{t.org}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── FOUNDING COHORT CTA ── */}
-      <section className={styles.foundingCta}>
-        <div className={styles.foundingCtaInner}>
-          <div className={styles.foundingCtaLeft}>
-            <p className={styles.foundingCtaEyebrow}>Limited Availability</p>
-            <h2 className={styles.foundingCtaTitle}>Become a Founding Pathway Partner</h2>
-            <p className={styles.foundingCtaSub}>
-              Join the businesses and organizations helping students connect learning to real-world opportunity.
-              Founding Partners receive priority listing placement, co-branded recognition, and direct access
-              to our school and nonprofit network across Atlanta.
-            </p>
-            <div className={styles.foundingCtaBtns}>
-              <Link href="/register?type=biz" className={styles.foundingCtaPrimary}>
-                List an Experience <ChevronRight size={15} />
-              </Link>
-              <Link href="/pathway-sites" className={styles.foundingCtaSecondary}>
-                Become a Certified Pathway Site™
-              </Link>
-            </div>
-          </div>
-          <div className={styles.foundingCtaRight}>
-            <div className={styles.foundingCtaStat}><span className={styles.foundingCtaStatNum}>148</span><span className={styles.foundingCtaStatLabel}>Active Partners</span></div>
-            <div className={styles.foundingCtaDivider} />
-            <div className={styles.foundingCtaStat}><span className={styles.foundingCtaStatNum}>18K+</span><span className={styles.foundingCtaStatLabel}>Student Seats</span></div>
-            <div className={styles.foundingCtaDivider} />
-            <div className={styles.foundingCtaStat}><span className={styles.foundingCtaStatNum}>Free</span><span className={styles.foundingCtaStatLabel}>To List</span></div>
-          </div>
-        </div>
-      </section>
 
       {/* ── DETAIL MODAL ── */}
       {selected && (
