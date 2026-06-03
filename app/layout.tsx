@@ -18,7 +18,17 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: "Real-World Pathways™ — WealthWise Kids®",
-  description: "Where learning connects to life. Connecting students to real-world experiences through certified Field Labs.",
+  description: "Real-World Pathways™ connects students to certified Field Lab experiences across Atlanta. A WealthWise Kids® program — founded by Michael D. Olaiya.",
+  authors: [{ name: "Michael D. Olaiya" }],
+  creator: "Michael D. Olaiya",
+  openGraph: {
+    title: "Real-World Pathways™ — WealthWise Kids®",
+    description: "Connecting students to real-world career experiences through certified Field Labs. A WealthWise Kids® program.",
+    url: "https://rwp-platform.vercel.app",
+    siteName: "Real-World Pathways™",
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
