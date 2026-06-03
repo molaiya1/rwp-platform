@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /reflect
+Disallow: /register
+Disallow: /login
+Disallow: /verify
+Disallow: /forgot-password
+
+Sitemap: https://rwp-platform.vercel.app/sitemap.xml
