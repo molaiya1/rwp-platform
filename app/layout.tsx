@@ -19,7 +19,7 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: "Real-World Pathways™ — WealthWise Kids®",
   description: "Real-World Pathways™ connects students to certified Field Lab experiences across Atlanta. A WealthWise Kids® program — founded by Michael D. Olaiya.",
-  authors: [{ name: "Michael D. Olaiya" }],
+  authors: [{ name: "Michael D. Olaiya", url: "https://www.linkedin.com/in/dr-michael-olaiya" }],
   creator: "Michael D. Olaiya",
   openGraph: {
     title: "Real-World Pathways™ — WealthWise Kids®",
