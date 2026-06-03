@@ -29,7 +29,7 @@
 
 /* ── Hero ── */
 .hero {
-  background: linear-gradient(135deg, #1C1635 0%, #2D2060 50%, #6B5A8E 100%);
+  background: linear-gradient(135deg, #2D1B5E 0%, #2D2060 50%, #6B5A8E 100%);
   padding: 60px 32px;
 }
 .heroInner {
@@ -330,7 +330,7 @@
 .safetyAlertLink:hover { text-decoration: underline; }
 
 /* ── Footer ── */
-.footer { background: #1C1635; padding: 28px 32px; margin-top: auto; }
+.footer { background: #2D1B5E; padding: 28px 32px; margin-top: auto; }
 .footerInner {
   max-width: 1120px;
   margin: 0 auto;

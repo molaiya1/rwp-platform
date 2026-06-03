@@ -83,7 +83,7 @@
   position: relative;
   width: 300px;
   min-width: 280px;
-  background: #1C1635;
+  background: #2D1B5E;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -103,7 +103,7 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, #1C1635 0%, transparent 30%, transparent 70%, #1C1635 100%),
+    linear-gradient(to bottom, #2D1B5E 0%, transparent 30%, transparent 70%, #1C1635 100%),
     linear-gradient(to right, transparent 60%, #1C1635 100%);
 }
 
@@ -770,7 +770,7 @@
    TRUST BAR
 ════════════════════════════════════ */
 .trustBar {
-  background: #1C1635;
+  background: #2D1B5E;
   padding: 24px 40px;
   display: flex;
   align-items: flex-start;

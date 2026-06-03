@@ -615,7 +615,7 @@
 .cardPhotoOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(28, 22, 53, 0.75) 0%, rgba(28, 22, 53, 0.15) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(45, 27, 94, 0.75) 0%, rgba(45, 27, 94, 0.15) 60%, transparent 100%);
 }
 
 .cardPhotoContent {
@@ -924,7 +924,7 @@
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(28, 22, 53, 0.55);
+  background: rgba(45, 27, 94, 0.55);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -940,7 +940,7 @@
   max-width: 540px;
   max-height: 88vh;
   overflow-y: auto;
-  box-shadow: 0 24px 80px rgba(28, 22, 53, 0.30);
+  box-shadow: 0 24px 80px rgba(45, 27, 94, 0.30);
 }
 
 /* Modal photo header */
@@ -962,7 +962,7 @@
 .modalPhotoOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(28, 22, 53, 0.82) 0%, rgba(28, 22, 53, 0.20) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(45, 27, 94, 0.82) 0%, rgba(45, 27, 94, 0.20) 60%, transparent 100%);
 }
 
 .modalPhotoContent {
@@ -1211,7 +1211,7 @@
 
 /* ── FOOTER ── */
 .footer {
-  background: #1C1635;
+  background: #2D1B5E;
   padding: 24px 40px;
 }
 
@@ -1482,7 +1482,7 @@
 .listCardPhotoOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(28, 22, 53, 0.45) 0%, transparent 70%);
+  background: linear-gradient(to right, rgba(45, 27, 94, 0.45) 0%, transparent 70%);
 }
 
 .listCardPhotoBadges {
@@ -2042,7 +2042,7 @@
    V2 — IMPACT STATS BAR
 ══════════════════════════════════════════════════════ */
 .impactBar {
-  background: linear-gradient(135deg, #1C1635 0%, #1C1635 60%, #6B5A8E 100%);
+  background: linear-gradient(135deg, #2D1B5E 0%, #1C1635 60%, #6B5A8E 100%);
   padding: 28px 40px;
 }
 
@@ -2202,7 +2202,7 @@
 .siteCardOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(28,22,53,0.72) 0%, rgba(28,22,53,0.08) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(45,27,94,0.72) 0%, rgba(45,27,94,0.08) 60%, transparent 100%);
 }
 
 .siteCardBadge {
@@ -2532,7 +2532,7 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #F2C96E;
-  background: #1C1635;
+  background: #2D1B5E;
   border-radius: 5px;
   padding: 2px 7px;
   flex-shrink: 0;
@@ -2780,7 +2780,7 @@
    V2 — TESTIMONIALS
 ══════════════════════════════════════════════════════ */
 .testimonialsSection {
-  background: linear-gradient(135deg, #1C1635 0%, #1C1635 100%);
+  background: linear-gradient(135deg, #2D1B5E 0%, #1C1635 100%);
   padding: 72px 40px;
 }
 
@@ -2941,7 +2941,7 @@
   gap: 6px;
   height: 46px;
   padding: 0 22px;
-  background: #1C1635;
+  background: #2D1B5E;
   color: #FFFFFF;
   border-radius: 12px;
   font-size: 14px;
@@ -2950,7 +2950,7 @@
   transition: background 0.12s;
 }
 
-.foundingCtaPrimary:hover { background: #1C1635; }
+.foundingCtaPrimary:hover { background: #2D1B5E; }
 
 .foundingCtaSecondary {
   display: inline-flex;
@@ -2967,7 +2967,7 @@
   transition: background 0.12s, color 0.12s;
 }
 
-.foundingCtaSecondary:hover { background: #1C1635; color: #FFFFFF; }
+.foundingCtaSecondary:hover { background: #2D1B5E; color: #FFFFFF; }
 
 .foundingCtaRight {
   display: flex;

@@ -12,7 +12,7 @@
 
 /* ── HEADER ── */
 .header {
-  background: #1C1635;
+  background: #2D1B5E;
   border-bottom: 1px solid rgba(255,255,255,0.08);
   padding: 0 40px;
   height: 58px;
@@ -67,7 +67,7 @@
 
 /* ── EXPERIENCE SUMMARY CARD ── */
 .expCard {
-  background: #1C1635;
+  background: #2D1B5E;
   border-radius: 16px;
   padding: 18px 22px;
 }
@@ -475,7 +475,7 @@
   max-width: 520px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 8px 40px rgba(28, 22, 53, 0.10);
+  box-shadow: 0 8px 40px rgba(45, 27, 94, 0.10);
   border: 1px solid #EDE9F5;
   display: flex;
   flex-direction: column;

@@ -35,7 +35,7 @@
 .contactIcon { color: #6B5A8E; flex-shrink: 0; margin-top: 2px; }
 .contactTitle { font-size: 14px; font-weight: 800; color: #1C1635; display: block; margin-bottom: 4px; }
 .contactDetail { font-size: 13px; color: #4A4060; margin: 0 0 4px; line-height: 1.5; }
-.footer { background: #1C1635; padding: 20px 24px; margin-top: auto; }
+.footer { background: #2D1B5E; padding: 20px 24px; margin-top: auto; }
 .footerInner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 .footerCopy { font-size: 12px; color: rgba(255,255,255,0.4); margin: 0; }
 .footerLinks { display: flex; gap: 20px; flex-wrap: wrap; }
