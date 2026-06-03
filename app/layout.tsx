@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Real-World Pathways™ — WealthWise Kids®",
     description: "Connecting students to real-world career experiences through certified Field Labs. A WealthWise Kids® program.",
-    url: "https://rwp-platform.vercel.app",
+    url: "https://www.realworldpathways.com",
     siteName: "Real-World Pathways™",
     locale: "en_US",
     type: "website",

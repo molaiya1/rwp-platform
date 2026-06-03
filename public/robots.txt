@@ -8,4 +8,4 @@ Disallow: /login
 Disallow: /verify
 Disallow: /forgot-password
 
-Sitemap: https://rwp-platform.vercel.app/sitemap.xml
+Sitemap: https://www.realworldpathways.com/sitemap.xml

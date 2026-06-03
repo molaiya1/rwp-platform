@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://rwp-platform.vercel.app/</loc><lastmod>2026-06-03</lastmod><priority>1.0</priority></url>
-  <url><loc>https://rwp-platform.vercel.app/marketplace</loc><lastmod>2026-06-03</lastmod><priority>0.9</priority></url>
-  <url><loc>https://rwp-platform.vercel.app/experiences</loc><lastmod>2026-06-03</lastmod><priority>0.8</priority></url>
-  <url><loc>https://rwp-platform.vercel.app/pathway-sites</loc><lastmod>2026-06-03</lastmod><priority>0.8</priority></url>
-  <url><loc>https://rwp-platform.vercel.app/safety</loc><lastmod>2026-06-03</lastmod><priority>0.6</priority></url>
-  <url><loc>https://rwp-platform.vercel.app/privacy</loc><lastmod>2026-06-03</lastmod><priority>0.4</priority></url>
-  <url><loc>https://rwp-platform.vercel.app/terms</loc><lastmod>2026-06-03</lastmod><priority>0.4</priority></url>
+  <url><loc>https://www.realworldpathways.com/</loc><lastmod>2026-06-03</lastmod><priority>1.0</priority></url>
+  <url><loc>https://www.realworldpathways.com/marketplace</loc><lastmod>2026-06-03</lastmod><priority>0.9</priority></url>
+  <url><loc>https://www.realworldpathways.com/experiences</loc><lastmod>2026-06-03</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.realworldpathways.com/pathway-sites</loc><lastmod>2026-06-03</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.realworldpathways.com/safety</loc><lastmod>2026-06-03</lastmod><priority>0.6</priority></url>
+  <url><loc>https://www.realworldpathways.com/privacy</loc><lastmod>2026-06-03</lastmod><priority>0.4</priority></url>
+  <url><loc>https://www.realworldpathways.com/terms</loc><lastmod>2026-06-03</lastmod><priority>0.4</priority></url>
 </urlset>
